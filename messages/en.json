@@ -2,7 +2,7 @@
   "meta": {
     "siteName": "Fire Advisor",
     "defaultTitle": "Fire Advisor — Fire Safety System Design & Maintenance in Bulgaria",
-    "defaultDescription": "Design, installation and maintenance of fire safety systems in Bulgaria. 8+ years of experience, licensed engineering team, national fire safety authority permit."
+    "defaultDescription": "Design, installation and maintenance of fire safety systems. 8+ years of experience, based in Plovdiv, serving clients across Bulgaria."
   },
   "nav": {
     "home": "Home",
@@ -38,13 +38,21 @@
   "home": {
     "heroEyebrow": "Fire Safety for Business",
     "heroTitle": "Fire safety system design and installation by a licensed engineering team",
-    "heroSubtitle": "8+ years of experience, licensed engineer registered with KIIP, permit from the National Fire Safety Directorate for fire safety measures. Serving clients across Bulgaria.",
+    "heroSubtitle": "8+ years of hands-on experience, a KIIP-registered engineer licensed by the National Fire Safety Directorate (ГДПБЗН) to maintain active fire safety measures — detection & extinguishing, smoke/heat extraction. Based in Plovdiv, serving clients across Bulgaria.",
     "heroCta": "Free Consultation",
     "heroCtaSecondary": "Browse Services",
     "trustYears": "8+ years of experience",
     "trustKiip": "KIIP-registered engineer",
     "trustGdpzn": "National authority permit",
     "trustProjects": "[XX] completed projects",
+    "whyUsTitle": "Why Choose Us",
+    "whyUsSubtitle": "Three things our clients rely on.",
+    "whyUsLicensedTitle": "Licensed & Certified Team",
+    "whyUsLicensedText": "KIIP member, licensed by the National Fire Safety Directorate — we work by the book, not by guesswork.",
+    "whyUsCoverageTitle": "Nationwide Coverage",
+    "whyUsCoverageText": "Based in Plovdiv, we travel to job sites anywhere in Bulgaria.",
+    "whyUsFullServiceTitle": "One Partner for Everything",
+    "whyUsFullServiceText": "From design to long-term maintenance — no need to juggle multiple contractors.",
     "phasesTitle": "We work across three phases",
     "phaseDesignTitle": "Design",
     "phaseDesignText": "Risk analysis, technical design and documentation compliant with applicable regulations.",
@@ -79,7 +87,7 @@
     "title": "About Us",
     "subtitle": "A licensed team with a proven track record in fire safety",
     "introTitle": "Who We Are",
-    "introText": "Fire Advisor designs, installs and maintains fire safety systems, with 8+ years of experience on the Bulgarian market. We work across sectors including manufacturing, retail, hospitality, healthcare and public buildings.",
+    "introText": "Fire Advisor designs, installs and maintains fire safety systems, with 8+ years of experience on the Bulgarian market. Based in Plovdiv, we work across sectors including manufacturing, retail, hospitality, healthcare and public buildings — nationwide.",
     "credentialsTitle": "Certifications & Permits",
     "credKiipTitle": "KIIP Member",
     "credKiipText": "Chamber of Engineers in Investment Design — a guarantee of professional design qualification.",
@@ -142,8 +150,6 @@
     "successTitle": "Thank you!",
     "successText": "We've received your request and will get back to you shortly.",
     "errorText": "Something went wrong while sending. Please try again or call us directly.",
-    "directContactTitle": "Direct Contact",
-    "phone": "[PHONE]",
-    "email": "[EMAIL]"
+    "directContactTitle": "Direct Contact"
   }
 }

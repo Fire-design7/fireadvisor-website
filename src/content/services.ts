@@ -91,6 +91,22 @@ export const services: Service[] = [
     faqs: [],
   },
   {
+    slug: "evakuatsionni-shemi",
+    phase: "design",
+    standard: "Наредба Iз-1971",
+    bg: {
+      title: "Схеми за евакуация",
+      short: "Изготвяне на евакуационни планове и табла за обекта.",
+      body: "Изготвяме индивидуални схеми за евакуация за вашия обект — ясно обозначени пътища и изходи, поставени на подходящи места съгласно нормативните изисквания и спецификата на сградата.",
+    },
+    en: {
+      title: "Evacuation Plans",
+      short: "Evacuation floor plans and signage boards for your building.",
+      body: "We create individual evacuation plans for your building — clearly marked routes and exits, placed according to regulatory requirements and the specifics of the building.",
+    },
+    faqs: [],
+  },
+  {
     slug: "ognezashtita",
     phase: "build",
     standard: "Наредба Iз-1971",
@@ -151,6 +167,22 @@ export const services: Service[] = [
       title: "Fire Safety Audits & Inspections",
       short: "On-site fire audits and inspection-readiness for any facility.",
       body: "We audit and inspect existing fire safety installations — hotels, retail, offices and industrial sites — so you're always ready for an official inspection and minimize the risk of penalties.",
+    },
+    faqs: [],
+  },
+  {
+    slug: "pozharno-dosie",
+    phase: "maintain",
+    standard: "Наредба Iз-1971",
+    bg: {
+      title: "Пожарно досие",
+      short: "Изготвяне и поддържане на пожарното досие на обекта.",
+      body: "Изготвяме и поддържаме пожарното досие на вашия обект — цялата документация, изисквана при проверка от контролните органи, подредена и актуална по всяко време.",
+    },
+    en: {
+      title: "Fire Safety File",
+      short: "Preparation and maintenance of your building's fire safety file.",
+      body: "We prepare and maintain your building's fire safety file — all documentation required during an official inspection, organized and kept up to date at all times.",
     },
     faqs: [],
   },

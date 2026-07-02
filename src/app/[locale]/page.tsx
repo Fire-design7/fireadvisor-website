@@ -8,6 +8,7 @@ import { TrustBadges } from "@/components/TrustBadges";
 import { Faq } from "@/components/Faq";
 import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
+import { WhyUsCard, icons } from "@/components/WhyUsCard";
 import { Link } from "@/i18n/navigation";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
@@ -82,8 +83,25 @@ export default async function HomePage({
       />
 
       {/* Hero */}
-      <section className="border-b border-slate-200 bg-gradient-to-b from-slate-900 to-slate-800 py-20 text-white sm:py-28">
-        <Container>
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800 py-20 text-white sm:py-28">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 -right-24 h-96 w-96 rounded-full bg-amber-500/20 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-40 -left-16 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <Container className="relative">
           <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">
             {t("heroEyebrow")}
           </span>
@@ -103,6 +121,42 @@ export default async function HomePage({
           </div>
           <div className="mt-12 max-w-2xl">
             <TrustBadges />
+          </div>
+        </Container>
+
+        <svg
+          aria-hidden
+          className="absolute -bottom-px left-0 w-full text-[var(--background)]"
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="currentColor"
+            d="M0 60L60 51.7C120 43 240 27 360 24.5C480 22 600 33 720 38.5C840 44 960 44 1080 38.2C1200 32 1320 22 1380 16.7L1440 11V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z"
+          />
+        </svg>
+      </section>
+
+      {/* Why us */}
+      <section className="py-20">
+        <Container>
+          <SectionHeading title={t("whyUsTitle")} subtitle={t("whyUsSubtitle")} align="center" />
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <WhyUsCard
+              icon={icons.shield}
+              title={t("whyUsLicensedTitle")}
+              text={t("whyUsLicensedText")}
+            />
+            <WhyUsCard
+              icon={icons.map}
+              title={t("whyUsCoverageTitle")}
+              text={t("whyUsCoverageText")}
+            />
+            <WhyUsCard
+              icon={icons.link}
+              title={t("whyUsFullServiceTitle")}
+              text={t("whyUsFullServiceText")}
+            />
           </div>
         </Container>
       </section>
