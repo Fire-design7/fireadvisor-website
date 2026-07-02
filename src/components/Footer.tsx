@@ -103,9 +103,14 @@ export function Footer() {
           <span>
             &copy; {new Date().getFullYear()} {siteConfig.name}. {t("footer.rights")}
           </span>
-          <Link href="/cookies-policy" className="hover:text-white">
-            {t("footer.cookies")}
-          </Link>
+          <span className="flex gap-4">
+            <Link href="/politika-za-poveritelnost" className="hover:text-white">
+              {t("footer.privacy")}
+            </Link>
+            <Link href="/cookies-policy" className="hover:text-white">
+              {t("footer.cookies")}
+            </Link>
+          </span>
         </Container>
       </div>
     </footer>

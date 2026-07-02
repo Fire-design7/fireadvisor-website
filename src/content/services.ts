@@ -129,14 +129,25 @@ export const services: Service[] = [
     bg: {
       title: "Пасивна пожарозащита",
       short: "Уплътняване на тръбни и кабелни преминавания — до EI 240.",
-      body: "Изпълняваме пасивна пожарозащита на тръбни и кабелни преминавания през пожарозащитни стени и подове — огнезащитни плоскости, маншети и уплътнители, сертифицирани до клас EI 240 съгласно EN 1366.",
+      body: "Изпълняваме пасивна пожарозащита на тръбни и кабелни преминавания през пожарозащитни стени и подове — огнезащитни плоскости, маншети и уплътнители, сертифицирани до клас EI 240 съгласно EN 1366. Работим в партньорство с Red Birch — ексклузивен представител на британския производител Protecta за България — и прилагаме техните сертифицирани системи на място.",
     },
     en: {
       title: "Passive Fire Protection",
       short: "Fire-stopping for pipe and cable penetrations — up to EI 240.",
-      body: "We provide passive fire protection for pipe and cable penetrations through fire-rated walls and floors — fireproof boards, collars and sealants certified up to EI 240 under EN 1366.",
+      body: "We provide passive fire protection for pipe and cable penetrations through fire-rated walls and floors — fireproof boards, collars and sealants certified up to EI 240 under EN 1366. We work in partnership with Red Birch — the exclusive representative for UK manufacturer Protecta in Bulgaria — and install their certified systems on site.",
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {
+          q: "Работите ли с конкретна марка продукти за пасивна пожарозащита?",
+          a: "Да — партнираме си с Red Birch, ексклузивен представител на Protecta (Великобритания) за България, и монтираме техните сертифицирани по EN 1366 продукти.",
+        },
+        en: {
+          q: "Do you work with a specific passive fire protection brand?",
+          a: "Yes — we partner with Red Birch, the exclusive representative of Protecta (UK) in Bulgaria, and install their EN 1366-certified products.",
+        },
+      },
+    ],
   },
   {
     slug: "otsenka-na-risk",

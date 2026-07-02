@@ -27,6 +27,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resursi",
     "/blog",
     "/kontakti",
+    "/politika-za-poveritelnost",
+    "/cookies-policy",
   ];
 
   const servicePaths = services.map((s) => `/uslugi/${s.slug}`);

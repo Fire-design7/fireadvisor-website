@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { Link } from "@/i18n/navigation";
 import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -42,7 +43,9 @@ export default async function CookiesPolicyPage({
             </p>
             <p>
               За въпроси относно тази политика, свържете се с нас на посочения
-              в страница &quot;Контакти&quot; имейл адрес.
+              в страница &quot;Контакти&quot; имейл адрес. За информация как
+              обработваме личните ви данни вижте нашата{" "}
+              <Link href="/politika-za-poveritelnost">Политика за поверителност</Link>.
             </p>
           </>
         ) : (
@@ -54,7 +57,9 @@ export default async function CookiesPolicyPage({
             </p>
             <p>
               For questions about this policy, contact us at the email
-              address listed on the Contact page.
+              address listed on the Contact page. For details on how we
+              handle personal data, see our{" "}
+              <Link href="/politika-za-poveritelnost">Privacy Policy</Link>.
             </p>
           </>
         )}
