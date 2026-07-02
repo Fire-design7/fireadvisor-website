@@ -34,8 +34,8 @@ export default async function HomePage({
             a: "Сроковете зависят от сложността на обекта, но обичайно изготвяме първоначална оферта в рамките на няколко работни дни след оглед.",
           },
           {
-            q: "Работите ли извън София?",
-            a: "Да, работим по обекти в цялата страна.",
+            q: "Работите ли само в Пловдив?",
+            a: "Базирани сме в Пловдив, но работим по обекти в цялата страна.",
           },
           {
             q: "Предлагате ли абонаментна поддръжка?",
@@ -48,8 +48,8 @@ export default async function HomePage({
             a: "Timelines depend on the complexity of the building, but we typically provide an initial quote within a few business days after a site visit.",
           },
           {
-            q: "Do you work outside the capital?",
-            a: "Yes, we work on projects across the whole country.",
+            q: "Do you only work in Plovdiv?",
+            a: "We're based in Plovdiv, but we work on projects across the whole country.",
           },
           {
             q: "Do you offer subscription maintenance?",
