@@ -66,7 +66,12 @@
     "sectorsSubtitle": "Every sector has specific requirements — we know them.",
     "faqTitle": "Frequently Asked Questions",
     "ctaBandTitle": "Ready to protect your building?",
-    "ctaBandSubtitle": "Get in touch for a free consultation and quote."
+    "ctaBandSubtitle": "Get in touch for a free consultation and quote.",
+    "statYearsLabel": "years of experience",
+    "statServicesLabel": "fire safety services",
+    "statSectorsLabel": "sectors served",
+    "testimonialsTitle": "What Our Clients Say",
+    "testimonialsPlaceholder": "[PLACEHOLDER — add real client quotes with name/company once available]"
   },
   "services": {
     "hubTitle": "Services",

@@ -9,6 +9,7 @@ import { Faq } from "@/components/Faq";
 import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
 import { WhyUsCard, icons } from "@/components/WhyUsCard";
+import { StatCounter } from "@/components/StatCounter";
 import { Link } from "@/i18n/navigation";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
@@ -165,11 +166,26 @@ export default async function HomePage({
       <section className="py-20">
         <Container>
           <SectionHeading title={t("phasesTitle")} align="center" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            <PhaseCard number="1" title={t("phaseDesignTitle")} text={t("phaseDesignText")} />
-            <PhaseCard number="2" title={t("phaseBuildTitle")} text={t("phaseBuildText")} />
-            <PhaseCard number="3" title={t("phaseMaintainTitle")} text={t("phaseMaintainText")} />
+          <div className="relative mt-12">
+            <div
+              aria-hidden
+              className="absolute top-5 left-[16.5%] right-[16.5%] hidden h-px bg-slate-300 sm:block"
+            />
+            <div className="grid gap-10 sm:grid-cols-3 sm:gap-6">
+              <PhaseCard number="1" title={t("phaseDesignTitle")} text={t("phaseDesignText")} />
+              <PhaseCard number="2" title={t("phaseBuildTitle")} text={t("phaseBuildText")} />
+              <PhaseCard number="3" title={t("phaseMaintainTitle")} text={t("phaseMaintainText")} />
+            </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Stats */}
+      <section className="bg-slate-900 py-16">
+        <Container className="grid grid-cols-1 gap-10 sm:grid-cols-3">
+          <StatCounter value={8} suffix="+" label={t("statYearsLabel")} />
+          <StatCounter value={services.length} label={t("statServicesLabel")} />
+          <StatCounter value={sectors.length} label={t("statSectorsLabel")} />
         </Container>
       </section>
 
@@ -213,8 +229,18 @@ export default async function HomePage({
         </Container>
       </section>
 
-      {/* FAQ */}
+      {/* Testimonials */}
       <section className="bg-white py-20">
+        <Container>
+          <SectionHeading title={t("testimonialsTitle")} align="center" />
+          <div className="mt-10 rounded-2xl border border-dashed border-amber-300 bg-amber-50 p-6 text-center text-sm font-medium text-amber-800">
+            {t("testimonialsPlaceholder")}
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20">
         <Container className="max-w-3xl">
           <SectionHeading title={t("faqTitle")} align="center" />
           <div className="mt-10">
