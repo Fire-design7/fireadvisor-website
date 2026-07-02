@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "./Container";
@@ -25,9 +26,14 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-[var(--background)]/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-900 text-amber-400">
-            FA
-          </span>
+          <Image
+            src="/logo-icon-dark.png"
+            alt=""
+            width={22}
+            height={32}
+            className="h-8 w-auto"
+            priority
+          />
           <span className="text-lg tracking-tight">{siteConfig.name}</span>
         </Link>
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "./Container";
@@ -14,9 +15,13 @@ export function Footer() {
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2 font-bold text-white">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-amber-500 text-slate-900">
-              FA
-            </span>
+            <Image
+              src="/logo-icon-light.png"
+              alt=""
+              width={22}
+              height={32}
+              className="h-8 w-auto"
+            />
             <span className="text-lg tracking-tight">{siteConfig.name}</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
