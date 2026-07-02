@@ -36,8 +36,8 @@ export default async function PrivacyPolicyPage({
       <Container className="prose prose-slate max-w-3xl py-16">
         <p className="rounded-xl border border-dashed border-amber-300 bg-amber-50 p-4 text-sm not-prose">
           {isBg
-            ? "[ПОДЛЕЖИ НА ПРАВЕН ПРЕГЛЕД] Този текст е изготвен като разумна отправна точка въз основа на реално обработваните на сайта данни, но не замества преглед от юрист. Попълнете липсващите фирмени данни (ЕИК, точен адрес) преди публикуване."
-            : "[PENDING LEGAL REVIEW] This text is a reasonable starting point based on the data this site actually processes, but it does not replace review by a lawyer. Fill in the missing company details (registration number, exact address) before publishing."}
+            ? "[ПОДЛЕЖИ НА ПРАВЕН ПРЕГЛЕД] Този текст е изготвен като разумна отправна точка въз основа на реално обработваните на сайта данни, но не замества преглед от юрист. Остава да се потвърдят: точния срок на съхранение (т. 6) и точното позоваване на ЗЕС в Cookie Policy."
+            : "[PENDING LEGAL REVIEW] This text is a reasonable starting point based on the data this site actually processes, but it does not replace review by a lawyer. Still to confirm: the exact retention period (section 6) and the exact statutory citation in the Cookie Policy."}
         </p>
 
         {isBg ? (
@@ -45,7 +45,7 @@ export default async function PrivacyPolicyPage({
             <h2>1. Администратор на лични данни</h2>
             <p>
               Fire Advisor Ltd (&bdquo;ние&ldquo;, &bdquo;нас&ldquo;), с адрес на управление гр.
-              Пловдив, България [ЕИК/БУЛСТАТ — попълнете], е администратор на личните
+              Пловдив, България, ЕИК {siteConfig.eik}, е администратор на личните
               данни, които обработва чрез сайта fireadvisor.eu.
             </p>
 
@@ -129,7 +129,7 @@ export default async function PrivacyPolicyPage({
             <h2>1. Data Controller</h2>
             <p>
               Fire Advisor Ltd (&ldquo;we&rdquo;, &ldquo;us&rdquo;), registered in
-              Plovdiv, Bulgaria [company registration number — to be added], is the
+              Plovdiv, Bulgaria, company registration number (ЕИК) {siteConfig.eik}, is the
               controller of the personal data processed through fireadvisor.eu.
             </p>
 

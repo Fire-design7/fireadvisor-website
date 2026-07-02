@@ -6,4 +6,5 @@ export const siteConfig = {
   email: "info@fireadvisor.eu",
   linkedin: "https://www.linkedin.com/company/fire-advisor-ltd/",
   address: "гр. Пловдив, България",
+  eik: "207523382",
 };
