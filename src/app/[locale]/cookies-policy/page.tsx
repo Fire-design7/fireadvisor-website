@@ -1,7 +1,22 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "footer" });
+  return {
+    title: t("cookies"),
+    alternates: pageAlternates(locale, "/cookies-policy"),
+  };
+}
 
 export default async function CookiesPolicyPage({
   params,

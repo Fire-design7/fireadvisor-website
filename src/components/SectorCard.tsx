@@ -17,7 +17,7 @@ export function SectorCard({ sector }: { sector: Sector }) {
       <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
         {content.short}
       </p>
-      <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-900 group-hover:text-amber-600">
+      <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-900 group-hover:text-amber-700">
         {t("learnMore")}
         <span aria-hidden>&rarr;</span>
       </span>

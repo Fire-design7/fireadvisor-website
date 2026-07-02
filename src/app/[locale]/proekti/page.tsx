@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { projects } from "@/content/projects";
 import { getSectorBySlug } from "@/content/sectors";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -13,7 +14,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects" });
-  return { title: t("title"), description: t("subtitle") };
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: pageAlternates(locale, "/proekti"),
+  };
 }
 
 export default async function ProjectsPage({
@@ -43,7 +48,7 @@ export default async function ProjectsPage({
                 className="rounded-2xl border border-slate-200 bg-white p-6"
               >
                 {sector && (
-                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-600">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-700">
                     {sector[locale].title}
                   </span>
                 )}

@@ -7,6 +7,7 @@ import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
 import { Link } from "@/i18n/navigation";
 import { services, getServiceBySlug } from "@/content/services";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -23,7 +24,11 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
   const content = service[locale];
-  return { title: content.title, description: content.short };
+  return {
+    title: content.title,
+    description: content.short,
+    alternates: pageAlternates(locale, `/uslugi/${slug}`),
+  };
 }
 
 export default async function ServiceDetailPage({

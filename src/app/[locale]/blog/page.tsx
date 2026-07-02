@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { Link } from "@/i18n/navigation";
 import { getAllPosts } from "@/lib/blog";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -13,7 +14,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "blog" });
-  return { title: t("title"), description: t("subtitle") };
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: pageAlternates(locale, "/blog"),
+  };
 }
 
 export default async function BlogIndexPage({
@@ -40,7 +45,7 @@ export default async function BlogIndexPage({
                 href={`/blog/${post.slug}`}
                 className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-lg hover:shadow-slate-900/5"
               >
-                <time className="text-xs font-semibold uppercase tracking-wide text-amber-600">
+                <time className="text-xs font-semibold uppercase tracking-wide text-amber-700">
                   {post.date}
                 </time>
                 <h2 className="mt-2 text-lg font-semibold text-slate-900">

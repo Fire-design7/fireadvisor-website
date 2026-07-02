@@ -12,7 +12,7 @@ export function Faq({ items }: { items: FaqItem[] }) {
         <details key={i} className="group p-5 open:bg-slate-50">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
             {item.q}
-            <span className="shrink-0 text-amber-600 transition-transform group-open:rotate-45">
+            <span className="shrink-0 text-amber-700 transition-transform group-open:rotate-45">
               +
             </span>
           </summary>

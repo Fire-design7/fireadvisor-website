@@ -196,7 +196,7 @@ export default async function HomePage({
             <SectionHeading title={t("servicesTitle")} subtitle={t("servicesSubtitle")} />
             <Link
               href="/uslugi"
-              className="text-sm font-semibold text-slate-900 hover:text-amber-600"
+              className="text-sm font-semibold text-slate-900 hover:text-amber-700"
             >
               {tCommon("viewAllServices")} &rarr;
             </Link>
@@ -216,7 +216,7 @@ export default async function HomePage({
             <SectionHeading title={t("sectorsTitle")} subtitle={t("sectorsSubtitle")} />
             <Link
               href="/sektori"
-              className="text-sm font-semibold text-slate-900 hover:text-amber-600"
+              className="text-sm font-semibold text-slate-900 hover:text-amber-700"
             >
               {tCommon("viewAllSectors")} &rarr;
             </Link>

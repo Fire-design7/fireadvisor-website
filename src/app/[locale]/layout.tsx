@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingContact } from "@/components/FloatingContact";
+import { pageAlternates } from "@/lib/seo";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -37,9 +39,7 @@ export async function generateMetadata({
       template: `%s | ${t("siteName")}`,
     },
     description: t("defaultDescription"),
-    alternates: {
-      languages: { bg: "/", en: "/en" },
-    },
+    alternates: pageAlternates(locale, ""),
   };
 }
 
@@ -66,6 +66,7 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FloatingContact />
         </NextIntlClientProvider>
       </body>
     </html>

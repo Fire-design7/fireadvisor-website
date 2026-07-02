@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { ServiceCard } from "@/components/ServiceCard";
 import { servicesByPhase } from "@/content/services";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -13,7 +14,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "services" });
-  return { title: t("hubTitle"), description: t("hubSubtitle") };
+  return {
+    title: t("hubTitle"),
+    description: t("hubSubtitle"),
+    alternates: pageAlternates(locale, "/uslugi"),
+  };
 }
 
 export default async function ServicesHubPage({

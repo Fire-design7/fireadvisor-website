@@ -99,7 +99,7 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-slate-800">
-        <Container className="flex flex-col items-center justify-between gap-2 py-6 text-xs text-slate-500 sm:flex-row">
+        <Container className="flex flex-col items-center justify-between gap-2 py-6 text-xs text-slate-400 sm:flex-row">
           <span>
             &copy; {new Date().getFullYear()} {siteConfig.name}. {t("footer.rights")}
           </span>

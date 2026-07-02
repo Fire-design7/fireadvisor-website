@@ -23,7 +23,16 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const post = getPost(locale, slug);
   if (!post) return {};
-  return { title: post.title, description: post.description };
+  // Blog post slugs are written independently per language (content is
+  // adapted, not translated 1:1 — see README), so unlike other pages we
+  // can't assume a matching slug exists in the other locale. Only a
+  // self-referencing canonical is safe here; no cross-language hreflang.
+  const path = locale === "en" ? `/en/blog/${slug}` : `/blog/${slug}`;
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: { canonical: path },
+  };
 }
 
 export default async function BlogPostPage({

@@ -7,6 +7,7 @@ import { LinkButton } from "@/components/Button";
 import { Link } from "@/i18n/navigation";
 import { sectors, getSectorBySlug } from "@/content/sectors";
 import { services } from "@/content/services";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -23,7 +24,11 @@ export async function generateMetadata({
   const sector = getSectorBySlug(slug);
   if (!sector) return {};
   const content = sector[locale];
-  return { title: content.title, description: content.short };
+  return {
+    title: content.title,
+    description: content.short,
+    alternates: pageAlternates(locale, `/sektori/${slug}`),
+  };
 }
 
 export default async function SectorDetailPage({

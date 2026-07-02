@@ -49,7 +49,7 @@ export function TrustBadges() {
   ];
 
   return (
-    <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
       {items.map((item) => (
         <div
           key={item.key}
@@ -67,9 +67,9 @@ export function TrustBadges() {
               {iconPaths[item.key]}
             </svg>
           </span>
-          <dd className="text-sm font-semibold text-white">{item.label}</dd>
+          <span className="text-sm font-semibold text-white">{item.label}</span>
         </div>
       ))}
-    </dl>
+    </div>
   );
 }

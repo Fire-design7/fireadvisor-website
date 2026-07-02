@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { siteConfig } from "@/content/site-config";
+import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -14,7 +15,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
-  return { title: t("title"), description: t("subtitle") };
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: pageAlternates(locale, "/kontakti"),
+  };
 }
 
 export default async function ContactPage({
@@ -47,7 +52,7 @@ export default async function ContactPage({
             <li>
               <a
                 href={siteConfig.phoneHref}
-                className="font-semibold text-slate-900 hover:text-amber-600"
+                className="font-semibold text-slate-900 hover:text-amber-700"
               >
                 {siteConfig.phone}
               </a>
@@ -55,7 +60,7 @@ export default async function ContactPage({
             <li>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="font-semibold text-slate-900 hover:text-amber-600"
+                className="font-semibold text-slate-900 hover:text-amber-700"
               >
                 {siteConfig.email}
               </a>
