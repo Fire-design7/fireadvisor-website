@@ -72,7 +72,10 @@
     "statServicesLabel": "fire safety services",
     "statSectorsLabel": "sectors served",
     "testimonialsTitle": "What Our Clients Say",
-    "testimonialsPlaceholder": "[PLACEHOLDER — add real client quotes with name/company once available]"
+    "testimonialsPlaceholder": "[PLACEHOLDER — add real client quotes with name/company once available]",
+    "quickMatchTitle": "What kind of building do you need to protect?",
+    "quickMatchSubtitle": "Pick one with a single click — see exactly what you need, instantly.",
+    "quickMatchMore": "See more about this sector"
   },
   "services": {
     "hubTitle": "Services",

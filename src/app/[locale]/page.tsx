@@ -10,6 +10,7 @@ import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
 import { WhyUsCard, icons } from "@/components/WhyUsCard";
 import { StatCounter } from "@/components/StatCounter";
+import { SectorQuickMatch } from "@/components/SectorQuickMatch";
 import { Link } from "@/i18n/navigation";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
@@ -136,6 +137,20 @@ export default async function HomePage({
             d="M0 60L60 51.7C120 43 240 27 360 24.5C480 22 600 33 720 38.5C840 44 960 44 1080 38.2C1200 32 1320 22 1380 16.7L1440 11V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z"
           />
         </svg>
+      </section>
+
+      {/* Quick match */}
+      <section className="bg-white py-20">
+        <Container>
+          <SectionHeading
+            title={t("quickMatchTitle")}
+            subtitle={t("quickMatchSubtitle")}
+            align="center"
+          />
+          <div className="mt-10">
+            <SectorQuickMatch />
+          </div>
+        </Container>
       </section>
 
       {/* Why us */}
