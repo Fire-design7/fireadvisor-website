@@ -12,12 +12,12 @@ export const testimonials: Testimonial[] = [
   {
     bg: {
       quote:
-        "Изготвиха цялата документация за обекта ни без забавяне и бяхме напълно готови за проверка от инспектората.",
+        "Изготвиха цялата документация за обекта ни без забавяне и бяхме напълно готови за проверка от пожарната.",
       attribution: "Управител, производствено предприятие",
     },
     en: {
       quote:
-        "They prepared the full documentation for our site without delay, and we were completely ready for the inspection.",
+        "They prepared the full documentation for our site without delay, and we were completely ready for the fire department's inspection.",
       attribution: "Facility manager, manufacturing company",
     },
   },
@@ -36,12 +36,12 @@ export const testimonials: Testimonial[] = [
   {
     bg: {
       quote:
-        "Дойдоха до обекта ни извън София без проблем и оттогава поддържат системите ни абонаментно.",
+        "Дойдоха до обекта ни извън Пловдив без проблем и оттогава поддържат системите ни абонаментно.",
       attribution: "Собственик, хотел",
     },
     en: {
       quote:
-        "They came out to our site outside Sofia without any issue, and have maintained our systems on subscription ever since.",
+        "They came out to our site outside Plovdiv without any issue, and have maintained our systems on subscription ever since.",
       attribution: "Owner, hotel",
     },
   },
