@@ -44,7 +44,7 @@ export default async function PrivacyPolicyPage({
           <>
             <h2>1. Администратор на лични данни</h2>
             <p>
-              Fire Advisor Ltd (&bdquo;ние&ldquo;, &bdquo;нас&ldquo;), с адрес на управление гр.
+              {siteConfig.legalName} (&bdquo;ние&ldquo;, &bdquo;нас&ldquo;), с адрес на управление гр.
               Пловдив, България, ЕИК {siteConfig.eik}, е администратор на личните
               данни, които обработва чрез сайта fireadvisor.eu.
             </p>
@@ -128,7 +128,7 @@ export default async function PrivacyPolicyPage({
           <>
             <h2>1. Data Controller</h2>
             <p>
-              Fire Advisor Ltd (&ldquo;we&rdquo;, &ldquo;us&rdquo;), registered in
+              {siteConfig.legalName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;), registered in
               Plovdiv, Bulgaria, company registration number (ЕИК) {siteConfig.eik}, is the
               controller of the personal data processed through fireadvisor.eu.
             </p>

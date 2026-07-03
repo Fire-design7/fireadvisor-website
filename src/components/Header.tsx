@@ -13,7 +13,6 @@ const navItems = [
   { href: "/uslugi", key: "services" },
   { href: "/sektori", key: "sectors" },
   { href: "/za-nas", key: "about" },
-  { href: "/proekti", key: "projects" },
   { href: "/resursi", key: "resources" },
   { href: "/blog", key: "blog" },
 ] as const;

@@ -66,11 +66,6 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/proekti" className="text-slate-400 hover:text-white">
-                {t("nav.projects")}
-              </Link>
-            </li>
-            <li>
               <Link href="/blog" className="text-slate-400 hover:text-white">
                 {t("nav.blog")}
               </Link>
@@ -108,12 +103,15 @@ export function Footer() {
           <span>
             &copy; {new Date().getFullYear()} {siteConfig.name}. {t("footer.rights")}
           </span>
-          <span className="flex gap-4">
+          <span className="flex flex-wrap justify-center gap-4">
             <Link href="/politika-za-poveritelnost" className="hover:text-white">
               {t("footer.privacy")}
             </Link>
             <Link href="/cookies-policy" className="hover:text-white">
               {t("footer.cookies")}
+            </Link>
+            <Link href="/usloviya-za-polzvane" className="hover:text-white">
+              {t("footer.terms")}
             </Link>
           </span>
         </Container>

@@ -9,7 +9,6 @@
     "services": "Services",
     "sectors": "Sectors",
     "about": "About",
-    "projects": "Projects",
     "resources": "Resources",
     "blog": "Blog",
     "contact": "Contact",
@@ -22,19 +21,18 @@
     "contactTitle": "Contact",
     "rights": "All rights reserved.",
     "cookies": "Cookie Policy",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
   },
   "common": {
     "requestQuote": "Request a Quote",
     "learnMore": "Learn More",
     "viewAllServices": "View All Services",
     "viewAllSectors": "View All Sectors",
-    "viewAllProjects": "View All Projects",
     "readMore": "Read More",
     "applicableStandard": "Applicable Standard",
     "callNow": "Call Now",
-    "backToServices": "All Services",
-    "backToProjects": "All Projects"
+    "backToServices": "All Services"
   },
   "home": {
     "heroEyebrow": "Licensed Fire Protection",
@@ -72,7 +70,6 @@
     "statServicesLabel": "fire safety services",
     "statSectorsLabel": "sectors served",
     "testimonialsTitle": "What Our Clients Say",
-    "testimonialsPlaceholder": "[PLACEHOLDER — add real client quotes with name/company once available]",
     "quickMatchTitle": "What kind of building do you need to protect?",
     "quickMatchSubtitle": "Pick one with a single click — see exactly what you need, instantly.",
     "quickMatchMore": "See more about this sector"
@@ -105,16 +102,7 @@
     "credExperienceTitle": "8+ Years of Experience",
     "credExperienceText": "Long-standing practical experience in designing and executing fire safety systems.",
     "philosophyTitle": "Our Philosophy",
-    "philosophyText": "[TO BE REPLACED] We believe fire safety isn't a formality — it's a responsibility, both to the people using a building and to the owner managing it. That's why we approach every project individually, not with off-the-shelf templates.",
-    "teamPhotoPlaceholder": "[TEAM PHOTO PLACEHOLDER]"
-  },
-  "projects": {
-    "title": "Projects",
-    "subtitle": "A selection of completed projects",
-    "problemLabel": "Problem",
-    "solutionLabel": "Solution",
-    "resultLabel": "Result",
-    "placeholderNotice": "[PLACEHOLDER — replace with real projects, photos and technical detail]"
+    "philosophyText": "Fire safety isn't a box to tick on a checklist — it's a responsibility to the people who walk into a building every day, and to the owner who's accountable for it. That's why we don't work from templates: every building gets an individual analysis based on how it's actually used, not just the minimum requirements on paper. We aim for solutions that hold up to an inspector's review and to a real emergency — not just to paperwork."
   },
   "resources": {
     "title": "Resources",
@@ -159,6 +147,8 @@
     "successTitle": "Thank you!",
     "successText": "We've received your request and will get back to you shortly.",
     "errorText": "Something went wrong while sending. Please try again or call us directly.",
-    "directContactTitle": "Direct Contact"
+    "directContactTitle": "Direct Contact",
+    "consentNotice": "By submitting this form you voluntarily provide the data listed above so we can process your inquiry and get in touch. Data is handled in accordance with our",
+    "consentNoticeLinkText": "Privacy Policy"
   }
 }

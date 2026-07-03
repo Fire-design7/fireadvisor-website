@@ -45,11 +45,7 @@ export default async function AboutPage({
               {t("introText")}
             </p>
 
-            <div className="mt-10 flex aspect-video items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-sm font-medium text-slate-400">
-              {t("teamPhotoPlaceholder")}
-            </div>
-
-            <h2 className="mt-12 text-xl font-bold text-slate-900">
+            <h2 className="mt-10 text-xl font-bold text-slate-900">
               {t("philosophyTitle")}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-700">

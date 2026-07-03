@@ -23,12 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/uslugi",
     "/sektori",
     "/za-nas",
-    "/proekti",
     "/resursi",
     "/blog",
     "/kontakti",
     "/politika-za-poveritelnost",
     "/cookies-policy",
+    "/usloviya-za-polzvane",
   ];
 
   const servicePaths = services.map((s) => `/uslugi/${s.slug}`);

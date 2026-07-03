@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { services } from "@/content/services";
 
@@ -157,6 +158,17 @@ export function QuoteForm() {
       >
         {status === "submitting" ? t("submittingButton") : t("submitButton")}
       </button>
+
+      <p className="text-xs leading-relaxed text-slate-500">
+        {t("consentNotice")}{" "}
+        <Link
+          href="/politika-za-poveritelnost"
+          className="underline hover:text-slate-700"
+        >
+          {t("consentNoticeLinkText")}
+        </Link>
+        .
+      </p>
     </form>
   );
 }

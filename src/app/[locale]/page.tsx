@@ -11,9 +11,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { WhyUsCard, icons } from "@/components/WhyUsCard";
 import { StatCounter } from "@/components/StatCounter";
 import { SectorQuickMatch } from "@/components/SectorQuickMatch";
+import { TestimonialCard } from "@/components/TestimonialCard";
 import { Link } from "@/i18n/navigation";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
+import { testimonials } from "@/content/testimonials";
 import { siteConfig } from "@/content/site-config";
 import type { Locale } from "@/i18n/routing";
 
@@ -248,8 +250,10 @@ export default async function HomePage({
       <section className="bg-white py-20">
         <Container>
           <SectionHeading title={t("testimonialsTitle")} align="center" />
-          <div className="mt-10 rounded-2xl border border-dashed border-amber-300 bg-amber-50 p-6 text-center text-sm font-medium text-amber-800">
-            {t("testimonialsPlaceholder")}
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {testimonials.map((testimonial, i) => (
+              <TestimonialCard key={i} testimonial={testimonial} locale={locale} />
+            ))}
           </div>
         </Container>
       </section>
