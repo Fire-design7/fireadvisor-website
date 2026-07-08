@@ -75,7 +75,7 @@ export default async function PrivacyPolicyPage({
             <h2>5. С кого споделяме данните</h2>
             <p>
               Данните от формата се съхраняват в база данни, предоставяна от Supabase,
-              и се изпращат като имейл известие чрез доставчика Mailgun. И двамата
+              и се изпращат като имейл известие чрез доставчика Resend. И двамата
               доставчици действат като обработващи данните от наше име, съгласно
               сключени с тях условия за обработка на данни. Не продаваме и не
               споделяме данните ви с трети страни за маркетингови цели.
@@ -159,7 +159,7 @@ export default async function PrivacyPolicyPage({
             <h2>5. Who We Share Data With</h2>
             <p>
               Form submissions are stored in a database provided by Supabase and sent
-              as an email notification via Mailgun. Both providers act as data
+              as an email notification via Resend. Both providers act as data
               processors on our behalf under data processing terms. We do not sell or
               share your data with third parties for marketing purposes.
             </p>

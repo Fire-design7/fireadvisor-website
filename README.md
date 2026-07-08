@@ -34,15 +34,15 @@ npm run dev
 
 ---
 
-## 3. Настройка на Mailgun (имейлите)
+## 3. Настройка на Resend (имейлите)
 
-1. Отидете на [mailgun.com](https://www.mailgun.com) → регистрирайте се.
-2. Добавете и потвърдете домейн (най-добре поддомейн, напр. `mg.fireadvisor.eu`, за да не пречи на съществуващия ви имейл поток) — Mailgun ще ви даде DNS записи (TXT, MX, CNAME), които трябва да добавите при регистъра на домейна ви.
-3. От **Sending → Domain settings** вземете:
-   - **API Key** → `MAILGUN_API_KEY`
-   - **Domain** (напр. `mg.fireadvisor.eu`) → `MAILGUN_DOMAIN`
-4. Решете от какъв адрес да излизат имейлите (`MAILGUN_FROM_EMAIL`, напр. `"Fire Advisor <no-reply@mg.fireadvisor.eu>"`) и на кой имейл да получавате известията (`MAILGUN_OWNER_EMAIL`).
-5. Ако акаунтът ви е в EU регион на Mailgun (пита се при регистрация), сложете `MAILGUN_EU_REGION=true`.
+Resend е избран вместо Mailgun, защото не изисква кредитна карта за безплатния план (3000 имейла/месец — далеч повече от нужното).
+
+1. Отидете на [resend.com](https://resend.com) → **Sign up** (може директно с GitHub акаунта).
+2. **Domains → Add Domain** — добавете `fireadvisor.eu` (или поддомейн, напр. `mail.fireadvisor.eu`, ако предпочитате да не пипате нищо на основния домейн). Resend ще ви даде DNS записи (TXT, MX, CNAME) за добавяне в jump.bg — **не пипайте MX записите на Google Workspace**, добавяте само новите редове, които Resend показва.
+3. След като домейнът се потвърди (обикновено до час), отидете в **API Keys → Create API Key**:
+   - Стойността → `RESEND_API_KEY`
+4. Решете от какъв адрес да излизат имейлите (`RESEND_FROM_EMAIL`, напр. `"Fire Advisor <no-reply@fireadvisor.eu>"`) и на кой имейл да получавате известията (`RESEND_OWNER_EMAIL`).
 
 ---
 
@@ -54,12 +54,12 @@ npm run dev
 
 ## 5. Публикуване на живо във Vercel
 
-1. Качете проекта в GitHub (частен репозиторий е ОК): създайте нов repo и качете кода (мога да го направя вместо вас при потвърждение).
+1. ✅ Кодът вече е в GitHub: [github.com/Fire-design7/fireadvisor-website](https://github.com/Fire-design7/fireadvisor-website)
 2. Отидете на [vercel.com](https://vercel.com) → **Sign up** (може директно с GitHub акаунта).
-3. **Add New → Project** → изберете GitHub repo-то на проекта.
-4. В **Environment Variables** добавете същите ключове като в `.env.local` (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_FROM_EMAIL, MAILGUN_OWNER_EMAIL, MAILGUN_EU_REGION).
+3. **Add New → Project** → изберете `fireadvisor-website` от списъка → **Import**.
+4. В **Environment Variables** добавете същите ключове като в `.env.local` (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_OWNER_EMAIL). Може да пропуснете тази стъпка първоначално и да ги добавите по-късно — сайтът ще работи, само формата за контакт няма да изпраща, докато не ги зададете.
 5. Натиснете **Deploy**. След минута сайтът е достъпен на временен `*.vercel.app` адрес.
-6. За да свържете реалния домейн: **Project → Settings → Domains** → добавете `fireadvisor.eu` и `www.fireadvisor.eu`, следвайте инструкциите за DNS записи (обикновено един `A`/`CNAME` запис при вашия регистър на домейна).
+6. За да свържете реалния домейн: **Project → Settings → Domains** → добавете `fireadvisor.eu` и `www.fireadvisor.eu`, следвайте инструкциите за DNS записи (A запис за root домейна, CNAME за `www`) — добавят се в jump.bg, без да пипате MX записите на Google Workspace.
 
 ---
 
@@ -101,6 +101,6 @@ npm run dev
 - `next-intl` за BG (root, без представка) / EN (`/en`) рутинг — виж `src/i18n/`
 - Съдържанието на услуги/сектори/проекти/ресурси е в `src/content/*.ts` (не база данни)
 - Блог постовете са MDX файлове в `content/blog/{bg,en}/`
-- Формата за запитване праща към `src/app/api/inquiries/route.ts`, който пише в Supabase (`supabase/schema.sql`) и праща имейли през Mailgun (`src/lib/mailgun.ts`)
-- 301 redirect-и от стария сайт (`/about`, `/services`, `/contact`) са в `next.config.ts`
+- Формата за запитване праща към `src/app/api/inquiries/route.ts`, който пише в Supabase (`supabase/schema.sql`) и праща имейли през Resend (`src/lib/email.ts`)
+- 301 redirect-и от стария сайт (`/about`, `/services`, `/contact`, `/blog-2`, `/archives/:id`) са в `next.config.ts`
 - `src/app/sitemap.ts` и `src/app/robots.ts` генерират SEO файловете автоматично

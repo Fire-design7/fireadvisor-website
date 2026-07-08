@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
-import { sendInquiryEmails } from "@/lib/mailgun";
+import { sendInquiryEmails } from "@/lib/email";
 
 export const runtime = "nodejs";
 

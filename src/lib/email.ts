@@ -1,5 +1,4 @@
-import FormData from "form-data";
-import Mailgun from "mailgun.js";
+import { Resend } from "resend";
 
 export interface InquiryEmailData {
   name: string;
@@ -13,29 +12,21 @@ export interface InquiryEmailData {
 }
 
 function getClient() {
-  const apiKey = process.env.MAILGUN_API_KEY;
-  const domain = process.env.MAILGUN_DOMAIN;
-  const fromEmail = process.env.MAILGUN_FROM_EMAIL;
-  const ownerEmail = process.env.MAILGUN_OWNER_EMAIL;
+  const apiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
+  const ownerEmail = process.env.RESEND_OWNER_EMAIL;
 
-  if (!apiKey || !domain || !fromEmail || !ownerEmail) {
+  if (!apiKey || !fromEmail || !ownerEmail) {
     throw new Error(
-      "Missing Mailgun environment variables (MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_FROM_EMAIL, MAILGUN_OWNER_EMAIL)."
+      "Missing Resend environment variables (RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_OWNER_EMAIL)."
     );
   }
 
-  const mailgun = new Mailgun(FormData);
-  const client = mailgun.client({
-    username: "api",
-    key: apiKey,
-    url: process.env.MAILGUN_EU_REGION === "true" ? "https://api.eu.mailgun.net" : undefined,
-  });
-
-  return { client, domain, fromEmail, ownerEmail };
+  return { client: new Resend(apiKey), fromEmail, ownerEmail };
 }
 
 export async function sendInquiryEmails(data: InquiryEmailData) {
-  const { client, domain, fromEmail, ownerEmail } = getClient();
+  const { client, fromEmail, ownerEmail } = getClient();
 
   const ownerSubject =
     data.locale === "bg"
@@ -68,14 +59,14 @@ export async function sendInquiryEmails(data: InquiryEmailData) {
          <p>The Fire Advisor team</p>`;
 
   await Promise.all([
-    client.messages.create(domain, {
+    client.emails.send({
       from: fromEmail,
       to: [ownerEmail],
       subject: ownerSubject,
       html: ownerBody,
-      "h:Reply-To": data.email,
+      replyTo: data.email,
     }),
-    client.messages.create(domain, {
+    client.emails.send({
       from: fromEmail,
       to: [data.email],
       subject: customerSubject,
