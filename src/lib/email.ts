@@ -58,21 +58,31 @@ export async function sendInquiryEmails(data: InquiryEmailData) {
          <p>Thank you for your inquiry. We've received it and will get back to you shortly.</p>
          <p>The Fire Advisor team</p>`;
 
-  await Promise.all([
-    client.emails.send({
-      from: fromEmail,
-      to: [ownerEmail],
-      subject: ownerSubject,
-      html: ownerBody,
-      replyTo: data.email,
-    }),
-    client.emails.send({
-      from: fromEmail,
-      to: [data.email],
-      subject: customerSubject,
-      html: customerBody,
-    }),
-  ]);
+  // The Resend SDK does NOT throw on failure — it returns { data, error }.
+  // An unchecked error here silently "succeeds" while nothing is sent.
+  const ownerResult = await client.emails.send({
+    from: fromEmail,
+    to: [ownerEmail],
+    subject: ownerSubject,
+    html: ownerBody,
+    replyTo: data.email,
+  });
+  if (ownerResult.error) {
+    throw new Error(`Resend failed to send owner notification: ${ownerResult.error.message}`);
+  }
+
+  // The customer confirmation is best-effort — the inquiry already reached
+  // the owner, so a failure here (e.g. a bad customer address) shouldn't
+  // fail the whole submission.
+  const customerResult = await client.emails.send({
+    from: fromEmail,
+    to: [data.email],
+    subject: customerSubject,
+    html: customerBody,
+  });
+  if (customerResult.error) {
+    console.error("Resend failed to send customer confirmation", customerResult.error);
+  }
 }
 
 function escapeHtml(value: string) {
