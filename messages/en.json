@@ -72,7 +72,10 @@
     "testimonialsTitle": "What Our Clients Say",
     "quickMatchTitle": "What kind of building do you need to protect?",
     "quickMatchSubtitle": "Pick one with a single click — see exactly what you need, instantly.",
-    "quickMatchMore": "See more about this sector"
+    "quickMatchMore": "See more about this sector",
+    "statusPanelTitle": "Fire Safety",
+    "statusPanelCaption": "Illustrative overview",
+    "statusActive": "Active"
   },
   "services": {
     "hubTitle": "Services",

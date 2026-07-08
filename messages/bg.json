@@ -72,7 +72,10 @@
     "testimonialsTitle": "Какво казват клиентите ни",
     "quickMatchTitle": "За какъв обект търсите защита?",
     "quickMatchSubtitle": "Изберете с един клик — веднага ще видите от какво имате нужда.",
-    "quickMatchMore": "Вижте повече за сектора"
+    "quickMatchMore": "Вижте повече за сектора",
+    "statusPanelTitle": "Пожарна безопасност",
+    "statusPanelCaption": "Илюстративен преглед",
+    "statusActive": "Активна"
   },
   "services": {
     "hubTitle": "Услуги",

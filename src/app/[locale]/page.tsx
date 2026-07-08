@@ -12,6 +12,7 @@ import { WhyUsCard, icons } from "@/components/WhyUsCard";
 import { StatCounter } from "@/components/StatCounter";
 import { SectorQuickMatch } from "@/components/SectorQuickMatch";
 import { TestimonialCard } from "@/components/TestimonialCard";
+import { HeroStatusPanel } from "@/components/HeroStatusPanel";
 import { Link } from "@/i18n/navigation";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
@@ -105,27 +106,31 @@ export default async function HomePage({
             backgroundSize: "28px 28px",
           }}
         />
-        <Container className="relative">
-          <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">
-            {t("heroEyebrow")}
-          </span>
-          <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-            {t("heroTitle")}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-            {t("heroSubtitle")}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <LinkButton href="/kontakti" variant="primary">
-              {t("heroCta")}
-            </LinkButton>
-            <LinkButton href="/uslugi" variant="ghost" className="!border-slate-500 !text-white hover:!bg-white/10">
-              {t("heroCtaSecondary")}
-            </LinkButton>
+        <Container className="relative lg:grid lg:grid-cols-[1fr_360px] lg:items-center lg:gap-10">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">
+              {t("heroEyebrow")}
+            </span>
+            <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+              {t("heroTitle")}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+              {t("heroSubtitle")}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <LinkButton href="/kontakti" variant="primary">
+                {t("heroCta")}
+              </LinkButton>
+              <LinkButton href="/uslugi" variant="ghost" className="!border-slate-500 !text-white hover:!bg-white/10">
+                {t("heroCtaSecondary")}
+              </LinkButton>
+            </div>
+            <div className="mt-12 max-w-2xl">
+              <TrustBadges />
+            </div>
           </div>
-          <div className="mt-12 max-w-2xl">
-            <TrustBadges />
-          </div>
+
+          <HeroStatusPanel />
         </Container>
 
         <svg
