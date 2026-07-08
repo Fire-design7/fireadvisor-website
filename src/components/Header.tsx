@@ -30,7 +30,7 @@ export function Header() {
             alt=""
             width={22}
             height={32}
-            className="h-8 w-auto"
+            className="h-8 w-[22px]"
             priority
           />
           <span className="text-lg tracking-tight">{siteConfig.name}</span>

@@ -20,7 +20,7 @@ export function Footer() {
               alt=""
               width={22}
               height={32}
-              className="h-8 w-auto"
+              className="h-8 w-[22px]"
             />
             <span className="text-lg tracking-tight">{siteConfig.name}</span>
           </div>

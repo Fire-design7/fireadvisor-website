@@ -63,14 +63,18 @@ export default async function CookiesPolicyPage({
             </p>
 
             <p>
-              Тъй като тази бисквитка е <strong>строго необходима</strong> за
-              работата на функция, която сте заявили изрично (промяна на
-              езика), тя попада в изключението за &bdquo;строго необходими&ldquo;
-              бисквитки по Директива 2002/58/ЕО (ePrivacy директивата),
-              транспонирана в българското законодателство чрез Закона за
-              електронните съобщения, и не изисква вашето предварително
-              съгласие. [Точният член от ЗЕС да се потвърди от юрист преди
-              публикуване.]
+              Съхранението на информация в крайното ви устройство (каквато е
+              бисквитка) се урежда от чл. 4а от Закона за електронната
+              търговия, който транспонира изискванията на Директива
+              2002/58/ЕО (ePrivacy директивата) за съгласие при използване на
+              бисквитки. Тъй като <code>NEXT_LOCALE</code> е{" "}
+              <strong>строго необходима</strong> за работата на функция,
+              която сте заявили изрично (промяна на езика), тя попада в
+              изключението по чл. 4а, ал. 4 от същия закон за бисквитки,
+              чиято единствена цел е осъществяване на пренос на съобщение по
+              електронна съобщителна мрежа или предоставяне на услуга на
+              информационното общество, изрично поискана от потребителя — и
+              не изисква вашето предварително съгласие.
             </p>
 
             <p>
@@ -120,13 +124,18 @@ export default async function CookiesPolicyPage({
             </p>
 
             <p>
-              Because this cookie is <strong>strictly necessary</strong> for a
-              feature you explicitly requested (changing the language), it
-              falls under the &ldquo;strictly necessary&rdquo; cookie
-              exemption in the ePrivacy Directive (2002/58/EC), as
-              implemented in Bulgarian law, and does not require your prior
-              consent. [Exact statutory reference to be confirmed by a
-              lawyer before publishing.]
+              Storing information on your device (such as a cookie) is
+              governed by Article 4a of the Bulgarian Electronic Commerce Act
+              (Закон за електронната търговия), which transposes the consent
+              requirements of the ePrivacy Directive (2002/58/EC). Because{" "}
+              <code>NEXT_LOCALE</code> is <strong>strictly necessary</strong>{" "}
+              for a feature you explicitly requested (changing the
+              language), it falls under the exemption in Article 4a(4) of
+              that Act, which covers storage or access whose sole purpose is
+              to carry out the transmission of a message over an electronic
+              communications network, or to provide an information society
+              service explicitly requested by the recipient — and does not
+              require your prior consent.
             </p>
 
             <p>

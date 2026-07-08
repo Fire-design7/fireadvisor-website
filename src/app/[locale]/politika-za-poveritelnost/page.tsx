@@ -36,8 +36,8 @@ export default async function PrivacyPolicyPage({
       <Container className="prose prose-slate max-w-3xl py-16">
         <p className="rounded-xl border border-dashed border-amber-300 bg-amber-50 p-4 text-sm not-prose">
           {isBg
-            ? "[ПОДЛЕЖИ НА ПРАВЕН ПРЕГЛЕД] Този текст е изготвен като разумна отправна точка въз основа на реално обработваните на сайта данни, но не замества преглед от юрист. Остава да се потвърдят: точния срок на съхранение (т. 6) и точното позоваване на ЗЕС в Cookie Policy."
-            : "[PENDING LEGAL REVIEW] This text is a reasonable starting point based on the data this site actually processes, but it does not replace review by a lawyer. Still to confirm: the exact retention period (section 6) and the exact statutory citation in the Cookie Policy."}
+            ? "[ПОДЛЕЖИ НА ПРАВЕН ПРЕГЛЕД] Този текст е изготвен като разумна отправна точка въз основа на реално обработваните на сайта данни, но не замества преглед от юрист. Остава да се потвърди точният срок на съхранение (т. 6) — той зависи от решение на управителя, не от правна норма."
+            : "[PENDING LEGAL REVIEW] This text is a reasonable starting point based on the data this site actually processes, but it does not replace review by a lawyer. Still to confirm: the exact retention period (section 6) — this is a business decision, not a legal citation."}
         </p>
 
         {isBg ? (

@@ -40,6 +40,18 @@ export async function generateMetadata({
     },
     description: t("defaultDescription"),
     alternates: pageAlternates(locale, ""),
+    openGraph: {
+      type: "website",
+      siteName: t("siteName"),
+      locale: locale === "bg" ? "bg_BG" : "en_US",
+      title: t("defaultTitle"),
+      description: t("defaultDescription"),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("defaultTitle"),
+      description: t("defaultDescription"),
+    },
   };
 }
 
