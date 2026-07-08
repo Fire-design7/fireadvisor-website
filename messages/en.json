@@ -147,11 +147,16 @@
     "messageLabel": "Message",
     "submitButton": "Send Inquiry",
     "submittingButton": "Sending...",
-    "successTitle": "Thank you!",
-    "successText": "We've received your request and will get back to you shortly.",
     "errorText": "Something went wrong while sending. Please try again or call us directly.",
     "directContactTitle": "Direct Contact",
     "consentNotice": "By submitting this form you voluntarily provide the data listed above so we can process your inquiry and get in touch. Data is handled in accordance with our",
     "consentNoticeLinkText": "Privacy Policy"
+  },
+  "thankYou": {
+    "eyebrow": "Inquiry sent",
+    "title": "Thank you!",
+    "text": "We've received your request and will get back to you shortly.",
+    "urgent": "For urgent matters, call us directly:",
+    "backHome": "Back to homepage"
   }
 }

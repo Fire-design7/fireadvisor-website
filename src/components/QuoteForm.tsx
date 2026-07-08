@@ -3,15 +3,16 @@
 import { FormEvent, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { services } from "@/content/services";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "error";
 
 export function QuoteForm() {
   const t = useTranslations("contact");
   const locale = useLocale() as Locale;
+  const router = useRouter();
   const searchParams = useSearchParams();
   const preselectedService = searchParams.get("service") ?? "";
   const [status, setStatus] = useState<Status>("idle");
@@ -32,9 +33,10 @@ export function QuoteForm() {
     const formData = new FormData(form);
 
     // Honeypot — bots tend to fill every field, humans never see this one.
+    // Redirect as if it succeeded rather than revealing the detection.
     if (formData.get("company_website")) {
       submittingRef.current = false;
-      setStatus("success");
+      router.push("/blagodarim");
       return;
     }
 
@@ -56,24 +58,15 @@ export function QuoteForm() {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("Request failed");
-      setStatus("success");
       form.reset();
+      // A real page navigation (rather than an inline success state) gives
+      // Google Ads a distinct URL to fire a "page visited" conversion goal
+      // on — an inline-only success message never changes the URL.
+      router.push("/blagodarim");
     } catch {
       setStatus("error");
-    } finally {
       submittingRef.current = false;
     }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
-        <h3 className="text-lg font-semibold text-emerald-900">
-          {t("successTitle")}
-        </h3>
-        <p className="mt-2 text-sm text-emerald-800">{t("successText")}</p>
-      </div>
-    );
   }
 
   return (
