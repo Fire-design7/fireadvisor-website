@@ -59,6 +59,49 @@ export const services: Service[] = [
     faqs: [],
   },
   {
+    slug: "pozharno-dosie",
+    phase: "maintain",
+    standard: "Наредба № 8121з-647",
+    bg: {
+      title: "Пожарно досие и документи за обекти в експлоатация",
+      short: "Пожарно досие и пълна документация по Наредба № 8121з-647.",
+      body: "Изготвяме и поддържаме пожарното досие на вашия обект съгласно Наредба № 8121з-647 за правилата и нормите за пожарна безопасност при експлоатация на обектите. Досието включва цялата документация, доказваща изпълнението на противопожарните мерки — и се съхранява на обекта за целите на проверка от контролните органи. Отговорността за досието е на собственика или управителя на обекта — ние поемаме подготовката и текущата му актуализация вместо вас.",
+    },
+    en: {
+      title: "Fire Safety File & Documentation for Operating Facilities",
+      short: "Fire safety file and full documentation under Regulation № 8121з-647.",
+      body: "We prepare and maintain your building's fire safety file in line with Regulation № 8121з-647 on fire safety rules for facilities in operation. The file contains all documentation proving that fire safety measures are in place, and is kept on site for inspection by the authorities. Responsibility for the file rests with the owner or manager of the facility — we handle its preparation and ongoing upkeep on your behalf.",
+    },
+    faqs: [
+      {
+        bg: {
+          q: "Кой носи отговорност за пожарното досие на обекта?",
+          a: "Собственикът или управителят на обекта — досието се съхранява на място и трябва да е достъпно и актуално по всяко време за проверка от контролните органи.",
+        },
+        en: {
+          q: "Who is responsible for a building's fire safety file?",
+          a: "The owner or manager of the facility. The file is kept on site and must be accessible and up to date at all times for inspection by the authorities.",
+        },
+      },
+    ],
+  },
+  {
+    slug: "odit-i-pregled",
+    phase: "maintain",
+    standard: "Наредба № 8121з-647",
+    bg: {
+      title: "Одити и проверки на пожарни системи",
+      short: "Пожарен одит на място и готовност за проверка от органите.",
+      body: "Извършваме одити и проверки на съществуващи пожарни инсталации — хотели, магазини, офиси и производствени обекти — за да сте сигурни, че сте готови за инспекция по всяко време и намалявате риска от санкции.",
+    },
+    en: {
+      title: "Fire Safety Audits & Inspections",
+      short: "On-site fire audits and inspection-readiness for any facility.",
+      body: "We audit and inspect existing fire safety installations — hotels, retail, offices and industrial sites — so you're always ready for an official inspection and minimize the risk of penalties.",
+    },
+    faqs: [],
+  },
+  {
     slug: "vsodt",
     phase: "design",
     standard: "EN 12101",
@@ -152,7 +195,7 @@ export const services: Service[] = [
   {
     slug: "otsenka-na-risk",
     phase: "design",
-    standard: "Наредба Iз-1971",
+    standard: "Наредба № 8121з-647",
     bg: {
       title: "Оценка на риска",
       short: "Анализ на пожарния риск и препоръки за минимизирането му.",
@@ -166,41 +209,9 @@ export const services: Service[] = [
     faqs: [],
   },
   {
-    slug: "odit-i-pregled",
-    phase: "maintain",
-    standard: "Наредба Iз-1971",
-    bg: {
-      title: "Одити и проверки на пожарни системи",
-      short: "Пожарен одит на място и готовност за проверка от органите.",
-      body: "Извършваме одити и проверки на съществуващи пожарни инсталации — хотели, магазини, офиси и производствени обекти — за да сте сигурни, че сте готови за инспекция по всяко време и намалявате риска от санкции.",
-    },
-    en: {
-      title: "Fire Safety Audits & Inspections",
-      short: "On-site fire audits and inspection-readiness for any facility.",
-      body: "We audit and inspect existing fire safety installations — hotels, retail, offices and industrial sites — so you're always ready for an official inspection and minimize the risk of penalties.",
-    },
-    faqs: [],
-  },
-  {
-    slug: "pozharno-dosie",
-    phase: "maintain",
-    standard: "Наредба Iз-1971",
-    bg: {
-      title: "Пожарно досие",
-      short: "Изготвяне и поддържане на пожарното досие на обекта.",
-      body: "Изготвяме и поддържаме пожарното досие на вашия обект — цялата документация, изисквана при проверка от контролните органи, подредена и актуална по всяко време.",
-    },
-    en: {
-      title: "Fire Safety File",
-      short: "Preparation and maintenance of your building's fire safety file.",
-      body: "We prepare and maintain your building's fire safety file — all documentation required during an official inspection, organized and kept up to date at all times.",
-    },
-    faqs: [],
-  },
-  {
     slug: "podarzhka-i-kontrol",
     phase: "maintain",
-    standard: "Наредба Iз-1971",
+    standard: "Наредба № 8121з-647",
     bg: {
       title: "Поддръжка и контрол",
       short: "Абонаментна поддръжка на всички системи за пожарна безопасност.",

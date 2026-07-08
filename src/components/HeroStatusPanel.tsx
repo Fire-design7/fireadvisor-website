@@ -3,17 +3,21 @@ import { getServiceBySlug } from "@/content/services";
 import type { Locale } from "@/i18n/routing";
 
 const rowSlugs = [
-  "pozharoizvestyavane",
-  "gasitelni-instalatsii",
-  "vsodt",
-  "evakuatsionno-osvetlenie",
+  "pozharno-dosie",
+  "odit-i-pregled",
+  "evakuatsionni-shemi",
+  "podarzhka-i-kontrol",
 ] as const;
 
-function PingDot() {
+function CheckIcon({ delay }: { delay: number }) {
   return (
-    <span className="relative flex h-2.5 w-2.5">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+    <span
+      className="animate-check-pop flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500"
+      style={{ animationDelay: `${delay}s` }}
+    >
+      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 fill-none stroke-slate-900" strokeWidth={2.5}>
+        <path d="M3 8.5L6.2 11.5L13 4.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     </span>
   );
 }
@@ -42,20 +46,25 @@ export function HeroStatusPanel() {
         </div>
 
         <div className="mt-5 space-y-2.5">
-          {rows.map((service) => (
+          {rows.map((service, i) => (
             <div
               key={service.slug}
-              className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 px-4 py-3"
+              className="animate-row-in flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 px-4 py-3"
+              style={{ animationDelay: `${i * 0.12}s` }}
             >
+              <CheckIcon delay={0.3 + i * 0.12} />
               <span className="text-sm font-medium text-white">
                 {service[locale].title}
               </span>
-              <span className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
-                <PingDot />
-                {t("statusActive")}
-              </span>
             </div>
           ))}
+        </div>
+
+        <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+          <span className="text-xs text-slate-400">{t("statusPanelFooter")}</span>
+          <span className="text-xs font-semibold text-emerald-400">
+            {rows.length}/{rows.length}
+          </span>
         </div>
       </div>
     </div>

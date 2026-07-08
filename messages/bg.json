@@ -73,9 +73,9 @@
     "quickMatchTitle": "За какъв обект търсите защита?",
     "quickMatchSubtitle": "Изберете с един клик — веднага ще видите от какво имате нужда.",
     "quickMatchMore": "Вижте повече за сектора",
-    "statusPanelTitle": "Пожарна безопасност",
-    "statusPanelCaption": "Илюстративен преглед",
-    "statusActive": "Активна"
+    "statusPanelTitle": "Готовност за проверка",
+    "statusPanelCaption": "Стандартен пакет",
+    "statusPanelFooter": "Включено при всеки обект"
   },
   "services": {
     "hubTitle": "Услуги",

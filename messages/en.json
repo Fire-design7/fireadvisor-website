@@ -73,9 +73,9 @@
     "quickMatchTitle": "What kind of building do you need to protect?",
     "quickMatchSubtitle": "Pick one with a single click — see exactly what you need, instantly.",
     "quickMatchMore": "See more about this sector",
-    "statusPanelTitle": "Fire Safety",
-    "statusPanelCaption": "Illustrative overview",
-    "statusActive": "Active"
+    "statusPanelTitle": "Inspection Readiness",
+    "statusPanelCaption": "Standard package",
+    "statusPanelFooter": "Included for every site"
   },
   "services": {
     "hubTitle": "Services",
