@@ -16,6 +16,33 @@ export interface Service {
 
 export const services: Service[] = [
   {
+    slug: "chast-pozharna-bezopasnost",
+    phase: "design",
+    standard: "Наредба № Iз-1971",
+    bg: {
+      title: "Част „Пожарна безопасност“ на инвестиционен проект",
+      short: "Задължителна проектна част за издаване на разрешение за строеж.",
+      body: "Разработваме част „Пожарна безопасност“ на инвестиционния проект съгласно Наредба № Iз-1971 и Приложение № 3 към нея — обхваща пасивните и активните защитни мерки и приетите технически решения за пожаробезопасна експлоатация на обекта. Тази част е задължителна за повечето видове сгради според класа им по функционална пожарна опасност и е необходима за издаване на разрешение за строеж.",
+    },
+    en: {
+      title: "Fire Safety Section of the Investment Project",
+      short: "The mandatory design section required to obtain a building permit.",
+      body: "We develop the \"Fire Safety\" section of the investment project under Regulation № Iз-1971 and its Appendix 3 — covering the passive and active protection measures and the technical solutions adopted for fire-safe operation of the building. This section is mandatory for most building types based on their functional fire hazard class and is required to obtain a building permit.",
+    },
+    faqs: [
+      {
+        bg: {
+          q: "Задължителна ли е част „Пожарна безопасност“ за всеки обект?",
+          a: "Не за всички — например жилищни и обществено-обслужващи сгради с ниска пожарна опасност, до 200 кв.м и до два етажа, както и едноетажни производствени/складови и селскостопански сгради до 8 м височина и до 200 кв.м, са освободени от изискването. За останалите обекти частта е задължителна.",
+        },
+        en: {
+          q: "Is the Fire Safety section mandatory for every building?",
+          a: "Not for all — for example, low fire-hazard residential and public-service buildings up to 200 sq. m and two floors, and single-storey industrial/warehouse or agricultural buildings up to 8 m in height and 200 sq. m, are exempt. For all other buildings, the section is mandatory.",
+        },
+      },
+    ],
+  },
+  {
     slug: "pozharoizvestyavane",
     phase: "design",
     standard: "EN 54",
