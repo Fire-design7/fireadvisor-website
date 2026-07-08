@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -15,14 +15,25 @@ export function QuoteForm() {
   const searchParams = useSearchParams();
   const preselectedService = searchParams.get("service") ?? "";
   const [status, setStatus] = useState<Status>("idle");
+  // React state updates (and therefore the disabled= attribute) only take
+  // effect on the next render, which leaves a window for a fast double-click
+  // to fire two overlapping submissions — whichever resolves last then wins
+  // the final status, regardless of which one actually succeeded. A ref is
+  // checked synchronously, closing that window.
+  const submittingRef = useRef(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setStatus("submitting");
-    const formData = new FormData(e.currentTarget);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     // Honeypot — bots tend to fill every field, humans never see this one.
     if (formData.get("company_website")) {
+      submittingRef.current = false;
       setStatus("success");
       return;
     }
@@ -46,9 +57,11 @@ export function QuoteForm() {
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
-      e.currentTarget.reset();
+      form.reset();
     } catch {
       setStatus("error");
+    } finally {
+      submittingRef.current = false;
     }
   }
 
