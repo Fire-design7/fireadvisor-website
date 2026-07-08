@@ -54,6 +54,25 @@ export async function POST(request: NextRequest) {
   const safeService = typeof service === "string" && service.length > 0 ? service.slice(0, 100) : undefined;
   const safeMessage = typeof message === "string" ? message.slice(0, MAX_FIELD_LENGTH) : undefined;
 
+  // Email is the primary delivery path — it must not be blocked by Supabase
+  // being unreachable (e.g. a paused free-tier project after 7 days of
+  // inactivity). Supabase is a best-effort backup record, not a gate.
+  try {
+    await sendInquiryEmails({
+      name: name as string,
+      email: email as string,
+      phone: safePhone,
+      inquiryType: inquiryType as string,
+      buildingType: buildingType as string,
+      serviceSlug: safeService,
+      message: safeMessage,
+      locale: safeLocale,
+    });
+  } catch (err) {
+    console.error("Failed to send inquiry emails", err);
+    return NextResponse.json({ error: "Could not send inquiry" }, { status: 500 });
+  }
+
   try {
     const supabase = getSupabaseAdmin();
     const { error } = await supabase.from("inquiries").insert({
@@ -68,25 +87,9 @@ export async function POST(request: NextRequest) {
     });
     if (error) throw error;
   } catch (err) {
-    console.error("Failed to store inquiry", err);
-    return NextResponse.json({ error: "Could not save inquiry" }, { status: 500 });
-  }
-
-  try {
-    await sendInquiryEmails({
-      name: name as string,
-      email: email as string,
-      phone: safePhone,
-      inquiryType: inquiryType as string,
-      buildingType: buildingType as string,
-      serviceSlug: safeService,
-      message: safeMessage,
-      locale: safeLocale,
-    });
-  } catch (err) {
-    // The inquiry is already saved in Supabase, so we don't fail the request
-    // over an email hiccup — but we do want to know about it.
-    console.error("Failed to send inquiry emails", err);
+    // The email already went out, so the inquiry reached the owner — a
+    // failed backup record shouldn't fail the request for the visitor.
+    console.error("Failed to store inquiry in Supabase", err);
   }
 
   return NextResponse.json({ ok: true });
