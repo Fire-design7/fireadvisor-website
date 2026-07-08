@@ -78,7 +78,7 @@ export default async function ServiceDetailPage({
         <div className="lg:col-span-2">
           <Link
             href="/uslugi"
-            className="text-sm font-semibold text-slate-500 hover:text-slate-900"
+            className="text-sm font-semibold text-slate-600 hover:text-slate-900"
           >
             &larr; {tCommon("backToServices")}
           </Link>

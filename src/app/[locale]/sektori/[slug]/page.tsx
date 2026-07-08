@@ -54,7 +54,7 @@ export default async function SectorDetailPage({
       <Container className="py-16">
         <Link
           href="/sektori"
-          className="text-sm font-semibold text-slate-500 hover:text-slate-900"
+          className="text-sm font-semibold text-slate-600 hover:text-slate-900"
         >
           &larr; {tCommon("viewAllSectors")}
         </Link>

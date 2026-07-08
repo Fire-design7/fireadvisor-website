@@ -62,7 +62,7 @@ export default async function BlogPostPage({
       <Container className="py-16">
         <Link
           href="/blog"
-          className="text-sm font-semibold text-slate-500 hover:text-slate-900"
+          className="text-sm font-semibold text-slate-600 hover:text-slate-900"
         >
           &larr; {t("backToBlog")}
         </Link>
