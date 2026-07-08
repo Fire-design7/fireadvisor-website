@@ -81,7 +81,6 @@ npm run dev
 | Телефон, имейл | `src/content/site-config.ts` |
 | Текстове по услуги | `src/content/services.ts` |
 | Текстове по сектори | `src/content/sectors.ts` |
-| Проекти/портфолио | `src/content/projects.ts` |
 | Ресурси (PDF-та) | `src/content/resources.ts` + качете реалните PDF файлове в `public/resources/` |
 | Био, философия, сертификати | текстовете в `messages/bg.json` и `messages/en.json`, секция `about` |
 | Всички други текстове по сайта | `messages/bg.json` (български) и `messages/en.json` (английски) |
