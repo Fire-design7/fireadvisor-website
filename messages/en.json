@@ -12,7 +12,7 @@
     "resources": "Resources",
     "blog": "Blog",
     "contact": "Contact",
-    "cta": "Free Consultation"
+    "cta": "Free Quote"
   },
   "footer": {
     "tagline": "Design, installation and maintenance of fire safety systems across Bulgaria.",
@@ -38,7 +38,7 @@
     "heroEyebrow": "Licensed Fire Protection",
     "heroTitle": "Fire safety system design and installation by a licensed engineering team",
     "heroSubtitle": "8+ years of hands-on experience, a KIIP-registered engineer licensed by the National Fire Safety Directorate (ГДПБЗН) to maintain active fire safety measures — fire detection and suppression installations, smoke and heat extraction ventilation systems. Based in Plovdiv, serving clients across Bulgaria.",
-    "heroCta": "Free Consultation",
+    "heroCta": "Free Quote",
     "heroCtaSecondary": "Browse Services",
     "trustYears": "8+ years of experience",
     "trustKiip": "KIIP-registered engineer",
@@ -75,7 +75,14 @@
     "quickMatchMore": "See more about this sector",
     "statusPanelTitle": "Inspection Readiness",
     "statusPanelCaption": "Standard package",
-    "statusPanelFooter": "Included for every site"
+    "statusPanelFooter": "Included for every site",
+    "commonNeedsTitle": "Most commonly asked about",
+    "commonNeedDosie": "I need a fire safety file",
+    "commonNeedShemi": "I need an evacuation plan",
+    "commonNeedIzvestyavane": "Fire detection system design",
+    "commonNeedPodarzhka": "Fire system maintenance",
+    "commonNeedVsodt": "Smoke & heat extraction for my building",
+    "commonNeedProverka": "I have a fire inspection coming up"
   },
   "services": {
     "hubTitle": "Services",

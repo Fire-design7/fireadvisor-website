@@ -20,6 +20,15 @@ import { testimonials } from "@/content/testimonials";
 import { siteConfig } from "@/content/site-config";
 import type { Locale } from "@/i18n/routing";
 
+const commonNeeds = [
+  { href: "/uslugi/pozharno-dosie", labelKey: "commonNeedDosie" },
+  { href: "/uslugi/evakuatsionni-shemi", labelKey: "commonNeedShemi" },
+  { href: "/uslugi/pozharoizvestyavane", labelKey: "commonNeedIzvestyavane" },
+  { href: "/uslugi/podarzhka-i-kontrol", labelKey: "commonNeedPodarzhka" },
+  { href: "/uslugi/vsodt", labelKey: "commonNeedVsodt" },
+  { href: "/proverka-ot-pozharnata", labelKey: "commonNeedProverka" },
+] as const;
+
 export default async function HomePage({
   params,
 }: {
@@ -144,6 +153,26 @@ export default async function HomePage({
             d="M0 60L60 51.7C120 43 240 27 360 24.5C480 22 600 33 720 38.5C840 44 960 44 1080 38.2C1200 32 1320 22 1380 16.7L1440 11V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z"
           />
         </svg>
+      </section>
+
+      {/* Common needs — phrased the way people actually search, not our internal terms */}
+      <section className="bg-white py-14">
+        <Container>
+          <p className="text-center text-sm font-semibold uppercase tracking-widest text-slate-500">
+            {t("commonNeedsTitle")}
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {commonNeeds.map((need) => (
+              <Link
+                key={need.href}
+                href={need.href}
+                className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-amber-300 hover:bg-amber-50 hover:text-amber-800"
+              >
+                {t(need.labelKey)}
+              </Link>
+            ))}
+          </div>
+        </Container>
       </section>
 
       {/* Quick match */}

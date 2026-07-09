@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/za-nas",
     "/resursi",
     "/blog",
+    "/proverka-ot-pozharnata",
     "/kontakti",
     "/politika-za-poveritelnost",
     "/cookies-policy",
