@@ -78,8 +78,8 @@ export default async function InspectionPrepPage({
   const faqs = isBg
     ? [
         {
-          q: "Колко предупреждение обикновено имаме преди проверка?",
-          a: "Варира — понякога има известие предварително, но проверки могат да се извършат и без предизвестие. Затова досието и системите трябва да са в изправност постоянно, не само преди насрочена дата.",
+          q: "Ще ни предупредят ли предварително за проверката?",
+          a: "За повечето обекти — не. Проверките обичайно се извършват без предизвестие, затова досието и системите трябва да са в изправност постоянно, а не само в дните преди очаквана дата.",
         },
         {
           q: "Какво се случва, ако нещо не е наред при проверката?",
@@ -92,8 +92,8 @@ export default async function InspectionPrepPage({
       ]
     : [
         {
-          q: "How much notice do we usually get before an inspection?",
-          a: "It varies — sometimes there's advance notice, but inspections can also happen unannounced. That's why the file and systems need to be in order continuously, not just ahead of a scheduled date.",
+          q: "Will we be notified in advance of an inspection?",
+          a: "For most facilities — no. Inspections are usually unannounced, which is exactly why the file and systems need to be in order continuously, not just in the days before an expected date.",
         },
         {
           q: "What happens if something isn't in order during the inspection?",
