@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
@@ -24,10 +23,13 @@ export async function generateMetadata({
 
 export default async function ContactPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: Locale }>;
+  searchParams: Promise<{ service?: string }>;
 }) {
   const { locale } = await params;
+  const { service } = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
 
@@ -38,9 +40,7 @@ export default async function ContactPage({
         <div className="rounded-2xl border border-slate-200 bg-white p-6 lg:col-span-2 sm:p-8">
           <h2 className="text-xl font-bold text-slate-900">{t("formTitle")}</h2>
           <div className="mt-6">
-            <Suspense fallback={<div className="min-h-[542px]" />}>
-              <QuoteForm />
-            </Suspense>
+            <QuoteForm preselectedService={service} />
           </div>
         </div>
 

@@ -12,7 +12,11 @@ export function StatCounter({
   label: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [count, setCount] = useState(0);
+  // Start at the final value, not 0 — this is what gets server-rendered and
+  // what no-JS/pre-hydration visitors see. The animation resets to 0 and
+  // counts back up only once the client has actually mounted and the
+  // element is in view, so the "0" is never in the initial HTML.
+  const [count, setCount] = useState(value);
 
   useEffect(() => {
     const el = ref.current;
@@ -22,6 +26,7 @@ export function StatCounter({
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
+        setCount(0);
 
         const duration = 900;
         const start = performance.now();

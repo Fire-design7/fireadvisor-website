@@ -7,7 +7,7 @@ import { LinkButton } from "@/components/Button";
 import { Link } from "@/i18n/navigation";
 import { sectors, getSectorBySlug } from "@/content/sectors";
 import { services } from "@/content/services";
-import { pageAlternates } from "@/lib/seo";
+import { pageAlternates, pageSocial } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -28,6 +28,7 @@ export async function generateMetadata({
     title: content.title,
     description: content.short,
     alternates: pageAlternates(locale, `/sektori/${slug}`),
+    ...pageSocial(locale, content.title, content.short),
   };
 }
 

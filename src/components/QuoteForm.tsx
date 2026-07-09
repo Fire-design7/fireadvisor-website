@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
@@ -9,12 +8,27 @@ import { services } from "@/content/services";
 
 type Status = "idle" | "submitting" | "error";
 
-export function QuoteForm() {
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"] as const;
+
+// Read once at submit time via window.location — not the useSearchParams()
+// hook, which forces this whole component's tree to bail out to
+// client-only rendering (no <input> fields in the server HTML at all).
+// Since this is only used to enrich the submitted payload, not to render
+// anything, an imperative read has no such cost.
+function captureUtmParams(): Record<string, string> {
+  const params = new URLSearchParams(window.location.search);
+  const result: Record<string, string> = {};
+  for (const key of UTM_KEYS) {
+    const value = params.get(key);
+    if (value) result[key] = value;
+  }
+  return result;
+}
+
+export function QuoteForm({ preselectedService = "" }: { preselectedService?: string }) {
   const t = useTranslations("contact");
   const locale = useLocale() as Locale;
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const preselectedService = searchParams.get("service") ?? "";
   const [status, setStatus] = useState<Status>("idle");
   // React state updates (and therefore the disabled= attribute) only take
   // effect on the next render, which leaves a window for a fast double-click
@@ -49,6 +63,7 @@ export function QuoteForm() {
       service: formData.get("service"),
       message: formData.get("message"),
       locale,
+      ...captureUtmParams(),
     };
 
     try {

@@ -71,6 +71,15 @@ export async function sendInquiryEmails(data: InquiryEmailData) {
     throw new Error(`Resend failed to send owner notification: ${ownerResult.error.message}`);
   }
 
+  // While sending from the shared onboarding@resend.dev sandbox address
+  // (no verified domain yet), Resend rejects any "to" other than the
+  // account's own email with a 403 — so this would fail for every real
+  // customer, guaranteed. Skip the attempt rather than log a guaranteed
+  // failure on every single inquiry until a domain is verified.
+  if (fromEmail.includes("onboarding@resend.dev")) {
+    return;
+  }
+
   // The customer confirmation is best-effort — the inquiry already reached
   // the owner, so a failure here (e.g. a bad customer address) shouldn't
   // fail the whole submission.

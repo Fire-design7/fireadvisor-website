@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { JsonLd } from "@/components/JsonLd";
 import { Link } from "@/i18n/navigation";
 import { getAllPostSlugs, getPost } from "@/lib/blog";
+import { pageSocial } from "@/lib/seo";
 import { routing, type Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -32,6 +33,7 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     alternates: { canonical: path },
+    ...pageSocial(locale, post.title, post.description, "article"),
   };
 }
 
