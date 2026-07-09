@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, phone, inquiryType, buildingType, service, message, locale } = body;
+  const { name, email, phone, inquiryType, buildingType, service, message, locale, sourcePage } = body;
 
   if (!isNonEmptyString(name, 200) || !isValidEmail(email) || !isNonEmptyString(inquiryType, 100) || !isNonEmptyString(buildingType, 100)) {
     return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
@@ -53,6 +53,14 @@ export async function POST(request: NextRequest) {
   const safePhone = typeof phone === "string" ? phone.slice(0, 50) : undefined;
   const safeService = typeof service === "string" && service.length > 0 ? service.slice(0, 100) : undefined;
   const safeMessage = typeof message === "string" ? message.slice(0, MAX_FIELD_LENGTH) : undefined;
+  const safeSourcePage = typeof sourcePage === "string" ? sourcePage.slice(0, 200) : undefined;
+
+  const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"] as const;
+  const utm: Record<string, string> = {};
+  for (const key of UTM_KEYS) {
+    const value = body[key];
+    if (typeof value === "string" && value.length > 0) utm[key] = value.slice(0, 200);
+  }
 
   // Email is the primary delivery path — it must not be blocked by Supabase
   // being unreachable (e.g. a paused free-tier project after 7 days of
@@ -67,6 +75,9 @@ export async function POST(request: NextRequest) {
       serviceSlug: safeService,
       message: safeMessage,
       locale: safeLocale,
+      sourcePage: safeSourcePage,
+      utm,
+      submittedAt: new Date(),
     });
   } catch (err) {
     console.error("Failed to send inquiry emails", err);
