@@ -25,16 +25,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-[var(--background)]/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-slate-900">
+        <Link href="/" className="flex shrink-0 items-center gap-2 font-bold text-slate-900">
           <Image
             src="/logo-icon-dark.png"
             alt=""
             width={22}
             height={32}
-            className="h-8 w-[22px]"
+            className="h-8 w-[22px] shrink-0"
             priority
           />
-          <span className="text-lg tracking-tight">{siteConfig.name}</span>
+          <span className="whitespace-nowrap text-lg tracking-tight">{siteConfig.name}</span>
         </Link>
 
         <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
@@ -49,7 +49,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <a
             href={siteConfig.phoneHref}
             className="hidden whitespace-nowrap text-sm font-semibold text-slate-700 hover:text-slate-900 xl:inline"
@@ -59,7 +59,7 @@ export function Header() {
           <LocaleSwitcher />
           <Link
             href="/kontakti"
-            className="inline-flex items-center justify-center rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
+            className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
           >
             {t("cta")}
           </Link>
