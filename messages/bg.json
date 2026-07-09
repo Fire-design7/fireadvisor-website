@@ -7,6 +7,7 @@
   "nav": {
     "home": "Начало",
     "services": "Услуги",
+    "inspectionPrep": "Преди проверка",
     "sectors": "Сектори",
     "about": "За нас",
     "resources": "Ресурси",
@@ -82,7 +83,10 @@
     "commonNeedIzvestyavane": "Проектиране на пожароизвестяване",
     "commonNeedPodarzhka": "Поддръжка на пожарни системи",
     "commonNeedVsodt": "ВСОДТ за обекта ми",
-    "commonNeedProverka": "Идва ми проверка от пожарната"
+    "commonNeedProverka": "Идва ми проверка от пожарната",
+    "inspectionBannerTitle": "Предстои ви проверка от пожарната?",
+    "inspectionBannerText": "Вижте пълния списък какво реално проверяват органите — и кое от него вече е готово при вас.",
+    "inspectionBannerCta": "Вижте какво проверяват"
   },
   "services": {
     "hubTitle": "Услуги",

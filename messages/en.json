@@ -7,6 +7,7 @@
   "nav": {
     "home": "Home",
     "services": "Services",
+    "inspectionPrep": "Before Inspection",
     "sectors": "Sectors",
     "about": "About",
     "resources": "Resources",
@@ -82,7 +83,10 @@
     "commonNeedIzvestyavane": "Fire detection system design",
     "commonNeedPodarzhka": "Fire system maintenance",
     "commonNeedVsodt": "Smoke & heat extraction for my building",
-    "commonNeedProverka": "I have a fire inspection coming up"
+    "commonNeedProverka": "I have a fire inspection coming up",
+    "inspectionBannerTitle": "Fire inspection coming up?",
+    "inspectionBannerText": "See the full list of what the authorities actually check — and which parts you already have covered.",
+    "inspectionBannerCta": "See what gets checked"
   },
   "services": {
     "hubTitle": "Services",

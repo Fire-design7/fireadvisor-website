@@ -175,6 +175,32 @@ export default async function HomePage({
         </Container>
       </section>
 
+      {/* Inspection-prep banner — the single strongest, highest-intent entry point,
+          so it gets its own visible section instead of being just one pill among many. */}
+      <section className="bg-white pb-14">
+        <Container>
+          <div className="flex flex-col items-center gap-6 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center sm:flex-row sm:text-left">
+            <span
+              aria-hidden
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-amber-500 text-2xl"
+            >
+              📋
+            </span>
+            <div className="flex-1">
+              <h2 className="text-lg font-bold text-slate-900">
+                {t("inspectionBannerTitle")}
+              </h2>
+              <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                {t("inspectionBannerText")}
+              </p>
+            </div>
+            <LinkButton href="/proverka-ot-pozharnata" className="shrink-0">
+              {t("inspectionBannerCta")}
+            </LinkButton>
+          </div>
+        </Container>
+      </section>
+
       {/* Quick match */}
       <section className="bg-white py-20">
         <Container>

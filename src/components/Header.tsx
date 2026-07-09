@@ -11,6 +11,7 @@ import { siteConfig } from "@/content/site-config";
 const navItems = [
   { href: "/", key: "home" },
   { href: "/uslugi", key: "services" },
+  { href: "/proverka-ot-pozharnata", key: "inspectionPrep" },
   { href: "/sektori", key: "sectors" },
   { href: "/za-nas", key: "about" },
   { href: "/resursi", key: "resources" },
