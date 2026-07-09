@@ -37,12 +37,12 @@ export function Header() {
           <span className="text-lg tracking-tight">{siteConfig.name}</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
           {navItems.map((item) => (
             <Link
               key={item.key}
               href={item.href}
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-slate-900"
+              className="whitespace-nowrap text-sm font-medium text-slate-700 transition-colors hover:text-slate-900"
             >
               {t(item.key)}
             </Link>
@@ -52,7 +52,7 @@ export function Header() {
         <div className="hidden items-center gap-4 lg:flex">
           <a
             href={siteConfig.phoneHref}
-            className="text-sm font-semibold text-slate-700 hover:text-slate-900"
+            className="hidden whitespace-nowrap text-sm font-semibold text-slate-700 hover:text-slate-900 xl:inline"
           >
             {siteConfig.phone}
           </a>
