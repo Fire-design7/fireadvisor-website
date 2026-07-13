@@ -80,6 +80,14 @@ export default async function PrivacyPolicyPage({
               сключени с тях условия за обработка на данни. Не продаваме и не
               споделяме данните ви с трети страни за маркетингови цели.
             </p>
+            <p>
+              Отделно от формата, при изрично съгласие от ваша страна (вижте
+              банера за бисквитки) използваме Google Analytics (Google Ireland
+              Limited) за анонимизирана статистика на посещенията. Google
+              Analytics не се задейства, ако не изберете &bdquo;Приемам&ldquo;.
+              Подробности вижте в нашите{" "}
+              <Link href="/cookies-policy">Условия за ползване на бисквитки</Link>.
+            </p>
 
             <h2>6. Срок на съхранение</h2>
             <p>
@@ -162,6 +170,13 @@ export default async function PrivacyPolicyPage({
               as an email notification via Resend. Both providers act as data
               processors on our behalf under data processing terms. We do not sell or
               share your data with third parties for marketing purposes.
+            </p>
+            <p>
+              Separately from the form, with your explicit consent (see the
+              cookie banner) we use Google Analytics (Google Ireland Limited)
+              for anonymized visit statistics. Google Analytics does not run
+              unless you select &ldquo;Accept&rdquo;. See our{" "}
+              <Link href="/cookies-policy">Cookie Policy</Link> for details.
             </p>
 
             <h2>6. Retention Period</h2>

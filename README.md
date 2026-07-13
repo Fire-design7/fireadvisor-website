@@ -52,33 +52,43 @@ Resend е избран вместо Mailgun, защото не изисква к
 
 ---
 
-## 4. Локални тестови ключове
+## 4. Настройка на Google Analytics (по избор)
 
-Копирайте `.env.local.example` като `.env.local` в основната папка на проекта и попълнете стойностите от стъпки 2 и 3. Този файл никога не се качва в git.
+Сайтът има вграден банер за съгласие с бисквитки — Google Analytics **никога не се задейства**, преди посетителят да натисне "Приемам". Ако не искате анализ на трафика засега, просто оставете тази стъпка празна — банерът така или иначе се показва (за да е ясно какви строго необходими бисквитки има), но самият Analytics няма да се зарежда без стойност тук.
+
+1. Отидете на [analytics.google.com](https://analytics.google.com) → създайте акаунт и Property за `fireadvisor.eu`.
+2. **Admin → Data Streams** → добавете Web stream с URL `https://fireadvisor.eu`.
+3. Копирайте **Measurement ID** (изглежда като `G-XXXXXXXXXX`) → това е `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
 
 ---
 
-## 5. Публикуване на живо във Vercel
+## 5. Локални тестови ключове
+
+Копирайте `.env.local.example` като `.env.local` в основната папка на проекта и попълнете стойностите от стъпки 2–4. Този файл никога не се качва в git.
+
+---
+
+## 6. Публикуване на живо във Vercel
 
 1. ✅ Кодът вече е в GitHub: [github.com/Fire-design7/fireadvisor-website](https://github.com/Fire-design7/fireadvisor-website)
 2. Отидете на [vercel.com](https://vercel.com) → **Sign up** (може директно с GitHub акаунта).
 3. **Add New → Project** → изберете `fireadvisor-website` от списъка → **Import**.
-4. В **Environment Variables** добавете същите ключове като в `.env.local` (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_OWNER_EMAIL). Може да пропуснете тази стъпка първоначално и да ги добавите по-късно — сайтът ще работи, само формата за контакт няма да изпраща, докато не ги зададете.
+4. В **Environment Variables** добавете същите ключове като в `.env.local` (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_OWNER_EMAIL, RESEND_CUSTOMER_CONFIRMATION, NEXT_PUBLIC_GA_MEASUREMENT_ID). Може да пропуснете тази стъпка първоначално и да ги добавите по-късно — сайтът ще работи, само формата за контакт няма да изпраща, докато не ги зададете.
 5. Натиснете **Deploy**. След минута сайтът е достъпен на временен `*.vercel.app` адрес.
 6. За да свържете реалния домейн: **Project → Settings → Domains** → добавете `fireadvisor.eu` и `www.fireadvisor.eu`, следвайте инструкциите за DNS записи (A запис за root домейна, CNAME за `www`) — добавят се в jump.bg, без да пипате MX записите на Google Workspace.
 
 ---
 
-## 6. Проверка на старите Google Ads линкове
+## 7. Проверка на старите Google Ads линкове
 
 Преди да насочите домейна към новия сайт:
 1. Извадете точния списък с Final URL адреси от активните Google Ads кампании (Google Ads → Campaigns → Ads → колона "Final URL").
 2. Отворете всеки от старите адреси (`/about`, `/services`, `/contact`) върху новия сайт (на `*.vercel.app` преди да смените домейна) и проверете, че пренасочва коректно към новата страница.
-3. Настройте **conversion tracking** в Google Ads към страницата "Благодарим за запитването" — в момента отчетът ви показваше 0 реализации, което вероятно означава, че липсва проследяване.
+3. Настройте **conversion tracking** в Google Ads към страницата "Благодарим за запитването" (`/blagodarim`) — в момента отчетът ви показваше 0 реализации, което вероятно означава, че липсва проследяване.
 
 ---
 
-## 7. Добавяне на реално съдържание
+## 8. Добавяне на реално съдържание
 
 Всичко в сайта се редактира чрез прости файлове — не е нужен админ панел:
 
@@ -95,13 +105,13 @@ Resend е избран вместо Mailgun, защото не изисква к
 
 ---
 
-## 8. Нова публикация в блога
+## 9. Нова публикация в блога
 
 Кажете ми нещо от рода на: *"Напиши ми блог пост за [тема], на български и английски"*. Ще създам файловете в `content/blog/bg/` и `content/blog/en/`, ще ви покажа чернова, и при одобрение ще направя commit + push — Vercel автоматично публикува новата статия до минута.
 
 ---
 
-## 9. Технически детайли (за бъдещи Claude Code сесии)
+## 10. Технически детайли (за бъдещи Claude Code сесии)
 
 - Next.js 16, App Router, TypeScript, Tailwind CSS v4
 - `next-intl` за BG (root, без представка) / EN (`/en`) рутинг — виж `src/i18n/`
@@ -110,3 +120,4 @@ Resend е избран вместо Mailgun, защото не изисква к
 - Формата за запитване праща към `src/app/api/inquiries/route.ts`, който пише в Supabase (`supabase/schema.sql`) и праща имейли през Resend (`src/lib/email.ts`)
 - 301 redirect-и от стария сайт (`/about`, `/services`, `/contact`, `/blog-2`, `/archives/:id`) са в `next.config.ts`
 - `src/app/sitemap.ts` и `src/app/robots.ts` генерират SEO файловете автоматично
+- Google Analytics (`src/components/GoogleAnalytics.tsx`) се зарежда само след съгласие от банера (`src/components/CookieConsent.tsx`), пазено в `localStorage` под ключ `cookie-consent`

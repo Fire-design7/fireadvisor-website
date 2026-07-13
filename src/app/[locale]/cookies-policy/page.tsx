@@ -50,16 +50,26 @@ export default async function CookiesPolicyPage({
                   <td className="p-3">Запомня избрания от вас език (български/английски)</td>
                   <td className="p-3">Строго необходима, сесийна</td>
                 </tr>
+                <tr>
+                  <td className="p-3 font-mono text-xs">cookie-consent</td>
+                  <td className="p-3">Запомня избора ви за/против аналитични бисквитки, за да не ви питаме отново</td>
+                  <td className="p-3">Строго необходима, до 12 месеца</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono text-xs">_ga, _ga_*</td>
+                  <td className="p-3">Google Analytics — анонимизирана статистика за посещенията (кои страници, откъде идват посетителите)</td>
+                  <td className="p-3">Изисква съгласие, до 24 месеца</td>
+                </tr>
               </tbody>
             </table>
 
             <p>
-              Към момента този сайт използва <strong>само една бисквитка</strong> —
-              <code>NEXT_LOCALE</code> — която запомня избрания от вас език при
-              превключване между български и английски. Тя не проследява
-              поведението ви, не идентифицира вас лично и не се използва за
-              реклама или анализ. Поставя се само след като вие сами изберете
-              език чрез превключвателя в сайта.
+              <code>NEXT_LOCALE</code> запомня избрания от вас език и се
+              поставя само след като сами изберете език чрез превключвателя.{" "}
+              <code>cookie-consent</code> запомня само избора ви на банера за
+              бисквитки по-долу. И двете са <strong>строго необходими</strong>{" "}
+              за работата на функция, която сте заявили изрично, и не
+              изискват предварително съгласие.
             </p>
 
             <p>
@@ -67,22 +77,22 @@ export default async function CookiesPolicyPage({
               бисквитка) се урежда от чл. 4а от Закона за електронната
               търговия, който транспонира изискванията на Директива
               2002/58/ЕО (ePrivacy директивата) за съгласие при използване на
-              бисквитки. Тъй като <code>NEXT_LOCALE</code> е{" "}
-              <strong>строго необходима</strong> за работата на функция,
-              която сте заявили изрично (промяна на езика), тя попада в
-              изключението по чл. 4а, ал. 4 от същия закон за бисквитки,
-              чиято единствена цел е осъществяване на пренос на съобщение по
-              електронна съобщителна мрежа или предоставяне на услуга на
-              информационното общество, изрично поискана от потребителя — и
-              не изисква вашето предварително съгласие.
+              бисквитки. Строго необходимите бисквитки по-горе попадат в
+              изключението по чл. 4а, ал. 4 от същия закон, чиято единствена
+              цел е предоставяне на услуга на информационното общество,
+              изрично поискана от потребителя — и не изискват вашето
+              предварително съгласие.
             </p>
 
             <p>
-              Сайтът не използва бисквитки за анализ на трафика (напр. Google
-              Analytics), реклама или проследяване между сайтове. Ако това се
-              промени в бъдеще (например при добавяне на инструменти за
-              анализ), тази страница ще бъде актуализирана и ще добавим банер
-              за съгласие, където е необходимо.
+              Сайтът използва <strong>Google Analytics</strong> за анонимизирана
+              статистика на посещенията (кои страници се разглеждат, откъде
+              идват посетителите), но <strong>само след като изрично
+              се съгласите</strong> чрез банера, който се показва при първо
+              посещение. Ако не изберете &bdquo;Приемам&ldquo; или изберете
+              &bdquo;Само необходими&ldquo;, бисквитките на Google Analytics
+              изобщо не се поставят. Можете да промените избора си по всяко
+              време, като изчистите бисквитките на браузъра си за този сайт.
             </p>
 
             <p>
@@ -111,39 +121,49 @@ export default async function CookiesPolicyPage({
                   <td className="p-3">Remembers your chosen language (Bulgarian/English)</td>
                   <td className="p-3">Strictly necessary, session-only</td>
                 </tr>
+                <tr>
+                  <td className="p-3 font-mono text-xs">cookie-consent</td>
+                  <td className="p-3">Remembers your choice for/against analytics cookies, so we don't ask again</td>
+                  <td className="p-3">Strictly necessary, up to 12 months</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-mono text-xs">_ga, _ga_*</td>
+                  <td className="p-3">Google Analytics — anonymized visit statistics (which pages, where visitors come from)</td>
+                  <td className="p-3">Requires consent, up to 24 months</td>
+                </tr>
               </tbody>
             </table>
 
             <p>
-              This site currently uses <strong>only one cookie</strong> —{" "}
-              <code>NEXT_LOCALE</code> — which remembers your language choice
-              when switching between Bulgarian and English. It does not track
-              your behavior, does not identify you personally, and is not
-              used for advertising or analytics. It is only set after you
-              actively choose a language via the site&apos;s switcher.
+              <code>NEXT_LOCALE</code> remembers your language choice and is
+              only set after you actively choose a language via the site's
+              switcher. <code>cookie-consent</code> only remembers your
+              choice on the cookie banner below. Both are{" "}
+              <strong>strictly necessary</strong> for a feature you
+              explicitly requested, and don't require prior consent.
             </p>
 
             <p>
               Storing information on your device (such as a cookie) is
               governed by Article 4a of the Bulgarian Electronic Commerce Act
               (Закон за електронната търговия), which transposes the consent
-              requirements of the ePrivacy Directive (2002/58/EC). Because{" "}
-              <code>NEXT_LOCALE</code> is <strong>strictly necessary</strong>{" "}
-              for a feature you explicitly requested (changing the
-              language), it falls under the exemption in Article 4a(4) of
-              that Act, which covers storage or access whose sole purpose is
-              to carry out the transmission of a message over an electronic
-              communications network, or to provide an information society
-              service explicitly requested by the recipient — and does not
-              require your prior consent.
+              requirements of the ePrivacy Directive (2002/58/EC). The
+              strictly necessary cookies above fall under the exemption in
+              Article 4a(4) of that Act, which covers storage whose sole
+              purpose is to provide an information society service
+              explicitly requested by the recipient — and don't require your
+              prior consent.
             </p>
 
             <p>
-              The site does not use cookies for traffic analysis (e.g. Google
-              Analytics), advertising, or cross-site tracking. If this
-              changes in the future (for example, if analytics tools are
-              added), this page will be updated and a consent banner will be
-              added where required.
+              The site uses <strong>Google Analytics</strong> for anonymized
+              visit statistics (which pages are viewed, where visitors come
+              from), but <strong>only after you explicitly consent</strong>{" "}
+              via the banner shown on your first visit. If you don't select
+              &ldquo;Accept&rdquo;, or select &ldquo;Necessary only&rdquo;,
+              Google Analytics cookies are never set at all. You can change
+              your choice at any time by clearing this site's cookies in
+              your browser.
             </p>
 
             <p>

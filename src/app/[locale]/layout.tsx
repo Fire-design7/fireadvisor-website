@@ -7,6 +7,8 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
+import { CookieConsent } from "@/components/CookieConsent";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { pageAlternates } from "@/lib/seo";
 import "../globals.css";
 
@@ -79,6 +81,8 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <FloatingContact />
+          <CookieConsent />
+          <GoogleAnalytics />
         </NextIntlClientProvider>
       </body>
     </html>
