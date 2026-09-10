@@ -10,7 +10,14 @@ export const config = {
   // paths that don't exist (/wp-login.php, /.env, /backup.sql, etc.) to
   // bypass the app's routing entirely and crash with a 500 instead of
   // reaching our own 404 handling.
+  //
+  // robots.txt, sitemap.xml and manifest.webmanifest are excluded by exact
+  // path instead of by extension — they're real root-level file-convention
+  // routes that must skip the locale rewrite, but a blanket txt/xml/json
+  // exclusion also caught fake paths with the same extension (old WordPress
+  // sitemap remnants like /author-sitemap.xml, /post-sitemap.xml, etc.),
+  // sending them down the same crashing path instead of a clean 404.
   matcher: [
-    "/((?!api|_next|_vercel|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|css|js|mjs|woff|woff2|ttf|map|txt|xml|json|webmanifest)$).*)",
+    "/((?!api|_next|_vercel|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|css|js|mjs|woff|woff2|ttf|map)$).*)",
   ],
 };
