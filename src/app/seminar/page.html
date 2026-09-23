@@ -2,6 +2,12 @@
 <html lang="bg">
 <head>
 <meta charset="utf-8">
+<!-- Page is served at /seminar (no trailing slash), so bare relative
+     image paths like "logo-red-birch.svg" would otherwise resolve
+     against the site root (/logo-red-birch.svg) instead of
+     /seminar/logo-red-birch.svg. <base> fixes that without touching
+     every src= attribute in the file. -->
+<base href="/seminar/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Пасивна пожарна защита — онлайн семинар | 28 октомври 2026</title>
 <meta name="description" content="Безплатен онлайн семинар с Polyseam — производителят на Protecta. 28 октомври 2026, 15:00 ч. 50 места.">
