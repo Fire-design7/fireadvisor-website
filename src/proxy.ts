@@ -17,7 +17,11 @@ export const config = {
   // exclusion also caught fake paths with the same extension (old WordPress
   // sitemap remnants like /author-sitemap.xml, /post-sitemap.xml, etc.),
   // sending them down the same crashing path instead of a clean 404.
+  //
+  // seminar is excluded too — it's a standalone static landing page living
+  // outside the [locale] tree (src/app/seminar/route.ts), so it must not be
+  // rewritten under /bg or /en like normal site content.
   matcher: [
-    "/((?!api|_next|_vercel|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|css|js|mjs|woff|woff2|ttf|map)$).*)",
+    "/((?!api|_next|_vercel|seminar|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|css|js|mjs|woff|woff2|ttf|map)$).*)",
   ],
 };
