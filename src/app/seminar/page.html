@@ -2,12 +2,6 @@
 <html lang="bg">
 <head>
 <meta charset="utf-8">
-<!-- Page is served at /seminar (no trailing slash), so bare relative
-     image paths like "logo-red-birch.svg" would otherwise resolve
-     against the site root (/logo-red-birch.svg) instead of
-     /seminar/logo-red-birch.svg. <base> fixes that without touching
-     every src= attribute in the file. -->
-<base href="/seminar/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Пасивна пожарна защита — онлайн семинар | 28 октомври 2026</title>
 <meta name="description" content="Безплатен онлайн семинар с Polyseam — производителят на Protecta. 28 октомври 2026, 15:00 ч. 50 места.">
@@ -16,10 +10,12 @@
 <meta property="og:title" content="Пасивна пожарна защита — директно от производителя">
 <meta property="og:description" content="Безплатен онлайн семинар с Polyseam, производителя на Protecta. 28 октомври 2026, 15:00 ч. С превод на български и CPD сертификат. 50 места.">
 <meta property="og:image" content="https://fireadvisor.eu/seminar/og.png">
-<meta property="og:image:width" content="1080">
-<meta property="og:image:height" content="1350">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="bg_BG">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:alt" content="Пасивна пожарна защита — онлайн семинар с Polyseam, 28 октомври 2026">
+<meta property="og:site_name" content="Fire Advisor">
 <style>
   /* ============================================================
      РЕГИСТРАЦИОННА СТРАНИЦА = флайерът, направен отзивчив.
@@ -209,8 +205,8 @@
 <div class="sheet">
 
   <div class="brandbar">
-    <img class="rb" src="logo-red-birch.svg" alt="Red Birch">
-    <img class="pr" src="logo-protecta.svg" alt="Protecta by Polyseam">
+    <img class="rb" src="/seminar/logo-red-birch.svg" alt="Red Birch">
+    <img class="pr" src="/seminar/logo-protecta.svg" alt="Protecta by Polyseam">
   </div>
   <div class="hair"></div>
 
@@ -248,17 +244,17 @@
       </div>
 
       <div class="row">
-        <figure><img src="prod-collar.jpg" alt="Protecta FR Collar">
+        <figure><img src="/seminar/prod-collar.jpg" alt="Protecta FR Collar">
           <figcaption>FR Collar<small>яка за тръби</small></figcaption></figure>
-        <figure><img src="prod-wrap.jpg" alt="Protecta FR Pipe Wrap">
+        <figure><img src="/seminar/prod-wrap.jpg" alt="Protecta FR Pipe Wrap">
           <figcaption>FR Pipe Wrap<small>бандаж</small></figcaption></figure>
-        <figure><img src="prod-acrylic.jpg" alt="Protecta FR Acrylic">
+        <figure><img src="/seminar/prod-acrylic.jpg" alt="Protecta FR Acrylic">
           <figcaption>FR Acrylic<small>акрилен уплътнител</small></figcaption></figure>
-        <figure><img src="prod-graphite.jpg" alt="Protecta FR Graphite">
+        <figure><img src="/seminar/prod-graphite.jpg" alt="Protecta FR Graphite">
           <figcaption>FR Graphite<small>графитен уплътнител</small></figcaption></figure>
-        <figure><img src="prod-batt.png" alt="Protecta Mineral Fibre">
+        <figure><img src="/seminar/prod-batt.png" alt="Protecta Mineral Fibre">
           <figcaption>Mineral Fibre<small>плоча</small></figcaption></figure>
-        <figure><img src="prod-mortar.jpg" alt="Protecta EX Mortar">
+        <figure><img src="/seminar/prod-mortar.jpg" alt="Protecta EX Mortar">
           <figcaption>EX Mortar<small>замазка</small></figcaption></figure>
       </div>
 
@@ -276,7 +272,7 @@
         <li><b>Francois Raulier</b><span>Red Birch</span></li>
       </ul>
       <div class="org">
-        <img src="logo-fire-advisor-white.png" alt="Fire Advisor">
+        <img src="/seminar/logo-fire-advisor-white.png" alt="Fire Advisor">
         <div class="wm">FIRE ADVISOR<small>Организатор</small></div>
       </div>
     </div>
@@ -370,6 +366,47 @@
 /* ⚠ ЗАМЕНИ с Web app URL-а от Apps Script (свършва на /exec) */
 const API_URL = 'https://script.google.com/macros/s/AKfycbyt9dqHIGXygPr4koMSWS5hTOMm808g1mfyo2Ro7FgDCbL2DwIovZDxdLCHqMX3QhRvvA/exec';
 
+/* ============================================================
+   ОТКЪДЕ ИДВА ПОСЕТИТЕЛЯТ
+   1) ?utm_source=... от линка — най-точно, работи и за Viber
+   2) ако няма UTM — гадае по referrer (Facebook, LinkedIn…)
+   3) запомня го, за да оцелее при презареждане на страницата
+   ============================================================ */
+const SOURCE = (function () {
+  const KEY = 'seminar_src';
+  const q = new URLSearchParams(location.search);
+
+  const utm = q.get('utm_source');
+  if (utm) {
+    const val = [utm, q.get('utm_medium'), q.get('utm_content') || q.get('utm_campaign')]
+      .filter(Boolean).join(' / ');
+    try { sessionStorage.setItem(KEY, val); } catch (e) {}
+    /* чистим опашката от адресната лента — посетителят вижда чист адрес */
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+    return val;
+  }
+
+  try { const saved = sessionStorage.getItem(KEY); if (saved) return saved; } catch (e) {}
+
+  const r = document.referrer || '';
+  const map = [
+    [/(^|.)facebook.com|(^|.)fb.(me|com)/i, 'Facebook'],
+    [/(^|.)linkedin.com|lnkd.in/i,            'LinkedIn'],
+    [/(^|.)instagram.com/i,                     'Instagram'],
+    [/whatsapp.com|wa.me/i,                     'WhatsApp'],
+    [/(^|.)viber.com/i,                         'Viber'],
+    [/(^|.)t.co|(^|.)(twitter|x).com/i,     'X'],
+    [/mail.google.com|outlook.|mail.yahoo/i,'имейл (уеб)'],
+    [/(^|.)google.|(^|.)bing.|duckduckgo/i, 'търсачка'],
+    [/fireadvisor.eu/i,                           'сайта']
+  ];
+  let val = 'директно / приложение';
+  for (const [re, name] of map) if (re.test(r)) { val = name; break; }
+
+  try { sessionStorage.setItem(KEY, val); } catch (e) {}
+  return val;
+})();
+
 const CAP = 50, $ = id => document.getElementById(id);
 const veil = $('veil');
 
@@ -407,7 +444,8 @@ $('f').addEventListener('submit', ev => {
   const data = {
     name:$('name').value.trim(), email:$('email').value.trim(),
     company:$('company').value.trim(), role:$('role').value,
-    question:$('question').value.trim()
+    question:$('question').value.trim(),
+    source: SOURCE
   };
   const fail = t => { msg.textContent = t; msg.classList.add('on'); };
 
