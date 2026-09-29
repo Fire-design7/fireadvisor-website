@@ -21,7 +21,7 @@ const checklist = [
   {
     id: "shemi",
     slug: "evakuatsionni-shemi",
-    bg: { title: "Схеми за евакуация", text: "Поставени на видими места, отговарящи на реалната планировка на обекта в момента." },
+    bg: { title: "Схеми и планове за евакуация", text: "Поставени на видими места, отговарящи на реалната планировка на обекта в момента." },
     en: { title: "Evacuation plans", text: "Displayed in visible locations and matching the building's actual current layout." },
   },
   {
