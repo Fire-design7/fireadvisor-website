@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { ResourceDownloadForm } from "@/components/ResourceDownloadForm";
 import { resources } from "@/content/resources";
 import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
@@ -50,12 +51,10 @@ export default async function ResourcesPage({
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
                   {content.description}
                 </p>
-                <a
-                  href={r.fileHref}
-                  className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
-                >
-                  {t("downloadCta")}
-                </a>
+                <ResourceDownloadForm
+                  resourceTitle={content.title}
+                  fileHref={r.fileHref}
+                />
               </div>
             );
           })}

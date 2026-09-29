@@ -132,7 +132,16 @@
     "title": "Resources",
     "subtitle": "Downloadable materials to help you navigate fire safety requirements.",
     "downloadCta": "Download PDF",
-    "placeholderNotice": "[PLACEHOLDER — add real documents]"
+    "placeholderNotice": "[PLACEHOLDER — add real documents]",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "confirmDownloadCta": "Download",
+    "submittingButton": "Sending…",
+    "errorText": "Something went wrong. Please try again.",
+    "downloadStarted": "Thank you! Your download has started.",
+    "comingSoonThanks": "Thank you! This resource is being prepared — we'll email you at the address you provided once it's ready.",
+    "consentNotice": "By submitting, you voluntarily provide the details above to receive this resource. Your data is processed under our",
+    "consentNoticeLinkText": "Privacy Policy"
   },
   "blog": {
     "title": "Blog",

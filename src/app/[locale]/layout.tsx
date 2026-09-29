@@ -96,6 +96,14 @@ export default async function LocaleLayout({
             sameAs: [siteConfig.linkedin],
           }}
         />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteConfig.name,
+            url: siteConfig.url,
+          }}
+        />
         <NextIntlClientProvider>
           <Header />
           <main className="flex-1">{children}</main>
