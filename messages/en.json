@@ -143,6 +143,17 @@
     "consentNotice": "By submitting, you voluntarily provide the details above to receive this resource. Your data is processed under our",
     "consentNoticeLinkText": "Privacy Policy"
   },
+  "newsletter": {
+    "title": "Fire safety newsletter",
+    "emailPlaceholder": "Your email",
+    "subscribeCta": "Subscribe",
+    "submitting": "Sending…",
+    "errorText": "Something went wrong. Please try again.",
+    "subscribed": "Thank you! You're on the list.",
+    "alreadySubscribed": "You're already subscribed — thank you!",
+    "consentNotice": "You agree to our",
+    "consentNoticeLinkText": "Privacy Policy"
+  },
   "blog": {
     "title": "Blog",
     "subtitle": "Practical articles on fire safety, regulatory requirements and best practices.",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "./Container";
+import { NewsletterForm } from "./NewsletterForm";
 import { siteConfig } from "@/content/site-config";
 import { services } from "@/content/services";
 import type { Locale } from "@/i18n/routing";
@@ -35,6 +36,7 @@ export function Footer() {
           >
             LinkedIn
           </a>
+          <NewsletterForm />
         </div>
 
         <div>

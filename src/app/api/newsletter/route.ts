@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { forwardLead, isNonEmptyString, isValidEmail } from "@/lib/leads";
+import { forwardLead, isValidEmail } from "@/lib/leads";
 
 export const runtime = "nodejs";
 
-// Same lightweight per-instance rate limit as /api/inquiries — best-effort,
-// just enough to stop naive bots from spamming the leads sheet.
+// Same lightweight per-instance rate limit as the other lead-capture routes.
 const submissionsByIp = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX = 10;
@@ -32,19 +31,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, resource, locale } = body;
+  const { email, locale } = body;
 
-  if (!isNonEmptyString(name, 200) || !isValidEmail(email) || !isNonEmptyString(resource, 200)) {
+  if (!isValidEmail(email)) {
     return NextResponse.json({ ok: false, error: "Invalid submission" }, { status: 400 });
   }
 
   const safeLocale = locale === "en" ? "en" : "bg";
 
   const result = await forwardLead({
-    type: "ресурс",
-    name: name as string,
+    type: "бюлетин",
     email,
-    detail: resource as string,
     locale: safeLocale,
     source: request.headers.get("referer") ?? "",
   });
@@ -53,5 +50,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Could not save lead" }, { status: 502 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, duplicate: result.duplicate === true });
 }
