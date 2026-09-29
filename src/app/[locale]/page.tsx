@@ -51,8 +51,8 @@ export default async function HomePage({
             a: "Базирани сме в Пловдив, но работим по обекти в цялата страна.",
           },
           {
-            q: "Предлагате ли абонаментна поддръжка?",
-            a: "Да — предлагаме абонаментна поддръжка на всички системи, които изграждаме, включително периодични проверки и водене на пожарно досие.",
+            q: "Предлагате ли годишен абонамент за поддържане на документацията?",
+            a: "Да — предлагаме годишен абонамент за актуализация на пожарното досие и следене на нормативните промени, без да е нужно постоянно физическо присъствие на обекта.",
           },
         ]
       : [
@@ -65,8 +65,8 @@ export default async function HomePage({
             a: "We're based in Plovdiv, but we work on projects across the whole country.",
           },
           {
-            q: "Do you offer subscription maintenance?",
-            a: "Yes — we offer subscription maintenance for every system we install, including periodic inspections and fire safety file management.",
+            q: "Do you offer an annual documentation retainer?",
+            a: "Yes — we offer an annual retainer to keep your fire safety file up to date and track regulatory changes, without requiring constant physical presence on site.",
           },
         ];
 
@@ -81,7 +81,12 @@ export default async function HomePage({
           telephone: siteConfig.phone,
           email: siteConfig.email,
           areaServed: "BG",
-          address: { "@type": "PostalAddress", addressCountry: "BG" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Пловдив",
+            addressCountry: "BG",
+          },
+          sameAs: [siteConfig.linkedin],
         }}
       />
       <JsonLd
@@ -239,20 +244,16 @@ export default async function HomePage({
         </Container>
       </section>
 
-      {/* Phases */}
+      {/* Pillars */}
       <section className="py-20">
         <Container>
           <SectionHeading title={t("phasesTitle")} align="center" />
-          <div className="relative mt-12">
-            <div
-              aria-hidden
-              className="absolute top-5 left-[16.5%] right-[16.5%] hidden h-px bg-slate-300 sm:block"
-            />
-            <div className="grid gap-10 sm:grid-cols-3 sm:gap-6">
-              <PhaseCard number="1" title={t("phaseDesignTitle")} text={t("phaseDesignText")} />
-              <PhaseCard number="2" title={t("phaseBuildTitle")} text={t("phaseBuildText")} />
-              <PhaseCard number="3" title={t("phaseMaintainTitle")} text={t("phaseMaintainText")} />
-            </div>
+          <div className="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-5">
+            <PhaseCard number="1" title={t("pillarDesignTitle")} text={t("pillarDesignText")} />
+            <PhaseCard number="2" title={t("pillarConsultingTitle")} text={t("pillarConsultingText")} />
+            <PhaseCard number="3" title={t("pillarReviewTitle")} text={t("pillarReviewText")} />
+            <PhaseCard number="4" title={t("pillarEvacuationTitle")} text={t("pillarEvacuationText")} />
+            <PhaseCard number="5" title={t("pillarDocumentationTitle")} text={t("pillarDocumentationText")} />
           </div>
         </Container>
       </section>

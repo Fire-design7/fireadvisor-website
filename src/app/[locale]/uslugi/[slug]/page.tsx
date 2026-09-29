@@ -7,6 +7,7 @@ import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
 import { Link } from "@/i18n/navigation";
 import { services, getServiceBySlug } from "@/content/services";
+import { siteConfig } from "@/content/site-config";
 import { pageAlternates, pageSocial } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -46,9 +47,21 @@ export default async function ServiceDetailPage({
   const tCommon = await getTranslations("common");
   const content = service[locale];
   const faqs = service.faqs.map((f) => f[locale]);
+  const base = locale === "en" ? `${siteConfig.url}/en` : siteConfig.url;
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: locale === "bg" ? "Начало" : "Home", item: base },
+            { "@type": "ListItem", position: 2, name: t("hubTitle"), item: `${base}/uslugi` },
+            { "@type": "ListItem", position: 3, name: content.title, item: `${base}/uslugi/${service.slug}` },
+          ],
+        }}
+      />
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -90,6 +103,50 @@ export default async function ServiceDetailPage({
 
           <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
             {tCommon("applicableStandard")}: {service.standard}
+          </div>
+
+          <div className="mt-10">
+            <h2 className="text-lg font-bold text-slate-900">{t("whenNeededTitle")}</h2>
+            <p className="mt-3 text-base leading-relaxed text-slate-700">{content.whenNeeded}</p>
+          </div>
+
+          <div className="mt-10 grid gap-10 sm:grid-cols-2">
+            <div>
+              <h2 className="text-lg font-bold text-slate-900">{t("whatIncludesTitle")}</h2>
+              <ul className="mt-3 space-y-2">
+                {content.whatIncludes.map((item, i) => (
+                  <li key={i} className="flex gap-2 text-sm leading-relaxed text-slate-700">
+                    <span aria-hidden className="mt-0.5 text-amber-600">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-slate-900">{t("infoNeededTitle")}</h2>
+              <ul className="mt-3 space-y-2">
+                {content.infoNeeded.map((item, i) => (
+                  <li key={i} className="flex gap-2 text-sm leading-relaxed text-slate-700">
+                    <span aria-hidden className="mt-0.5 text-amber-600">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="text-lg font-bold text-slate-900">{t("processTitle")}</h2>
+            <ol className="mt-4 space-y-4">
+              {content.process.map((step, i) => (
+                <li key={i} className="flex gap-4">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-amber-400">
+                    {i + 1}
+                  </span>
+                  <span className="pt-0.5 text-sm leading-relaxed text-slate-700">{step}</span>
+                </li>
+              ))}
+            </ol>
           </div>
 
           {faqs.length > 0 && (

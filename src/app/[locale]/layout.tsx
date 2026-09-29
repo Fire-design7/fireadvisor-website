@@ -9,7 +9,9 @@ import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { JsonLd } from "@/components/JsonLd";
 import { pageAlternates } from "@/lib/seo";
+import { siteConfig } from "@/content/site-config";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -76,6 +78,24 @@ export default async function LocaleLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: siteConfig.name,
+            legalName: siteConfig.legalName,
+            url: siteConfig.url,
+            logo: `${siteConfig.url}/logo-icon-dark.png`,
+            email: siteConfig.email,
+            telephone: siteConfig.phone,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Пловдив",
+              addressCountry: "BG",
+            },
+            sameAs: [siteConfig.linkedin],
+          }}
+        />
         <NextIntlClientProvider>
           <Header />
           <main className="flex-1">{children}</main>
