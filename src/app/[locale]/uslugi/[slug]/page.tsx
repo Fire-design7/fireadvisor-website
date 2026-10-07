@@ -102,6 +102,10 @@ export default async function ServiceDetailPage({
             {content.body}
           </p>
 
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
+            {tCommon("applicableStandard")}: {service.standard}
+          </div>
+
           {service.image && (
             <BlogFigure
               src={service.image.src}
@@ -112,10 +116,6 @@ export default async function ServiceDetailPage({
               fullSizeLabel={locale === "en" ? "Open full size" : "Отвори в пълен размер"}
             />
           )}
-
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
-            {tCommon("applicableStandard")}: {service.standard}
-          </div>
 
           <div className="mt-10">
             <h2 className="text-lg font-bold text-slate-900">{t("whenNeededTitle")}</h2>
