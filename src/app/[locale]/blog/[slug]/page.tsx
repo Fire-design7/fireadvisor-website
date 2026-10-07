@@ -11,7 +11,7 @@ import { LiftSymbols } from "@/components/LiftSymbols";
 import { DirectiveSymbols } from "@/components/DirectiveSymbols";
 import { EscapeRouteSigns, ArrowMistake } from "@/components/EscapeRouteSigns";
 import { SafetyColours } from "@/components/SafetyColours";
-import { LuminaireMap, CorridorLux, LightingTimeline, LightingTasks } from "@/components/LightingDiagrams";
+import { LuminaireMap, LightingTimeline } from "@/components/LightingDiagrams";
 import { BlogCard } from "@/components/BlogCard";
 import { Link } from "@/i18n/navigation";
 import { getAllPostSlugs, getPost, getRelatedPosts } from "@/lib/blog";
@@ -165,7 +165,7 @@ export default async function BlogPostPage({
         </p>
 
         <article className="prose prose-slate mt-4 max-w-3xl">
-          <MDXRemote source={post.content} components={{ BlogFigure, FireSignsGrid, LiftSymbols, SafetyColours, DirectiveSymbols, EscapeRouteSigns, ArrowMistake, LuminaireMap, CorridorLux, LightingTimeline, LightingTasks }} />
+          <MDXRemote source={post.content} components={{ BlogFigure, FireSignsGrid, LiftSymbols, SafetyColours, DirectiveSymbols, EscapeRouteSigns, ArrowMistake, LuminaireMap, LightingTimeline }} />
         </article>
 
         {post.faq.length > 0 && (
