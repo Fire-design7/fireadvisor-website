@@ -14,8 +14,8 @@ const nextConfig: NextConfig = {
       // Old blog posts replaced by the rewritten articles.
       { source: "/blog/simvoli-za-evakuatsia-iso-7010", destination: "/blog/protivopozharni-znaci-iso-7010", permanent: true },
       { source: "/blog/znaci-za-evakuatsia-iso-16069", destination: "/blog/znaci-po-patya-za-evakuatsia", permanent: true },
-      { source: "/en/blog/simvoli-za-evakuatsia-iso-7010", destination: "/en/blog", permanent: true },
-      { source: "/en/blog/znaci-za-evakuatsia-iso-16069", destination: "/en/blog", permanent: true },
+      { source: "/en/blog/simvoli-za-evakuatsia-iso-7010", destination: "/en/blog/protivopozharni-znaci-iso-7010", permanent: true },
+      { source: "/en/blog/znaci-za-evakuatsia-iso-16069", destination: "/en/blog/znaci-po-patya-za-evakuatsia", permanent: true },
     ];
   },
 };
