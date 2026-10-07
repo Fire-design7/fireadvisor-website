@@ -28,6 +28,11 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// Anything that is not a known locale (e.g. a bot asking for /apple-touch-icon.png
+// or /x.js, which the proxy matcher deliberately skips) must be a clean 404.
+// Without this it fell into the page tree with locale="x.png" and returned 500.
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {

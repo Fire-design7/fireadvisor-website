@@ -427,7 +427,7 @@ export const services: Service[] = [
     bg: {
       title: "Схеми и планове за евакуация",
       short: "Изготвяне на планове (схеми) за евакуация и табла за обекта.",
-      body: "Изготвяме индивидуални схеми (планове) за евакуация за вашия обект — ясно обозначени пътища и изходи, поставени на подходящи места съгласно нормативните изисквания и спецификата на сградата. „Схема“ и „план“ за евакуация означават едно и също нещо — използваме ги като синоними.",
+      body: "Изготвяме индивидуални схеми (планове) за евакуация за вашия обект — ясно обозначени пътища и изходи, поставени на подходящи места съгласно нормативните изисквания и спецификата на сградата. Схемата за евакуация е графичната част на плана за евакуация по Наредба № 8121з-647 — изготвяме нея. В практиката двете понятия често се ползват като синоними.",
       whenNeeded: "Необходими са за всеки обект с достъп на клиенти или персонал — хотели, магазини, офиси, производство — и често се търсят самостоятелно, без пълен проект.",
       whatIncludes: [
         "Индивидуална схема на евакуация за всеки етаж/помещение",
@@ -449,7 +449,7 @@ export const services: Service[] = [
     en: {
       title: "Evacuation Plans",
       short: "Evacuation floor plans and signage boards for your building.",
-      body: "We create individual evacuation plans for your building — clearly marked routes and exits, placed according to regulatory requirements and the specifics of the building.",
+      body: "We create individual evacuation plans for your building — clearly marked routes and exits, placed according to regulatory requirements and the specifics of the building. The evacuation scheme is the graphic part of the evacuation plan under Regulation № 8121з-647 — that is what we prepare.",
       whenNeeded: "Required for any facility with customer or staff access — hotels, shops, offices, production sites — and often requested on its own, without a full design project.",
       whatIncludes: [
         "An individual evacuation plan for each floor/room",
@@ -472,11 +472,11 @@ export const services: Service[] = [
       {
         bg: {
           q: "Схема или план за евакуация — има ли разлика?",
-          a: "На практика не — „схема за евакуация“ и „план за евакуация“ се използват като синоними за един и същ документ: ясно обозначени пътища, изходи и събирателни пунктове за вашия обект. Изготвяме го, както и да предпочитате да го наричате.",
+          a: "Да. По Наредба № 8121з-647 планът за евакуация включва текстова и графична част, а схемата за евакуация е графичната му част. Ние изготвяме схемите — ясно обозначени пътища, изходи и събирателни пунктове за вашия обект. В практиката двете понятия често се ползват като синоними, затова ни търсят и по двата начина.",
         },
         en: {
           q: "Is there a difference between an evacuation \"scheme\" and an evacuation \"plan\"?",
-          a: "In practice, no — both terms describe the same document: clearly marked routes, exits and assembly points for your building. We prepare it either way, whichever term you use.",
+          a: "Yes. Under Regulation № 8121з-647 the evacuation plan consists of a text part and a graphic part, and the evacuation scheme is its graphic part. We prepare the schemes — clearly marked routes, exits and assembly points for your building. In everyday use the two terms are often treated as synonyms, so people search for us both ways.",
         },
       },
     ],

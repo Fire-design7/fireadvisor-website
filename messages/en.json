@@ -158,7 +158,13 @@
     "title": "Blog",
     "subtitle": "Practical articles on fire safety, regulatory requirements and best practices.",
     "emptyState": "Our first articles are coming soon.",
-    "backToBlog": "All Articles"
+    "backToBlog": "All Articles",
+    "breadcrumbHome": "Home",
+    "byline": "By {author}",
+    "published": "Published",
+    "updated": "Updated",
+    "faqTitle": "Frequently Asked Questions",
+    "relatedTitle": "Related articles"
   },
   "contact": {
     "title": "Contact",

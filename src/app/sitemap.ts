@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
-import { getAllPostSlugs } from "@/lib/blog";
+import { getAllPostSlugs, getPost } from "@/lib/blog";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = "https://fireadvisor.eu";
@@ -42,12 +42,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     )
   );
 
+  // lastmod is only emitted where it is genuinely known (blog posts carry a
+  // publish/update date). A blanket "now" on every URL is not a real modification
+  // date and teaches crawlers to ignore the field.
+  const lastModifiedByPath = new Map<string, Date>();
+  for (const locale of routing.locales) {
+    for (const slug of getAllPostSlugs(locale)) {
+      const post = getPost(locale, slug);
+      if (!post) continue;
+      const date = new Date(post.updated ?? post.date);
+      const key = `/blog/${slug}`;
+      const prev = lastModifiedByPath.get(key);
+      if (!prev || date > prev) lastModifiedByPath.set(key, date);
+    }
+  }
+
   const allPaths = [...staticPaths, ...servicePaths, ...sectorPaths, ...blogPaths];
 
   return routing.locales.flatMap((locale) =>
     allPaths.map((path) => ({
       url: localizedPath(path, locale),
-      lastModified: new Date(),
+      lastModified: lastModifiedByPath.get(path),
       alternates: { languages: alternates(path) },
     }))
   );

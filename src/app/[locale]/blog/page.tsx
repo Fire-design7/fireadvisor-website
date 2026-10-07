@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
-import { Link } from "@/i18n/navigation";
+import { BlogCard } from "@/components/BlogCard";
 import { getAllPosts } from "@/lib/blog";
 import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
@@ -40,21 +40,7 @@ export default async function BlogIndexPage({
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-lg hover:shadow-slate-900/5"
-              >
-                <time className="text-xs font-semibold uppercase tracking-wide text-amber-700">
-                  {post.date}
-                </time>
-                <h2 className="mt-2 text-lg font-semibold text-slate-900">
-                  {post.title}
-                </h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-                  {post.description}
-                </p>
-              </Link>
+              <BlogCard key={post.slug} post={post} showDate />
             ))}
           </div>
         )}
