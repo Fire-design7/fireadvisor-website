@@ -7,7 +7,8 @@ import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
 import { BlogFigure } from "@/components/BlogFigure";
 import { Link } from "@/i18n/navigation";
-import { services, getServiceBySlug } from "@/content/services";
+import Image from "next/image";
+import { services, getServiceBySlug, serviceImageSrc } from "@/content/services";
 import { siteConfig } from "@/content/site-config";
 import { pageAlternates, pageSocial } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
@@ -26,11 +27,17 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
   const content = service[locale];
+  const base = pageSocial(locale, content.title, content.short);
+  const imageUrl = `${siteConfig.url}${serviceImageSrc(slug)}`;
+  const social = {
+    openGraph: { ...base.openGraph, images: [{ url: imageUrl, width: 1200, height: 630, alt: content.title }] },
+    twitter: { ...base.twitter, images: [imageUrl] },
+  };
   return {
     title: content.title,
     description: content.short,
     alternates: pageAlternates(locale, `/uslugi/${slug}`),
-    ...pageSocial(locale, content.title, content.short),
+    ...social,
   };
 }
 
@@ -97,6 +104,18 @@ export default async function ServiceDetailPage({
           >
             &larr; {tCommon("backToServices")}
           </Link>
+
+          {!service.image && (
+            <Image
+              src={serviceImageSrc(service.slug)}
+              alt={content.title}
+              width={1200}
+              height={630}
+              priority
+              sizes="(min-width: 1024px) 768px, 100vw"
+              className="mt-6 aspect-[1200/630] w-full rounded-2xl border border-slate-200 object-cover"
+            />
+          )}
 
           <p className="mt-6 text-lg leading-relaxed text-slate-700">
             {content.body}
