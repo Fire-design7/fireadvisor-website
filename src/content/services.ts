@@ -15,10 +15,19 @@ interface ServiceContent {
   infoNeeded: string[];
 }
 
+export interface ServiceImage {
+  src: string;
+  width: number;
+  height: number;
+  bg: { alt: string; caption: string };
+  en: { alt: string; caption: string };
+}
+
 export interface Service {
   slug: string;
   pillar: Pillar;
   standard: string;
+  image?: ServiceImage;
   bg: ServiceContent;
   en: ServiceContent;
   faqs: ServiceFaq[];
@@ -424,6 +433,19 @@ export const services: Service[] = [
     slug: "evakuatsionni-shemi",
     pillar: "evacuation",
     standard: "Наредба Iз-1971",
+    image: {
+      src: "/blog/evakuatsionna-shema-primer.jpg",
+      width: 2000,
+      height: 1414,
+      bg: {
+        alt: "Пример за схема за евакуация с етажно разпределение, ситуационен план със сборен пункт, легенда и действия при пожар на български и английски",
+        caption: "Пример за схема за евакуация (анонимизиран обект): етажно разпределение, ситуационен план със сборен пункт, легенда и действия при пожар на български и английски.",
+      },
+      en: {
+        alt: "Example of an evacuation scheme with a floor layout, a site plan with an assembly point, a legend and the actions in case of fire in Bulgarian and English",
+        caption: "Example of an evacuation scheme (anonymised facility): floor layout, site plan with an assembly point, a legend and the actions in case of fire in Bulgarian and English.",
+      },
+    },
     bg: {
       title: "Схеми и планове за евакуация",
       short: "Изготвяне на планове (схеми) за евакуация и табла за обекта.",

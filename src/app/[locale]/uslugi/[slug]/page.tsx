@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { Faq } from "@/components/Faq";
 import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
+import { BlogFigure } from "@/components/BlogFigure";
 import { Link } from "@/i18n/navigation";
 import { services, getServiceBySlug } from "@/content/services";
 import { siteConfig } from "@/content/site-config";
@@ -100,6 +101,17 @@ export default async function ServiceDetailPage({
           <p className="mt-6 text-lg leading-relaxed text-slate-700">
             {content.body}
           </p>
+
+          {service.image && (
+            <BlogFigure
+              src={service.image.src}
+              alt={service.image[locale].alt}
+              width={service.image.width}
+              height={service.image.height}
+              caption={service.image[locale].caption}
+              fullSizeLabel={locale === "en" ? "Open full size" : "Отвори в пълен размер"}
+            />
+          )}
 
           <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
             {tCommon("applicableStandard")}: {service.standard}
