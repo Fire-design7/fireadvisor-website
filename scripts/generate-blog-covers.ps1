@@ -22,6 +22,7 @@ $featureImages = @{
   "protivopozharni-znaci-iso-7010" = (Join-Path $root "public\blog\covers\_feature-fire-signs.png")
   "znaci-po-patya-za-evakuatsia" = (Join-Path $root "public\blog\covers\_feature-escape-route-signs.png")
   "evakuatsionno-osvetlenie" = (Join-Path $root "public\blog\covers\_feature-evacuation-lighting.png")
+  "pasivna-pozharna-zashtita" = (Join-Path $root "public\blog\covers\_feature-passive-protection.png")
 }
 
 $W = 1200; $H = 630
