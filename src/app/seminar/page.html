@@ -228,7 +228,7 @@
     <div><div class="l">Дата</div><div class="v big">28.10.2026</div><div class="s">сряда</div></div>
     <div><div class="l">Начало</div><div class="v">15:00 ч.</div><div class="s">време София</div></div>
     <div><div class="l">Формат</div><div class="v">Онлайн</div><div class="s">превод на български</div></div>
-    <div><div class="l">Места</div><div class="v"><span data-free>50</span></div><div class="s">свободни</div></div>
+    <div><div class="l">Места</div><div class="v"><span data-free>50</span></div><div class="s" data-freelabel>свободни</div></div>
   </div>
 
   <div class="shelf">
@@ -295,7 +295,7 @@
   <div class="cta">
     <div class="txt">
       <b>Запазете своето място</b>
-      <span>Ограничаваме групата до 50 участници, за да остане време за въпроси по конкретни проекти.</span>
+      <span data-ctatext>Ограничаваме групата до 50 участници, за да остане време за въпроси по конкретни проекти.</span>
     </div>
     <button class="go" data-open>Запази място →</button>
   </div>
@@ -312,7 +312,7 @@
         <h2 id="mt">Запазете място</h2>
 
         <div class="counter">
-          <div class="n"><span data-free>50</span> свободни места</div>
+          <div class="n"><span data-free>50</span> <span data-freeword>свободни места</span></div>
           <div class="t" id="ctext">от общо 50 · по реда на регистрациите</div>
           <div class="track"><i id="bar"></i></div>
         </div>
@@ -423,17 +423,28 @@ veil.addEventListener('click', e => { if (e.target === veil) shut(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
 
 /* брояч */
-function paint(free){
-  document.querySelectorAll('[data-free]').forEach(el => el.textContent = free);
+function paint(free, taken){
+  const full = free <= 0;
+  const set = (sel, txt) => document.querySelectorAll(sel).forEach(el => el.textContent = txt);
+
+  /* Основните 50 се запълниха → показваме колко са записани общо.
+     Това е социално доказателство, а не затворена врата. */
+  set('[data-free]',  full ? (taken || CAP) : free);
+  set('[data-freelabel]', full ? 'записани' : 'свободни');
+  set('[data-freeword]',  full ? 'записани досега' : 'свободни места');
+
   $('bar').style.width = Math.min(100, (CAP - free) / CAP * 100) + '%';
-  if (free <= 0){
-    $('ctext').textContent = 'Местата свършиха.';
-    $('btn').disabled = true;
-    document.querySelectorAll('.go').forEach(b => { b.disabled = true; b.textContent = 'Местата свършиха'; });
-  } else if (free <= 10) $('ctext').textContent = 'от общо 50 · остават последните места';
-  else                   $('ctext').textContent = 'от общо 50 · по реда на регистрациите';
+
+  if (full){
+    $('ctext').textContent = 'Основните 50 места се запълниха · отпускаме допълнителни';
+    set('[data-ctatext]', 'Основните 50 места се запълниха. Отпускаме допълнителни — регистрацията остава отворена.');
+  } else if (free <= 10) {
+    $('ctext').textContent = 'от общо 50 · остават последните места';
+  } else {
+    $('ctext').textContent = 'от общо 50 · по реда на регистрациите';
+  }
 }
-fetch(API_URL).then(r => r.json()).then(d => { if (d && d.ok) paint(d.free); })
+fetch(API_URL).then(r => r.json()).then(d => { if (d && d.ok) paint(d.free, d.taken); })
   .catch(() => { $('ctext').textContent = 'от общо 50 · по реда на регистрациите'; });
 
 /* изпращане */
@@ -463,8 +474,6 @@ $('f').addEventListener('submit', ev => {
         $('sentTo').textContent = data.email;
         $('formView').style.display = 'none';
         $('doneView').style.display = 'block';
-      } else if (d.error === 'full'){
-        paint(0); fail('За съжаление местата вече свършиха. Пишете ни и ще Ви известим за следваща дата.');
       } else throw new Error(d.error || 'unknown');
     })
     .catch(() => {
