@@ -9,6 +9,8 @@
 # Re-run it after adding a post or changing a post's title/first tag.
 # To use a real image instead, drop it in public/ and set `image:` in the post.
 
+param([string]$ServiceConfig = "service-covers.json")
+
 Add-Type -AssemblyName System.Drawing
 
 $root = Split-Path -Parent $PSScriptRoot
@@ -101,7 +103,10 @@ function New-Cover($title, $tag, $outFile, $featurePath) {
   if ($tag) {
     $fk = New-Object System.Drawing.Font("Segoe UI Semibold", 24, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
     $sfk = New-Object System.Drawing.StringFormat
-    $g.DrawString($tag.ToUpper(), $fk, (New-Object System.Drawing.SolidBrush($amber)), 72, 188)
+    # keep document names such as "Наредба Iз-1971" as written: upper-casing turns "з" into a look-alike "3"
+    $tagText = $tag
+    if ($tag -notmatch '\d') { $tagText = $tag.ToUpper() }
+    $g.DrawString($tagText, $fk, (New-Object System.Drawing.SolidBrush($amber)), 72, 188)
   }
 
   # title (auto-fit)
@@ -139,7 +144,7 @@ foreach ($locale in @("bg", "en")) {
 }
 
 # Service covers: scripts/service-covers.json -> public/services/covers/<locale>-<slug>.jpg
-$serviceFile = Join-Path $PSScriptRoot "service-covers.json"
+$serviceFile = Join-Path $PSScriptRoot $ServiceConfig
 if (Test-Path $serviceFile) {
   $svcDir = Join-Path $root "public\services\covers"
   New-Item -ItemType Directory -Force $svcDir | Out-Null

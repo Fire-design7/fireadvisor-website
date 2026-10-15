@@ -70,5 +70,29 @@
       "tag": "Regulation Iз-1971",
       "title": "Evacuation Plans"
     }
+  },
+  {
+    "slug": "ognezashtita",
+    "feature": "public\\services\\covers\\_feature-ognezashtita.png",
+    "bg": {
+      "tag": "Наредба Iз-1971",
+      "title": "Огнезащита на конструкции"
+    },
+    "en": {
+      "tag": "Regulation Iз-1971",
+      "title": "Structural Fireproofing"
+    }
+  },
+  {
+    "slug": "pasivna-pozharozashtita",
+    "feature": "public\\services\\covers\\_feature-pasivna-pozharozashtita.png",
+    "bg": {
+      "tag": "EN 1366",
+      "title": "Пасивна пожарозащита"
+    },
+    "en": {
+      "tag": "EN 1366",
+      "title": "Passive Fire Protection"
+    }
   }
 ]

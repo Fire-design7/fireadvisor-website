@@ -638,6 +638,7 @@ export const services: Service[] = [
   },
   {
     slug: "ognezashtita",
+    cover: true,
     pillar: "consulting",
     standard: "Наредба Iз-1971",
     bg: {
@@ -688,6 +689,7 @@ export const services: Service[] = [
   },
   {
     slug: "pasivna-pozharozashtita",
+    cover: true,
     pillar: "consulting",
     standard: "EN 1366",
     bg: {
