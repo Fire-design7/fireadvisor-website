@@ -24,6 +24,9 @@ export interface ServiceImage {
 }
 
 export interface Service {
+  // When true, a cover exists at /services/covers/<locale>-<slug>.jpg and the
+  // service card shows it (see scripts/service-covers.json).
+  cover?: boolean;
   slug: string;
   pillar: Pillar;
   standard: string;
@@ -36,6 +39,7 @@ export interface Service {
 export const services: Service[] = [
   {
     slug: "chast-pozharna-bezopasnost",
+    cover: true,
     pillar: "design",
     standard: "Наредба № Iз-1971",
     bg: {
@@ -99,6 +103,7 @@ export const services: Service[] = [
   },
   {
     slug: "pozharoizvestyavane",
+    cover: true,
     pillar: "design",
     standard: "EN 54",
     bg: {
@@ -162,6 +167,7 @@ export const services: Service[] = [
   },
   {
     slug: "gasitelni-instalatsii",
+    cover: true,
     pillar: "design",
     standard: "EN 12845",
     bg: {
@@ -329,6 +335,7 @@ export const services: Service[] = [
   },
   {
     slug: "vsodt",
+    cover: true,
     pillar: "design",
     standard: "EN 12101",
     bg: {
@@ -381,6 +388,7 @@ export const services: Service[] = [
   },
   {
     slug: "evakuatsionno-osvetlenie",
+    cover: true,
     pillar: "design",
     standard: "EN 1838",
     bg: {
@@ -431,6 +439,7 @@ export const services: Service[] = [
   },
   {
     slug: "evakuatsionni-shemi",
+    cover: true,
     pillar: "evacuation",
     standard: "Наредба Iз-1971",
     image: {

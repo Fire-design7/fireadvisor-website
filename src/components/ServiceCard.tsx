@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Service } from "@/content/services";
@@ -11,8 +12,19 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/uslugi/${service.slug}`}
-      className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-lg hover:shadow-slate-900/5"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-lg hover:shadow-slate-900/5"
     >
+      {service.cover && (
+        <Image
+          src={`/services/covers/${locale}-${service.slug}.jpg`}
+          alt=""
+          width={1200}
+          height={630}
+          sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+          className="aspect-[1200/630] w-full object-cover"
+        />
+      )}
+      <div className="flex flex-1 flex-col p-6">
       <span className="text-xs font-semibold uppercase tracking-wide text-amber-700">
         {service.standard}
       </span>
@@ -26,6 +38,7 @@ export function ServiceCard({ service }: { service: Service }) {
         {t("learnMore")}
         <span aria-hidden>&rarr;</span>
       </span>
+      </div>
     </Link>
   );
 }

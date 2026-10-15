@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "chast-pozharna-bezopasnost",
+    "feature": "public\\services\\covers\\_feature-chast-pozharna-bezopasnost.png",
+    "bg": {
+      "tag": "Наредба № Iз-1971",
+      "title": "Част „Пожарна безопасност“ на инвестиционен проект"
+    },
+    "en": {
+      "tag": "Regulation № Iз-1971",
+      "title": "Fire Safety Section of the Investment Project"
+    }
+  },
+  {
+    "slug": "pozharoizvestyavane",
+    "feature": "public\\services\\covers\\_feature-pozharoizvestyavane.png",
+    "bg": {
+      "tag": "EN 54",
+      "title": "Пожароизвестителни системи (ПИС)"
+    },
+    "en": {
+      "tag": "EN 54",
+      "title": "Fire Detection Systems"
+    }
+  },
+  {
+    "slug": "vsodt",
+    "feature": "public\\services\\covers\\_feature-vsodt.png",
+    "bg": {
+      "tag": "EN 12101",
+      "title": "ВСОДТ — вентилационни системи за отделяне на дим и топлина"
+    },
+    "en": {
+      "tag": "EN 12101",
+      "title": "Smoke & Heat Extraction Ventilation"
+    }
+  },
+  {
+    "slug": "gasitelni-instalatsii",
+    "feature": "public\\services\\covers\\_feature-gasitelni-instalatsii.png",
+    "bg": {
+      "tag": "EN 12845",
+      "title": "Пожарогасителни инсталации"
+    },
+    "en": {
+      "tag": "EN 12845",
+      "title": "Fire Suppression Systems"
+    }
+  },
+  {
+    "slug": "evakuatsionno-osvetlenie",
+    "feature": "public\\services\\covers\\_feature-evakuatsionno-osvetlenie.png",
+    "bg": {
+      "tag": "EN 1838",
+      "title": "Евакуационно осветление"
+    },
+    "en": {
+      "tag": "EN 1838",
+      "title": "Emergency Evacuation Lighting"
+    }
+  },
+  {
+    "slug": "evakuatsionni-shemi",
+    "feature": "public\\blog\\evakuatsionna-shema-primer.jpg",
+    "bg": {
+      "tag": "Наредба Iз-1971",
+      "title": "Схеми и планове за евакуация"
+    },
+    "en": {
+      "tag": "Regulation Iз-1971",
+      "title": "Evacuation Plans"
+    }
+  }
+]

@@ -41,7 +41,10 @@ function Fit-Font($g, $text, $width, $maxHeight, $maxSize, $minSize) {
   for ($size = $maxSize; $size -ge $minSize; $size -= 2) {
     $font = New-Object System.Drawing.Font("Segoe UI Semibold", $size, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
     $m = $g.MeasureString($text, $font, $width)
-    if ($m.Height -le $maxHeight) { return $font }
+    # also make sure the longest word fits the width, so no word is broken mid-way
+    $widest = 0
+    foreach ($w in ($text -split '\s+')) { $ww = $g.MeasureString($w, $font).Width; if ($ww -gt $widest) { $widest = $ww } }
+    if ($m.Height -le $maxHeight -and $widest -le $width) { return $font }
     $font.Dispose()
   }
   return (New-Object System.Drawing.Font("Segoe UI Semibold", $minSize, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel))
@@ -132,5 +135,22 @@ foreach ($locale in @("bg", "en")) {
     if ($featureImages.ContainsKey($slug)) { $feature = $featureImages[$slug] }
     New-Cover $fm.title $fm.tag $out $feature
     "cover $locale/$slug -> " + (Split-Path -Leaf $out)
+  }
+}
+
+# Service covers: scripts/service-covers.json -> public/services/covers/<locale>-<slug>.jpg
+$serviceFile = Join-Path $PSScriptRoot "service-covers.json"
+if (Test-Path $serviceFile) {
+  $svcDir = Join-Path $root "public\services\covers"
+  New-Item -ItemType Directory -Force $svcDir | Out-Null
+  $svcs = [System.IO.File]::ReadAllText($serviceFile, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
+  foreach ($svc in $svcs) {
+    $feature = Join-Path $root $svc.feature
+    foreach ($locale in @("bg", "en")) {
+      $c = $svc.$locale
+      $out = Join-Path $svcDir ("$locale-" + $svc.slug + ".jpg")
+      New-Cover $c.title $c.tag $out $feature
+      "service cover $locale/" + $svc.slug
+    }
   }
 }
