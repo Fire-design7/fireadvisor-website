@@ -1,17 +1,36 @@
 import { Resend } from "resend";
 
+import { getServiceBySlug } from "@/content/services";
+import {
+  NOT_SURE,
+  fireAlarmScopeLabels,
+  isMainServiceSlug,
+  mainServiceLabels,
+  notSureLabel,
+  type FireAlarmScope,
+} from "@/content/inquiry-options";
+
 export interface InquiryEmailData {
   name: string;
-  email: string;
+  // At least one of email / phone is always present (validated in the API).
+  email?: string;
   phone?: string;
-  inquiryType: string;
-  buildingType: string;
-  serviceSlug?: string;
+  service: string;
+  scope?: FireAlarmScope;
+  buildingType?: string;
   message?: string;
   locale: "bg" | "en";
   sourcePage?: string;
+  landingPage?: string;
   utm?: Record<string, string>;
   submittedAt: Date;
+}
+
+// The owner reads these in Bulgarian regardless of the visitor's language.
+function serviceLabel(slug: string) {
+  if (slug === NOT_SURE) return notSureLabel.bg;
+  if (isMainServiceSlug(slug)) return mainServiceLabels[slug].bg;
+  return getServiceBySlug(slug)?.bg.title ?? slug;
 }
 
 function getClient() {
@@ -50,12 +69,11 @@ function fmtUtm(utm: Record<string, string> | undefined) {
 export async function sendInquiryEmails(data: InquiryEmailData) {
   const { client, fromEmail, ownerEmail, customerConfirmationEnabled } = getClient();
 
-  const ownerSubject =
-    data.locale === "bg"
-      ? `Ново запитване от сайта Fire Advisor — ${data.name}`
-      : `New inquiry from the Fire Advisor site — ${data.name}`;
+  const service = serviceLabel(data.service);
+  const scope = data.scope ? fireAlarmScopeLabels[data.scope].bg : null;
+  const ownerSubject = `Ново запитване от сайта Fire Advisor — ${service}${scope ? ` (${scope})` : ""} — ${data.name}`;
 
-  const timestamp = data.submittedAt.toLocaleString(data.locale === "bg" ? "bg-BG" : "en-GB", {
+  const timestamp = data.submittedAt.toLocaleString("bg-BG", {
     timeZone: "Europe/Sofia",
     dateStyle: "medium",
     timeStyle: "short",
@@ -63,22 +81,21 @@ export async function sendInquiryEmails(data: InquiryEmailData) {
   const utmBlock = fmtUtm(data.utm);
 
   const ownerFields: Array<[string, string]> = [
-    [data.locale === "bg" ? "Име" : "Name", data.name],
-    [data.locale === "bg" ? "Имейл" : "Email", data.email],
-    [data.locale === "bg" ? "Телефон" : "Phone", data.phone || "-"],
-    [data.locale === "bg" ? "Тип запитване" : "Inquiry type", data.inquiryType],
-    [data.locale === "bg" ? "Тип обект" : "Building type", data.buildingType],
-    [data.locale === "bg" ? "Услуга" : "Service", data.serviceSlug || "-"],
-    [data.locale === "bg" ? "Съобщение" : "Message", data.message || "-"],
-    [data.locale === "bg" ? "Страница на подаване" : "Source page", data.sourcePage || "-"],
-    ["UTM", utmBlock || "-"],
-    [data.locale === "bg" ? "Дата и час" : "Timestamp", timestamp],
+    ["Име", data.name],
+    ["Телефон", data.phone || "-"],
+    ["Имейл", data.email || "- (няма — свържете се по телефона)"],
+    ["Услуга", service],
+    ...(scope ? ([["Пожароизвестяване — уточнение", scope]] as Array<[string, string]>) : []),
+    ["Тип обект", data.buildingType || "-"],
+    ["Съобщение", data.message || "-"],
+    ["Език на сайта", data.locale.toUpperCase()],
+    ["Страница на подаване", data.sourcePage || "-"],
+    ["Входна страница", data.landingPage || "-"],
+    ["UTM / GCLID", utmBlock || "-"],
+    ["Дата и час", timestamp],
   ];
 
-  const footerHtml =
-    data.locale === "bg"
-      ? "Това съобщение е изпратено чрез контактната форма на fireadvisor.eu."
-      : "This message was sent via the contact form on fireadvisor.eu.";
+  const footerHtml = "Това съобщение е изпратено чрез контактната форма на fireadvisor.eu.";
 
   const ownerHtml = `
     <h2>${escapeHtml(ownerSubject)}</h2>
@@ -103,13 +120,14 @@ export async function sendInquiryEmails(data: InquiryEmailData) {
     subject: ownerSubject,
     html: ownerHtml,
     text: ownerText,
-    replyTo: data.email,
+    // Phone-only inquiries have no address to reply to.
+    ...(data.email ? { replyTo: data.email } : {}),
   });
   if (ownerResult.error) {
     throw new Error(`Resend failed to send owner notification: ${ownerResult.error.message}`);
   }
 
-  if (!customerConfirmationEnabled) {
+  if (!customerConfirmationEnabled || !data.email) {
     return;
   }
 

@@ -4,7 +4,8 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "./Container";
 import { NewsletterForm } from "./NewsletterForm";
 import { siteConfig } from "@/content/site-config";
-import { services } from "@/content/services";
+import { mainServiceSlugs } from "@/content/services";
+import { mainServiceLabels } from "@/content/inquiry-options";
 import type { Locale } from "@/i18n/routing";
 
 export function Footer() {
@@ -44,16 +45,21 @@ export function Footer() {
             {t("footer.servicesTitle")}
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
-            {services.slice(0, 6).map((s) => (
-              <li key={s.slug}>
+            {mainServiceSlugs.map((slug) => (
+              <li key={slug}>
                 <Link
-                  href={`/uslugi/${s.slug}`}
+                  href={`/uslugi/${slug}`}
                   className="text-slate-400 hover:text-white"
                 >
-                  {s[locale].title}
+                  {mainServiceLabels[slug][locale]}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/uslugi" className="font-medium text-amber-400 hover:text-amber-300">
+                {t("common.viewAllServices")} &rarr;
+              </Link>
+            </li>
           </ul>
         </div>
 

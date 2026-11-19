@@ -13,6 +13,14 @@ import { pageAlternates, pageSocial } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
+// Section anchor → inquiry-form refinement, so "request design" on the fire
+// alarm page arrives at the form with that option already ticked.
+const sectionScope: Record<string, string> = {
+  proektirane: "design",
+  izgrazhdane: "installation",
+  poddrazhka: "maintenance",
+};
+
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
@@ -28,6 +36,7 @@ export async function generateMetadata({
   const content = service[locale];
   return {
     title: content.title,
+    // The visible lead text, so search snippets match the page.
     description: content.short,
     alternates: pageAlternates(locale, `/uslugi/${slug}`),
     ...pageSocial(locale, content.title, content.short),
@@ -69,8 +78,31 @@ export default async function ServiceDetailPage({
           "@type": "Service",
           name: content.title,
           description: content.body,
+          url: `${base}/uslugi/${service.slug}`,
           areaServed: "BG",
-          provider: { "@type": "ProfessionalService", name: "Fire Advisor" },
+          provider: {
+            "@type": "ProfessionalService",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            telephone: siteConfig.phone,
+          },
+          ...(content.sections
+            ? {
+                hasOfferCatalog: {
+                  "@type": "OfferCatalog",
+                  name: content.title,
+                  itemListElement: content.sections.map((section) => ({
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: section.title,
+                      description: section.body,
+                      url: `${base}/uslugi/${service.slug}#${section.id}`,
+                    },
+                  })),
+                },
+              }
+            : {}),
         }}
       />
       {faqs.length > 0 && (
@@ -118,22 +150,79 @@ export default async function ServiceDetailPage({
           )}
 
           <div className="mt-10">
-            <h2 className="text-lg font-bold text-slate-900">{t("whenNeededTitle")}</h2>
-            <p className="mt-3 text-base leading-relaxed text-slate-700">{content.whenNeeded}</p>
-          </div>
-
-          <div className="mt-10 grid gap-10 sm:grid-cols-2">
-            <div>
-              <h2 className="text-lg font-bold text-slate-900">{t("whatIncludesTitle")}</h2>
+            <h2 className="text-lg font-bold text-slate-900">
+              {content.situations ? t("forWhomTitle") : t("whenNeededTitle")}
+            </h2>
+            {content.situations && (
               <ul className="mt-3 space-y-2">
-                {content.whatIncludes.map((item, i) => (
+                {content.situations.map((item, i) => (
                   <li key={i} className="flex gap-2 text-sm leading-relaxed text-slate-700">
-                    <span aria-hidden className="mt-0.5 text-amber-600">✓</span>
+                    <span aria-hidden className="mt-0.5 text-amber-600">&rarr;</span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
+            )}
+            <p className="mt-3 text-base leading-relaxed text-slate-700">{content.whenNeeded}</p>
+          </div>
+
+          {content.sections && (
+            <div className="mt-10 space-y-6">
+              <h2 className="text-lg font-bold text-slate-900">{t("whatIncludesTitle")}</h2>
+              <nav aria-label={t("whatIncludesTitle")} className="flex flex-wrap gap-2">
+                {content.sections.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-semibold text-slate-700 hover:border-amber-300 hover:bg-amber-50"
+                  >
+                    {section.title}
+                  </a>
+                ))}
+              </nav>
+              {content.sections.map((section) => (
+                <section
+                  key={section.id}
+                  id={section.id}
+                  className="scroll-mt-24 rounded-2xl border border-slate-200 bg-white p-6"
+                >
+                  <h3 className="text-base font-bold text-slate-900">{section.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">{section.body}</p>
+                  <ul className="mt-3 space-y-2">
+                    {section.items.map((item, i) => (
+                      <li key={i} className="flex gap-2 text-sm leading-relaxed text-slate-700">
+                        <span aria-hidden className="mt-0.5 text-amber-600">✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {sectionScope[section.id] && (
+                    <Link
+                      href={`/kontakti?service=${service.slug}&scope=${sectionScope[section.id]}`}
+                      className="mt-4 inline-flex text-sm font-semibold text-slate-900 hover:text-amber-700"
+                    >
+                      {t("sectionCta", { section: section.title.toLowerCase() })} &rarr;
+                    </Link>
+                  )}
+                </section>
+              ))}
             </div>
+          )}
+
+          <div className={`mt-10 grid gap-10 ${content.sections ? "" : "sm:grid-cols-2"}`}>
+            {!content.sections && (
+              <div>
+                <h2 className="text-lg font-bold text-slate-900">{t("whatIncludesTitle")}</h2>
+                <ul className="mt-3 space-y-2">
+                  {content.whatIncludes.map((item, i) => (
+                    <li key={i} className="flex gap-2 text-sm leading-relaxed text-slate-700">
+                      <span aria-hidden className="mt-0.5 text-amber-600">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div>
               <h2 className="text-lg font-bold text-slate-900">{t("infoNeededTitle")}</h2>
               <ul className="mt-3 space-y-2">
@@ -178,8 +267,14 @@ export default async function ServiceDetailPage({
             href={`/kontakti?service=${service.slug}`}
             className="mt-6 w-full"
           >
-            {tCommon("requestQuote")}
+            {tCommon("sendInquiry")}
           </LinkButton>
+          <a
+            href={siteConfig.phoneHref}
+            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+          >
+            {tCommon("call")}: {siteConfig.phone}
+          </a>
         </aside>
       </Container>
     </>

@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import { JsonLd } from "@/components/JsonLd";
 import { pageAlternates } from "@/lib/seo";
 import { siteConfig } from "@/content/site-config";
@@ -116,6 +117,7 @@ export default async function LocaleLayout({
           <FloatingContact />
           <CookieConsent />
           <GoogleAnalytics />
+          <AttributionCapture />
         </NextIntlClientProvider>
       </body>
     </html>

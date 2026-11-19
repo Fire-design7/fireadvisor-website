@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { LinkButton } from "@/components/Button";
+import { LeadConversion } from "@/components/LeadConversion";
 import { siteConfig } from "@/content/site-config";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -32,6 +33,7 @@ export default async function ThankYouPage({
 
   return (
     <div className="bg-slate-900 py-24 text-white sm:py-32">
+      <LeadConversion />
       <Container className="max-w-2xl text-center">
         <span className="text-sm font-semibold uppercase tracking-widest text-amber-400">
           {t("eyebrow")}

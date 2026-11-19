@@ -5,12 +5,25 @@ export interface ServiceFaq {
   en: { q: string; a: string };
 }
 
+// A separately anchored part of one service page (e.g. design / installation /
+// maintenance on the fire alarm page). `id` is the URL fragment.
+export interface ServiceSection {
+  id: string;
+  title: string;
+  body: string;
+  items: string[];
+}
+
 interface ServiceContent {
   title: string;
   short: string;
   body: string;
+  // Concrete situations in which people look for the service ("who is it for").
+  situations?: string[];
   whenNeeded: string;
   whatIncludes: string[];
+  // When present, rendered instead of the single "what's included" list.
+  sections?: ServiceSection[];
   process: string[];
   infoNeeded: string[];
 }
@@ -107,52 +120,150 @@ export const services: Service[] = [
     pillar: "design",
     standard: "EN 54",
     bg: {
-      title: "Пожароизвестителни системи (ПИС)",
-      short: "Проектиране на системи за ранно откриване на пожар.",
-      body: "Проектираме пожароизвестителни системи (ПИС), съобразени с типа и предназначението на обекта — от конвенционални до адресируеми решения. Техническият проект и спецификацията се изготвят съгласно EN 54 и действащата нормативна уредба, готови за изпълнение от лицензиран монтажник по ваш избор.",
+      title: "Пожароизвестяване — проектиране, изграждане и поддръжка",
+      short: "Пожароизвестителни системи (ПИС) за вашия обект — проект, изграждане и поддръжка.",
+      body: "Работим по пожароизвестителни системи (ПИС) на всеки етап — проектиране, изграждане и поддръжка. Можете да ни потърсите за целия цикъл или само за етапа, от който имате нужда.",
+      situations: [
+        "Отваряте нов обект или правите ремонт и е нужна пожароизвестителна система",
+        "Имате проект на ПИС и търсите кой да изгради системата",
+        "Имате изградена система, която трябва да се поддържа",
+        "Не сте сигурни дали обектът ви изисква пожароизвестяване",
+      ],
       whenNeeded: "Необходима е за повечето обществени, търговски и производствени сгради, както и навсякъде, където част „Пожарна безопасност“ го изисква.",
       whatIncludes: [
-        "Избор на тип система — конвенционална или адресируема",
-        "Разположение на пожароизвестителни датчици, обявители и модули",
-        "Изчисление на зоните на детекция",
-        "Техническа спецификация за изпълнение по EN 54",
+        "Проект на пожароизвестителната система",
+        "Изграждане на системата",
+        "Поддръжка на изградената система",
+      ],
+      sections: [
+        {
+          id: "proektirane",
+          title: "Проектиране",
+          body: "Изготвяме проект на ПИС, съобразен с типа и предназначението на обекта — от конвенционални до адресируеми решения, съгласно EN 54 и действащата нормативна уредба.",
+          items: [
+            "Избор на тип система — конвенционална или адресируема",
+            "Разположение на пожароизвестители, сирени и модули",
+            "Определяне на зоните на детекция",
+            "Техническа спецификация за изпълнение по EN 54",
+          ],
+        },
+        {
+          id: "izgrazhdane",
+          title: "Изграждане",
+          body: "Изграждаме пожароизвестителната система по проекта на обекта.",
+          items: [
+            "Монтаж на оборудването според проекта",
+            "Свързване и настройка на системата",
+            "Проверка на работата на системата преди предаване",
+          ],
+        },
+        {
+          id: "poddrazhka",
+          title: "Поддръжка",
+          body: "Поддържаме изградени пожароизвестителни системи в изправно състояние.",
+          items: [
+            "Периодично обслужване и проверки на системата",
+            "Отстраняване на констатирани неизправности",
+            "Документиране на извършеното обслужване",
+          ],
+        },
       ],
       process: [
-        "Изпращате архитектурния план на обекта",
-        "Определяме типа и обхвата на системата",
-        "Изготвяме проекта и спецификацията",
-        "Предаваме готова документация за изпълнение от монтажник по ваш избор",
+        "Изпращате запитване и посочвате етапа — проектиране, изграждане или поддръжка",
+        "Уточняваме обекта и наличната документация",
+        "Изпращаме ви оферта за съответния етап",
+        "Изпълняваме договореното и ви предаваме резултата",
       ],
       infoNeeded: [
-        "Архитектурен план",
-        "Предназначение на помещенията",
-        "Налична друга изградена инсталация, ако има",
+        "Вид и предназначение на обекта",
+        "За проектиране — архитектурен план и предназначение на помещенията",
+        "За изграждане — проектът на системата, ако вече има такъв",
+        "За поддръжка — данни за изградената система (тип, производител), ако са известни",
       ],
     },
     en: {
-      title: "Fire Detection Systems",
-      short: "Design of early fire detection systems.",
-      body: "We design fire detection systems tailored to the type and purpose of the building — from conventional to addressable solutions. The technical design and specification are prepared under EN 54 and applicable regulations, ready for installation by a licensed contractor of your choice.",
+      title: "Fire Alarm Systems — Design, Installation & Maintenance",
+      short: "Fire alarm systems for your building — design, installation and maintenance.",
+      body: "We work on fire alarm systems at every stage — design, installation and maintenance. You can come to us for the whole cycle or only for the stage you need.",
+      situations: [
+        "You're opening a new facility or renovating and need a fire alarm system",
+        "You have a fire alarm design and are looking for someone to install it",
+        "You have an existing system that needs maintenance",
+        "You're not sure whether your building requires a fire alarm system",
+      ],
       whenNeeded: "Required for most public, commercial and industrial buildings, and wherever the Fire Safety section calls for it.",
       whatIncludes: [
-        "Choosing between a conventional or addressable system",
-        "Placement of detectors, sounders and control modules",
-        "Detection zone calculations",
-        "Technical specification for installation under EN 54",
+        "Fire alarm system design",
+        "System installation",
+        "Maintenance of the installed system",
+      ],
+      sections: [
+        {
+          id: "proektirane",
+          title: "Design",
+          body: "We prepare a fire alarm design tailored to the type and purpose of the building — from conventional to addressable solutions — under EN 54 and applicable regulations.",
+          items: [
+            "Choosing between a conventional or addressable system",
+            "Placement of detectors, sounders and modules",
+            "Defining the detection zones",
+            "Technical specification for installation under EN 54",
+          ],
+        },
+        {
+          id: "izgrazhdane",
+          title: "Installation",
+          body: "We install the fire alarm system according to the building's design.",
+          items: [
+            "Installing the equipment according to the design",
+            "Wiring and configuring the system",
+            "Checking the system works before handover",
+          ],
+        },
+        {
+          id: "poddrazhka",
+          title: "Maintenance",
+          body: "We keep installed fire alarm systems in working order.",
+          items: [
+            "Periodic servicing and checks of the system",
+            "Fixing identified faults",
+            "Documenting the servicing carried out",
+          ],
+        },
       ],
       process: [
-        "You send us the building's architectural plan",
-        "We determine the type and scope of the system",
-        "We prepare the design and specification",
-        "We hand over documentation ready for installation by a contractor of your choice",
+        "You send an inquiry and tell us the stage — design, installation or maintenance",
+        "We clarify the building and the existing documentation",
+        "We send you a quote for that stage",
+        "We carry out the agreed work and hand over the result",
       ],
       infoNeeded: [
-        "Architectural plan",
-        "Intended use of each room",
-        "Any existing installation already in place",
+        "Type and use of the building",
+        "For design — the architectural plan and the use of each room",
+        "For installation — the system design, if one already exists",
+        "For maintenance — details of the existing system (type, manufacturer), if known",
       ],
     },
     faqs: [
+      {
+        bg: {
+          q: "Може ли да поръчам само проект или само поддръжка?",
+          a: "Да. Можете да заявите целия цикъл — проектиране, изграждане и поддръжка — или само етапа, от който имате нужда. Посочете го във формата за запитване.",
+        },
+        en: {
+          q: "Can I order only the design or only maintenance?",
+          a: "Yes. You can request the whole cycle — design, installation and maintenance — or only the stage you need. Just select it in the inquiry form.",
+        },
+      },
+      {
+        bg: {
+          q: "Не знам дали обектът ми изисква пожароизвестяване. Какво да направя?",
+          a: "Изберете „Нужна ми е консултация“ във формата за запитване или ни се обадете. Опишете обекта и дейността и ще уточним какво е необходимо в конкретния случай.",
+        },
+        en: {
+          q: "I don't know whether my building needs a fire alarm system. What should I do?",
+          a: "Choose \"I need a consultation\" in the inquiry form or give us a call. Describe the building and the activity and we'll clarify what's required in your case.",
+        },
+      },
       {
         bg: {
           q: "Колко често трябва да се тества пожароизвестителна система по закон?",
@@ -171,10 +282,16 @@ export const services: Service[] = [
     pillar: "design",
     standard: "EN 12845",
     bg: {
-      title: "Пожарогасителни инсталации",
-      short: "Проектиране на спринклерни и газови системи за пожарогасене.",
+      title: "Пожарогасене — пожарогасителни инсталации",
+      short: "Проектиране на автоматични пожарогасителни инсталации — спринклерни, газови и пенни системи.",
       body: "Проектираме автоматични пожарогасителни инсталации — водни (спринклерни), газови и пенни системи — съобразени със спецификата на обекта и класа на пожарна опасност, с пълна техническа документация за изпълнение съгласно EN 12845.",
-      whenNeeded: "Необходима е за обекти с висок клас пожарна опасност или голяма пожаротоварност — складове, производствени halls, паркинги и някои търговски обекти.",
+      situations: [
+        "Нов склад, производствена хала, паркинг или търговски обект",
+        "Част „Пожарна безопасност“ изисква пожарогасителна инсталация",
+        "Разширявате или преустройвате обект с изградена инсталация",
+        "Търсите подходящ тип система за конкретно помещение",
+      ],
+      whenNeeded: "Необходима е за обекти с висок клас пожарна опасност или голяма пожаротоварност — складове, производствени хали, паркинги и някои търговски обекти.",
       whatIncludes: [
         "Избор на подходящ тип система — водна, газова или пенна",
         "Хидравлично оразмеряване на спринклерната мрежа",
@@ -195,8 +312,14 @@ export const services: Service[] = [
     },
     en: {
       title: "Fire Suppression Systems",
-      short: "Design of automatic sprinkler and gas-based fire suppression systems.",
+      short: "Design of automatic fire suppression systems — sprinkler, gas and foam.",
       body: "We design automatic fire suppression systems — water-based (sprinkler), gas and foam systems — tailored to the specific building and its fire hazard classification, with full technical documentation for installation under EN 12845.",
+      situations: [
+        "A new warehouse, industrial hall, car park or retail building",
+        "The Fire Safety section requires a suppression system",
+        "You're extending or converting a building with an existing system",
+        "You need the right system type for a specific room",
+      ],
       whenNeeded: "Required for buildings with a high fire hazard class or heavy fire load — warehouses, industrial halls, parking structures and some retail buildings.",
       whatIncludes: [
         "Selecting the right system type — water, gas or foam",
@@ -216,16 +339,43 @@ export const services: Service[] = [
         "Available water supply on site",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {
+          q: "Какъв тип пожарогасителна инсталация е подходящ за моя обект?",
+          a: "Зависи от предназначението на обекта, вида на помещенията и класа на пожарна опасност. Подходящият тип — воден (спринклерен), газов или пенен — определяме след преглед на информацията за конкретния обект.",
+        },
+        en: {
+          q: "Which type of suppression system is right for my building?",
+          a: "It depends on the building's use, the type of rooms and the fire hazard class. We determine the right type — water (sprinkler), gas or foam — after reviewing the information for your specific building.",
+        },
+      },
+      {
+        bg: {
+          q: "Каква информация е нужна, за да получа оферта?",
+          a: "Архитектурен и технологичен план, предназначение на помещенията и данни за водоснабдяването на обекта. Ако част от информацията липсва, опишете обекта в запитването и ще уточним как да продължим.",
+        },
+        en: {
+          q: "What information do you need to prepare a quote?",
+          a: "The architectural and process layout, the use of each room and details of the site's water supply. If some of this is missing, describe the building in your inquiry and we'll agree on how to proceed.",
+        },
+      },
+    ],
   },
   {
     slug: "pozharno-dosie",
     pillar: "documentation",
     standard: "Наредба № 8121з-647",
     bg: {
-      title: "Пожарно досие и документи за обекти в експлоатация",
-      short: "Пожарно досие и пълна документация по Наредба № 8121з-647.",
-      body: "Изготвяме и поддържаме пожарното досие на вашия обект съгласно Наредба № 8121з-647 — вътрешни правила, заповеди, инструкции и цялата документация, доказваща изпълнението на противопожарните мерки. Досието се съхранява на обекта за целите на проверка от контролните органи. Отговорността за него е на собственика или управителя на обекта — ние поемаме подготовката и текущата му актуализация вместо вас.",
+      title: "Пожарно досие и вътрешни правила",
+      short: "Пожарно досие, вътрешни правила, заповеди и инструкции за действащи обекти — като една обща услуга.",
+      body: "Изготвяме пожарното досие на вашия обект заедно с вътрешните правила за пожарна безопасност — като една обща услуга, съгласно Наредба № 8121з-647. Включваме заповедите, инструкциите и документацията, доказваща изпълнението на противопожарните мерки. Досието се съхранява на обекта за целите на проверка от контролните органи. Отговорността за него е на собственика или управителя на обекта — ние поемаме подготовката и текущата му актуализация вместо вас.",
+      situations: [
+        "Отваряте нов обект — магазин, офис, заведение, хотел или производство",
+        "Обектът работи, но няма подредено досие или вътрешни правила",
+        "Сменили сте дейността, управителя или разпределението на обекта",
+        "Предстои ви проверка от органите по пожарна безопасност",
+      ],
       whenNeeded: "Необходимо е за всеки действащ обект — хотел, магазин, офис, производство — независимо дали е нов, или вече работи от години без организирана документация.",
       whatIncludes: [
         "Вътрешни правила за пожарна безопасност",
@@ -246,9 +396,15 @@ export const services: Service[] = [
       ],
     },
     en: {
-      title: "Fire Safety File & Documentation for Operating Facilities",
-      short: "Fire safety file and full documentation under Regulation № 8121з-647.",
-      body: "We prepare and maintain your building's fire safety file under Regulation № 8121з-647 — internal rules, orders, instructions and all documentation proving that fire safety measures are in place. The file is kept on site for inspection by the authorities. Responsibility for it rests with the owner or manager of the facility — we handle its preparation and ongoing upkeep on your behalf.",
+      title: "Fire Safety File & Internal Rules",
+      short: "Fire safety file, internal rules, orders and instructions for operating facilities — as one service.",
+      body: "We prepare your building's fire safety file together with its internal fire safety rules — as one combined service, under Regulation № 8121з-647. It covers the orders, instructions and documentation proving that fire safety measures are in place. The file is kept on site for inspection by the authorities. Responsibility for it rests with the owner or manager of the facility — we handle its preparation and ongoing upkeep on your behalf.",
+      situations: [
+        "You're opening a new facility — a shop, office, restaurant, hotel or production site",
+        "The facility is operating but has no organized file or internal rules",
+        "You've changed the activity, the manager or the layout of the facility",
+        "You have an inspection by the fire safety authorities coming up",
+      ],
       whenNeeded: "Required for every operating facility — hotel, shop, office, production site — whether it's brand new or has been running for years without organized documentation.",
       whatIncludes: [
         "Internal fire safety rules",
@@ -277,6 +433,36 @@ export const services: Service[] = [
         en: {
           q: "Who is responsible for a building's fire safety file?",
           a: "The owner or manager of the facility. The file is kept on site and must be accessible and up to date at all times for inspection by the authorities.",
+        },
+      },
+      {
+        bg: {
+          q: "Вътрешните правила отделна услуга ли са?",
+          a: "Не. Изготвяме вътрешните правила за пожарна безопасност заедно с пожарното досие — като една обща услуга.",
+        },
+        en: {
+          q: "Are the internal rules a separate service?",
+          a: "No. We prepare the internal fire safety rules together with the fire safety file — as one combined service.",
+        },
+      },
+      {
+        bg: {
+          q: "Имам досие, но е старо. Може ли да го актуализирате?",
+          a: "Да. Изпратете наличните документи — ще прегледаме какво трябва да се допълни или актуализира.",
+        },
+        en: {
+          q: "I have a file, but it's outdated. Can you update it?",
+          a: "Yes. Send us the existing documents and we'll review what needs to be added or updated.",
+        },
+      },
+      {
+        bg: {
+          q: "Отварям нов обект. Кога да се свържа с вас?",
+          a: "Колкото по-рано, толкова по-добре — още когато знаете вида на обекта и дейността. Така навреме ще изясним кои документи и мерки са нужни за вашия обект.",
+        },
+        en: {
+          q: "I'm opening a new facility. When should I contact you?",
+          a: "The earlier, the better — as soon as you know the type of facility and activity. That way we can clarify in good time which documents and measures your facility needs.",
         },
       },
     ],
@@ -456,8 +642,14 @@ export const services: Service[] = [
       },
     },
     bg: {
-      title: "Схеми и планове за евакуация",
-      short: "Изготвяне на планове (схеми) за евакуация и табла за обекта.",
+      title: "Схеми за евакуация",
+      short: "Схеми (планове) за евакуация за вашия обект — готови за печат и поставяне.",
+      situations: [
+        "Отваряте нов обект — магазин, офис, заведение, хотел или склад",
+        "Правите ремонт или преустройство и разпределението се променя",
+        "Наличните схеми са стари, нечетливи или не отговарят на обекта",
+        "Предстои ви проверка и искате схемите да са наред",
+      ],
       body: "Изготвяме индивидуални схеми (планове) за евакуация за вашия обект — ясно обозначени пътища и изходи, поставени на подходящи места съгласно нормативните изисквания и спецификата на сградата. Схемата за евакуация е графичната част на плана за евакуация по Наредба № 8121з-647 — изготвяме нея. В практиката двете понятия често се ползват като синоними.",
       whenNeeded: "Необходими са за всеки обект с достъп на клиенти или персонал — хотели, магазини, офиси, производство — и често се търсят самостоятелно, без пълен проект.",
       whatIncludes: [
@@ -475,11 +667,18 @@ export const services: Service[] = [
       infoNeeded: [
         "Архитектурен план на обекта",
         "Брой етажи и предназначение на помещенията",
+        "Ако нямате чертеж — опишете обекта в запитването и ще уточним как да продължим",
       ],
     },
     en: {
       title: "Evacuation Plans",
-      short: "Evacuation floor plans and signage boards for your building.",
+      short: "Evacuation plans for your building — ready to print and put up.",
+      situations: [
+        "You're opening a new facility — a shop, office, restaurant, hotel or warehouse",
+        "You're renovating or converting and the layout is changing",
+        "Your existing plans are outdated, illegible or don't match the building",
+        "You have an inspection coming up and want the plans in order",
+      ],
       body: "We create individual evacuation plans for your building — clearly marked routes and exits, placed according to regulatory requirements and the specifics of the building. The evacuation scheme is the graphic part of the evacuation plan under Regulation № 8121з-647 — that is what we prepare.",
       whenNeeded: "Required for any facility with customer or staff access — hotels, shops, offices, production sites — and often requested on its own, without a full design project.",
       whatIncludes: [
@@ -497,6 +696,7 @@ export const services: Service[] = [
       infoNeeded: [
         "Architectural plan of the building",
         "Number of floors and use of each room",
+        "No drawing? Describe the building in your inquiry and we'll agree on how to proceed",
       ],
     },
     faqs: [
@@ -510,6 +710,26 @@ export const services: Service[] = [
           a: "Yes. Under Regulation № 8121з-647 the evacuation plan consists of a text part and a graphic part, and the evacuation scheme is its graphic part. We prepare the schemes — clearly marked routes, exits and assembly points for your building. In everyday use the two terms are often treated as synonyms, so people search for us both ways.",
         },
       },
+      {
+        bg: {
+          q: "Какво ми трябва, за да поискам оферта?",
+          a: "Най-удобно е да изпратите архитектурен план на обекта и да посочите броя етажи и предназначението на помещенията. Ако нямате план, опишете обекта в запитването и ще уточним как да продължим.",
+        },
+        en: {
+          q: "What do I need to request a quote?",
+          a: "Ideally, send us the architectural plan of the building and tell us the number of floors and the use of each room. If you don't have a plan, describe the building in your inquiry and we'll agree on how to proceed.",
+        },
+      },
+      {
+        bg: {
+          q: "В какъв вид получавам схемите?",
+          a: "Предаваме готови за печат файлове на схемите, които се поставят на подходящите места в обекта.",
+        },
+        en: {
+          q: "In what form do I receive the plans?",
+          a: "We hand over print-ready files of the plans, to be put up in the appropriate places in the building.",
+        },
+      },
     ],
   },
   {
@@ -517,9 +737,16 @@ export const services: Service[] = [
     pillar: "consulting",
     standard: "Нормативно съответствие",
     bg: {
-      title: "Консултации по пожарна безопасност",
-      short: "Анализ на нормативни изисквания и решения при конкретен казус.",
-      body: "Консултираме по конкретни казуси, свързани с пожарната безопасност — нови обекти, преустройства, промяна на предназначение на съществуваща сграда или предварителна оценка преди инвестиция. Анализираме приложимите нормативни изисквания за вашия случай и предлагаме практическо решение, преди да сте вложили средства в грешна посока.",
+      title: "Пожарна безопасност — консултации и съдействие за обекти",
+      short: "Помагаме да изясните какви мерки и документи за пожарна безопасност са нужни за вашия обект.",
+      body: "Отваряте магазин, офис, заведение или друг обект? Помагаме да изясните необходимите мерки и документи за пожарна безопасност. Консултираме и по конкретни казуси — нови обекти, преустройства, промяна на предназначение на съществуваща сграда или предварителна оценка преди инвестиция. Анализираме приложимите нормативни изисквания за вашия случай и предлагаме практическо решение, преди да сте вложили средства в грешна посока.",
+      situations: [
+        "Отваряте нов обект и не знаете откъде да започнете",
+        "Наемате или купувате помещение и искате да знаете какво ще е нужно",
+        "Променяте предназначението или правите преустройство",
+        "Предстои ви проверка или сте получили предписание",
+        "Имате конкретен въпрос и искате компетентен отговор",
+      ],
       whenNeeded: "Когато все още не сте сигурни какво точно се изисква — нов обект, преустройство, смяна на предназначение, или просто въпрос, на който искате бърз и компетентен отговор.",
       whatIncludes: [
         "Анализ на конкретния казус спрямо приложимите наредби",
@@ -539,9 +766,16 @@ export const services: Service[] = [
       ],
     },
     en: {
-      title: "Fire Safety Consulting",
-      short: "Regulatory analysis and solutions for your specific case.",
-      body: "We provide consulting on specific fire safety cases — new buildings, renovations, change of use for an existing building, or a preliminary assessment before an investment decision. We analyze the applicable regulatory requirements for your situation and propose a practical solution before you've committed resources in the wrong direction.",
+      title: "Fire Safety Consulting & Support for Facilities",
+      short: "We help you clarify which fire safety measures and documents your facility needs.",
+      body: "Opening a shop, office, restaurant or another facility? We help you clarify the fire safety measures and documents you need. We also consult on specific cases — new buildings, renovations, change of use for an existing building, or a preliminary assessment before an investment decision. We analyze the applicable regulatory requirements for your situation and propose a practical solution before you've committed resources in the wrong direction.",
+      situations: [
+        "You're opening a new facility and don't know where to start",
+        "You're renting or buying premises and want to know what will be required",
+        "You're changing the use of a building or converting it",
+        "You have an inspection coming up or have received an instruction to fix something",
+        "You have a specific question and want a competent answer",
+      ],
       whenNeeded: "When you're not yet sure what's required — a new building, a renovation, a change of use, or simply a question you want a fast, competent answer to.",
       whatIncludes: [
         "Analysis of the specific case against applicable regulations",
@@ -569,6 +803,16 @@ export const services: Service[] = [
         en: {
           q: "When does it make sense to request a consultation instead of going straight to a design project?",
           a: "When you're not yet sure what applies to your building — for example with a change of use, a renovation, or at the very start of an investment process. A consultation clarifies the picture before you commission a full design project.",
+        },
+      },
+      {
+        bg: {
+          q: "Не знам какво ми трябва. С какво да започна?",
+          a: "Изпратете запитване с избор „Не знам какво ми трябва“ или ни се обадете. Опишете обекта и дейността — ще ви помогнем да изясните необходимите мерки и документи.",
+        },
+        en: {
+          q: "I don't know what I need. Where do I start?",
+          a: "Send an inquiry and choose \"I don't know what I need\", or give us a call. Describe the facility and the activity — we'll help you clarify the measures and documents required.",
         },
       },
     ],
@@ -859,4 +1103,25 @@ export function getServiceBySlug(slug: string) {
 
 export function servicesByPillar(pillar: Pillar) {
   return services.filter((s) => s.pillar === pillar);
+}
+
+// The five main directions, in the order they're shown on the homepage, in
+// the footer and in the inquiry form. Every other service keeps its page.
+export const mainServiceSlugs = [
+  "evakuatsionni-shemi",
+  "pozharno-dosie",
+  "pozharoizvestyavane",
+  "gasitelni-instalatsii",
+  "konsultatsii-po-pozharna-bezopasnost",
+] as const;
+
+export type MainServiceSlug = (typeof mainServiceSlugs)[number];
+
+export function getMainServices(): Service[] {
+  return mainServiceSlugs.map((slug) => getServiceBySlug(slug)!);
+}
+
+export function getOtherServices(): Service[] {
+  const main = new Set<string>(mainServiceSlugs);
+  return services.filter((s) => !main.has(s.slug));
 }

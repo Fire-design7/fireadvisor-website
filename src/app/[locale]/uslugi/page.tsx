@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { ServiceCard } from "@/components/ServiceCard";
-import { servicesByPillar } from "@/content/services";
+import { getMainServices, servicesByPillar } from "@/content/services";
 import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -30,6 +30,8 @@ export default async function ServicesHubPage({
   setRequestLocale(locale);
   const t = await getTranslations("services");
 
+  const mainServices = getMainServices();
+  const mainSlugs = new Set(mainServices.map((s) => s.slug));
   const pillars = [
     { key: "design" as const, title: t("pillarDesign") },
     { key: "consulting" as const, title: t("pillarConsulting") },
@@ -42,8 +44,17 @@ export default async function ServicesHubPage({
     <>
       <PageHero title={t("hubTitle")} subtitle={t("hubSubtitle")} />
       <Container className="space-y-16 py-16">
+        <div>
+          <h2 className="text-xl font-bold text-slate-900">{t("mainTitle")}</h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {mainServices.map((s) => (
+              <ServiceCard key={s.slug} service={s} />
+            ))}
+          </div>
+        </div>
         {pillars.map((pillar) => {
-          const items = servicesByPillar(pillar.key);
+          // The main directions are already shown above.
+          const items = servicesByPillar(pillar.key).filter((s) => !mainSlugs.has(s.slug));
           if (items.length === 0) return null;
           return (
             <div key={pillar.key}>

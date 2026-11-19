@@ -26,10 +26,12 @@ export default async function ContactPage({
   searchParams,
 }: {
   params: Promise<{ locale: Locale }>;
-  searchParams: Promise<{ service?: string }>;
+  searchParams: Promise<{ service?: string | string[]; scope?: string | string[] }>;
 }) {
   const { locale } = await params;
-  const { service } = await searchParams;
+  const query = await searchParams;
+  const service = typeof query.service === "string" ? query.service : "";
+  const scope = typeof query.scope === "string" ? query.scope : "";
   setRequestLocale(locale);
   const t = await getTranslations("contact");
 
@@ -40,7 +42,8 @@ export default async function ContactPage({
         <div className="rounded-2xl border border-slate-200 bg-white p-6 lg:col-span-2 sm:p-8">
           <h2 className="text-xl font-bold text-slate-900">{t("formTitle")}</h2>
           <div className="mt-6">
-            <QuoteForm preselectedService={service} />
+            {/* key: a client-side jump to /kontakti?service=<other> must re-seed the selection */}
+            <QuoteForm key={`${service}|${scope}`} preselectedService={service} preselectedScope={scope} />
           </div>
         </div>
 
@@ -48,6 +51,7 @@ export default async function ContactPage({
           <h2 className="text-lg font-semibold text-slate-900">
             {t("directContactTitle")}
           </h2>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">{t("directContactText")}</p>
           <ul className="mt-4 space-y-3 text-sm">
             <li>
               <a

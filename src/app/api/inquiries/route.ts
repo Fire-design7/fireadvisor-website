@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { sendInquiryEmails } from "@/lib/email";
+import { getServiceBySlug } from "@/content/services";
+import {
+  ATTRIBUTION_KEYS,
+  FIRE_ALARM_SLUG,
+  NOT_SURE,
+  buildingTypes,
+  isFireAlarmScope,
+  validateInquiry,
+} from "@/content/inquiry-options";
 
 export const runtime = "nodejs";
 
@@ -22,12 +31,8 @@ function isRateLimited(ip: string) {
   return timestamps.length > RATE_LIMIT_MAX;
 }
 
-function isValidEmail(value: unknown): value is string {
-  return typeof value === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-function isNonEmptyString(value: unknown, maxLength = MAX_FIELD_LENGTH) {
-  return typeof value === "string" && value.trim().length > 0 && value.length <= maxLength;
+function str(value: unknown, maxLength: number) {
+  return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
 export async function POST(request: NextRequest) {
@@ -43,23 +48,35 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, email, phone, inquiryType, buildingType, service, message, locale, sourcePage } = body;
+  const name = str(body.name, 200);
+  const email = str(body.email, 200);
+  const phone = str(body.phone, 50);
+  const service = str(body.service, 100);
 
-  if (!isNonEmptyString(name, 200) || !isValidEmail(email) || !isNonEmptyString(inquiryType, 100) || !isNonEmptyString(buildingType, 100)) {
-    return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
+  // Same rules as the form: a name, a service choice and at least one valid
+  // way to reach the person — phone or email, either one is enough.
+  const errors = validateInquiry({ name, email, phone, service });
+  if (service && service !== NOT_SURE && !getServiceBySlug(service)) {
+    errors.service = "serviceRequired";
+  }
+  if (Object.keys(errors).length > 0) {
+    return NextResponse.json({ error: "Invalid submission", errors }, { status: 400 });
   }
 
-  const safeLocale = locale === "en" ? "en" : "bg";
-  const safePhone = typeof phone === "string" ? phone.slice(0, 50) : undefined;
-  const safeService = typeof service === "string" && service.length > 0 ? service.slice(0, 100) : undefined;
-  const safeMessage = typeof message === "string" ? message.slice(0, MAX_FIELD_LENGTH) : undefined;
-  const safeSourcePage = typeof sourcePage === "string" ? sourcePage.slice(0, 200) : undefined;
+  const rawScope = body.scope;
+  const scope = service === FIRE_ALARM_SLUG && isFireAlarmScope(rawScope) ? rawScope : undefined;
+  const buildingType = (buildingTypes as readonly string[]).includes(str(body.buildingType, 50))
+    ? str(body.buildingType, 50)
+    : undefined;
+  const safeLocale = body.locale === "en" ? "en" : "bg";
+  const safeMessage = str(body.message, MAX_FIELD_LENGTH) || undefined;
+  const safeSourcePage = str(body.sourcePage, 200) || undefined;
+  const safeLandingPage = str(body.landingPage, 200) || undefined;
 
-  const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"] as const;
   const utm: Record<string, string> = {};
-  for (const key of UTM_KEYS) {
-    const value = body[key];
-    if (typeof value === "string" && value.length > 0) utm[key] = value.slice(0, 200);
+  for (const key of ATTRIBUTION_KEYS) {
+    const value = str(body[key], 200);
+    if (value) utm[key] = value;
   }
 
   // Email is the primary delivery path — it must not be blocked by Supabase
@@ -67,15 +84,16 @@ export async function POST(request: NextRequest) {
   // inactivity). Supabase is a best-effort backup record, not a gate.
   try {
     await sendInquiryEmails({
-      name: name as string,
-      email: email as string,
-      phone: safePhone,
-      inquiryType: inquiryType as string,
-      buildingType: buildingType as string,
-      serviceSlug: safeService,
+      name,
+      email: email || undefined,
+      phone: phone || undefined,
+      service,
+      scope,
+      buildingType,
       message: safeMessage,
       locale: safeLocale,
       sourcePage: safeSourcePage,
+      landingPage: safeLandingPage,
       utm,
       submittedAt: new Date(),
     });
@@ -88,11 +106,13 @@ export async function POST(request: NextRequest) {
     const supabase = getSupabaseAdmin();
     const { error } = await supabase.from("inquiries").insert({
       name,
-      email,
-      phone: safePhone,
-      inquiry_type: inquiryType,
-      building_type: buildingType,
-      service_slug: safeService,
+      // The table's email/building_type columns are NOT NULL — an empty
+      // string keeps phone-only inquiries storable without a migration.
+      email: email || "",
+      phone: phone || null,
+      inquiry_type: scope ? `${service}:${scope}` : service,
+      building_type: buildingType ?? "",
+      service_slug: service === NOT_SURE ? null : service,
       message: safeMessage,
       locale: safeLocale,
     });

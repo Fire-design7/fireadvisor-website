@@ -3,7 +3,6 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { SectorCard } from "@/components/SectorCard";
-import { PhaseCard } from "@/components/PhaseCard";
 import { TrustBadges } from "@/components/TrustBadges";
 import { Faq } from "@/components/Faq";
 import { LinkButton } from "@/components/Button";
@@ -14,17 +13,17 @@ import { SectorQuickMatch } from "@/components/SectorQuickMatch";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { HeroStatusPanel } from "@/components/HeroStatusPanel";
 import { Link } from "@/i18n/navigation";
-import { services } from "@/content/services";
+import { services, getMainServices, getOtherServices } from "@/content/services";
 import { sectors } from "@/content/sectors";
 import { testimonials } from "@/content/testimonials";
 import { siteConfig } from "@/content/site-config";
 import type { Locale } from "@/i18n/routing";
 
 const commonNeeds = [
-  { href: "/uslugi/pozharno-dosie", labelKey: "commonNeedDosie" },
+  { href: "/uslugi/konsultatsii-po-pozharna-bezopasnost", labelKey: "commonNeedNewSite" },
   { href: "/uslugi/evakuatsionni-shemi", labelKey: "commonNeedShemi" },
-  { href: "/uslugi/pozharoizvestyavane", labelKey: "commonNeedIzvestyavane" },
-  { href: "/uslugi/podarzhka-i-kontrol", labelKey: "commonNeedPodarzhka" },
+  { href: "/uslugi/pozharno-dosie", labelKey: "commonNeedDosie" },
+  { href: "/uslugi/pozharoizvestyavane#poddrazhka", labelKey: "commonNeedPodarzhka" },
   { href: "/uslugi/vsodt", labelKey: "commonNeedVsodt" },
   { href: "/proverka-ot-pozharnata", labelKey: "commonNeedProverka" },
 ] as const;
@@ -39,12 +38,20 @@ export default async function HomePage({
   const t = await getTranslations("home");
   const tCommon = await getTranslations("common");
 
+  const mainServices = getMainServices();
+  const otherServices = getOtherServices();
+
+  // The same array feeds the visible FAQ and the FAQPage structured data.
   const faqItems =
     locale === "bg"
       ? [
           {
-            q: "Колко бързо можете да проектирате система за пожарна безопасност?",
-            a: "Сроковете зависят от сложността на обекта, но обичайно изготвяме първоначална оферта в рамките на няколко работни дни след оглед.",
+            q: "Отварям нов обект. Какво ми трябва за пожарна безопасност?",
+            a: "Зависи от вида на обекта и дейността. Опишете ни обекта във формата за запитване или ни се обадете — ще ви помогнем да изясните необходимите мерки и документи, например пожарно досие, вътрешни правила и схеми за евакуация.",
+          },
+          {
+            q: "Не знам коя услуга ми трябва. Какво да избера?",
+            a: "Изберете „Не знам какво ми трябва“ във формата за запитване и опишете накратко обекта. Ще се свържем с вас и ще уточним от какво имате нужда.",
           },
           {
             q: "Работите ли само в Пловдив?",
@@ -57,8 +64,12 @@ export default async function HomePage({
         ]
       : [
           {
-            q: "How quickly can you design a fire safety system?",
-            a: "Timelines depend on the complexity of the building, but we typically provide an initial quote within a few business days after a site visit.",
+            q: "I'm opening a new facility. What do I need for fire safety?",
+            a: "It depends on the type of facility and the activity. Describe it in the inquiry form or give us a call — we'll help you clarify the measures and documents required, for example a fire safety file, internal rules and evacuation plans.",
+          },
+          {
+            q: "I don't know which service I need. What should I choose?",
+            a: "Choose \"I don't know what I need\" in the inquiry form and briefly describe the facility. We'll get back to you and clarify what you need.",
           },
           {
             q: "Do you only work in Plovdiv?",
@@ -87,6 +98,18 @@ export default async function HomePage({
             addressCountry: "BG",
           },
           sameAs: [siteConfig.linkedin],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: t("mainServicesTitle"),
+            itemListElement: mainServices.map((s) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: s[locale].title,
+                url: `${locale === "en" ? `${siteConfig.url}/en` : siteConfig.url}/uslugi/${s.slug}`,
+              },
+            })),
+          },
         }}
       />
       <JsonLd
@@ -131,13 +154,27 @@ export default async function HomePage({
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
               {t("heroSubtitle")}
             </p>
+            <p className="mt-5 max-w-2xl rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-base leading-relaxed text-amber-100">
+              {t("heroNewSite")}
+            </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <LinkButton href="/kontakti" variant="primary">
                 {t("heroCta")}
               </LinkButton>
-              <LinkButton href="/uslugi" variant="ghost" className="!border-slate-500 !text-white hover:!bg-white/10">
-                {t("heroCtaSecondary")}
-              </LinkButton>
+              <a
+                href={siteConfig.phoneHref}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400"
+              >
+                <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" stroke="currentColor" strokeWidth={1.75} aria-hidden>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 5.5c0-.6.4-1 1-1h2.4c.5 0 .9.3 1 .8l.8 3a1 1 0 01-.3 1L8 10.7a11 11 0 005.3 5.3l1.4-1.4a1 1 0 011-.3l3 .8c.5.1.8.5.8 1v2.4c0 .6-.4 1-1 1C10.5 19.5 4.5 13.5 4.5 5.5z"
+                  />
+                </svg>
+                {t("heroCall")}
+                <span className="font-normal text-slate-300">{siteConfig.phone}</span>
+              </a>
             </div>
             <div className="mt-12 max-w-2xl">
               <TrustBadges />
@@ -158,6 +195,26 @@ export default async function HomePage({
             d="M0 60L60 51.7C120 43 240 27 360 24.5C480 22 600 33 720 38.5C840 44 960 44 1080 38.2C1200 32 1320 22 1380 16.7L1440 11V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z"
           />
         </svg>
+      </section>
+
+      {/* Five main directions — first thing after the hero, same order as the footer and the form */}
+      <section className="bg-white pt-16 pb-4">
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading title={t("mainServicesTitle")} subtitle={t("mainServicesSubtitle")} />
+            <Link
+              href="/uslugi"
+              className="text-sm font-semibold text-slate-900 hover:text-amber-700"
+            >
+              {tCommon("viewAllServices")} &rarr;
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {mainServices.map((s) => (
+              <ServiceCard key={s.slug} service={s} />
+            ))}
+          </div>
+        </Container>
       </section>
 
       {/* Common needs — phrased the way people actually search, not our internal terms */}
@@ -244,20 +301,6 @@ export default async function HomePage({
         </Container>
       </section>
 
-      {/* Pillars */}
-      <section className="py-20">
-        <Container>
-          <SectionHeading title={t("phasesTitle")} align="center" />
-          <div className="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-5">
-            <PhaseCard number="1" title={t("pillarDesignTitle")} text={t("pillarDesignText")} />
-            <PhaseCard number="2" title={t("pillarConsultingTitle")} text={t("pillarConsultingText")} />
-            <PhaseCard number="3" title={t("pillarReviewTitle")} text={t("pillarReviewText")} />
-            <PhaseCard number="4" title={t("pillarEvacuationTitle")} text={t("pillarEvacuationText")} />
-            <PhaseCard number="5" title={t("pillarDocumentationTitle")} text={t("pillarDocumentationText")} />
-          </div>
-        </Container>
-      </section>
-
       {/* Stats */}
       <section className="bg-slate-900 py-16">
         <Container className="grid grid-cols-1 gap-10 sm:grid-cols-3">
@@ -271,7 +314,7 @@ export default async function HomePage({
       <section className="bg-white py-20">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading title={t("servicesTitle")} subtitle={t("servicesSubtitle")} />
+            <SectionHeading title={t("otherServicesTitle")} subtitle={t("otherServicesSubtitle")} />
             <Link
               href="/uslugi"
               className="text-sm font-semibold text-slate-900 hover:text-amber-700"
@@ -280,7 +323,7 @@ export default async function HomePage({
             </Link>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.slice(0, 6).map((s) => (
+            {otherServices.slice(0, 6).map((s) => (
               <ServiceCard key={s.slug} service={s} />
             ))}
           </div>
