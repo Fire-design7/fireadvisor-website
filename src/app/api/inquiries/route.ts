@@ -52,10 +52,12 @@ export async function POST(request: NextRequest) {
   const email = str(body.email, 200);
   const phone = str(body.phone, 50);
   const service = str(body.service, 100);
+  const message = str(body.message, MAX_FIELD_LENGTH);
 
-  // Same rules as the form: a name, a service choice and at least one valid
-  // way to reach the person — phone or email, either one is enough.
-  const errors = validateInquiry({ name, email, phone, service });
+  // Same rules as the form: a name, a service choice, a short description of
+  // the request and at least one valid way to reach the person — phone or
+  // email, either one is enough.
+  const errors = validateInquiry({ name, email, phone, service, message });
   if (service && service !== NOT_SURE && !getServiceBySlug(service)) {
     errors.service = "serviceRequired";
   }
@@ -69,7 +71,7 @@ export async function POST(request: NextRequest) {
     ? str(body.buildingType, 50)
     : undefined;
   const safeLocale = body.locale === "en" ? "en" : "bg";
-  const safeMessage = str(body.message, MAX_FIELD_LENGTH) || undefined;
+  const safeMessage = message;
   const safeSourcePage = str(body.sourcePage, 200) || undefined;
   const safeLandingPage = str(body.landingPage, 200) || undefined;
 

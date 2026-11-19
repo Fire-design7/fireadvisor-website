@@ -15,12 +15,13 @@ import {
   mainServiceLabels,
   notSureLabel,
   validateInquiry,
+  type InquiryField,
   type InquiryFieldError,
 } from "@/content/inquiry-options";
 import { getAttribution, markInquirySent } from "@/lib/attribution";
 
 type Status = "idle" | "submitting" | "error";
-type FieldKey = "name" | "email" | "phone" | "contact" | "service";
+type FieldKey = InquiryField;
 type Errors = Partial<Record<FieldKey, InquiryFieldError>>;
 
 const errorMessageKey: Record<InquiryFieldError, string> = {
@@ -29,6 +30,8 @@ const errorMessageKey: Record<InquiryFieldError, string> = {
   emailInvalid: "errorEmailInvalid",
   phoneInvalid: "errorPhoneInvalid",
   serviceRequired: "errorServiceRequired",
+  messageRequired: "errorMessageRequired",
+  messageTooShort: "errorMessageTooShort",
 };
 
 const buildingTypeKey: Record<(typeof buildingTypes)[number], string> = {
@@ -89,6 +92,7 @@ export function QuoteForm({
       email: String(formData.get("email") ?? ""),
       phone: String(formData.get("phone") ?? ""),
       service: String(formData.get("service") ?? ""),
+      message: String(formData.get("message") ?? ""),
     };
 
     const found = validateInquiry(values);
@@ -111,7 +115,7 @@ export function QuoteForm({
       service: values.service,
       scope: values.service === FIRE_ALARM_SLUG && isFireAlarmScope(scope) ? scope : undefined,
       buildingType: formData.get("buildingType") || undefined,
-      message: formData.get("message"),
+      message: values.message.trim(),
       locale,
       sourcePage: window.location.pathname,
       landingPage: attribution.landingPage,
@@ -272,13 +276,21 @@ export function QuoteForm({
         </select>
       </Field>
 
-      <Field label={t("messageLabel")} htmlFor="message" optional={t("optional")}>
+      <Field label={t("messageLabel")} htmlFor="message" error={err("message")}>
+        <p id="message-hint" className="-mt-0.5 mb-1.5 text-sm text-slate-600">
+          {t("messageHint")}
+        </p>
         <textarea
           id="message"
           name="message"
           rows={5}
           className="input"
           placeholder={t("messagePlaceholder")}
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "message-error message-hint" : "message-hint"}
+          onChange={() => {
+            if (errors.message) setErrors((prev) => ({ ...prev, message: undefined }));
+          }}
         />
       </Field>
 
@@ -322,6 +334,7 @@ function focusFirstError(form: HTMLFormElement, errors: Errors) {
     ["contact", "phone"],
     ["phone", "phone"],
     ["email", "email"],
+    ["message", "message"],
   ];
   for (const [key, id] of order) {
     if (errors[key]) {

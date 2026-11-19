@@ -81,23 +81,33 @@ export function isValidPhone(value: string) {
   return /^\+?\d{6,15}$/.test(compact);
 }
 
+// The owner needs to know what the visitor wants before calling back, so a
+// short description of the request is required — a few real words, not "."
+export const MIN_MESSAGE_LENGTH = 15;
+
 export type InquiryFieldError =
   | "nameRequired"
   | "contactRequired"
   | "emailInvalid"
   | "phoneInvalid"
-  | "serviceRequired";
+  | "serviceRequired"
+  | "messageRequired"
+  | "messageTooShort";
+
+export type InquiryField = "name" | "email" | "phone" | "contact" | "service" | "message";
 
 export function validateInquiry(input: {
   name: string;
   email: string;
   phone: string;
   service: string;
-}): Partial<Record<"name" | "email" | "phone" | "contact" | "service", InquiryFieldError>> {
-  const errors: Partial<Record<"name" | "email" | "phone" | "contact" | "service", InquiryFieldError>> = {};
+  message: string;
+}): Partial<Record<InquiryField, InquiryFieldError>> {
+  const errors: Partial<Record<InquiryField, InquiryFieldError>> = {};
   const name = input.name.trim();
   const email = input.email.trim();
   const phone = input.phone.trim();
+  const message = input.message.trim();
 
   if (!name) errors.name = "nameRequired";
   if (!input.service.trim()) errors.service = "serviceRequired";
@@ -107,5 +117,7 @@ export function validateInquiry(input: {
     if (email && !isValidEmail(email)) errors.email = "emailInvalid";
     if (phone && !isValidPhone(phone)) errors.phone = "phoneInvalid";
   }
+  if (!message) errors.message = "messageRequired";
+  else if (message.length < MIN_MESSAGE_LENGTH) errors.message = "messageTooShort";
   return errors;
 }

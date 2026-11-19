@@ -35,7 +35,10 @@
     "callNow": "Call Now",
     "call": "Call us",
     "sendInquiry": "Send an Inquiry",
-    "backToServices": "All Services"
+    "backToServices": "All Services",
+    "whatsapp": "WhatsApp",
+    "viber": "Viber",
+    "inquiryShort": "Inquiry"
   },
   "home": {
     "heroEyebrow": "Engineering & Consulting",
@@ -103,7 +106,12 @@
     "processTitle": "How the process works",
     "faqTitle": "Frequently Asked Questions",
     "ctaTitle": "Interested in this service?",
-    "ctaText": "Get in touch for a free consultation tailored to your building."
+    "ctaText": "Get in touch for a free consultation tailored to your building.",
+    "ctaQuick": "Prefer to talk? Call us or message us on WhatsApp or Viber.",
+    "trustTitle": "Why Fire Advisor",
+    "formTitle": "Inquiry: {service}",
+    "formText": "Fill in the form — it takes about a minute. A name, a phone or email and a few words about the facility are enough.",
+    "whatsappMessage": "Hello! I'm writing from fireadvisor.eu about: {service}."
   },
   "sectors": {
     "hubTitle": "Sectors",
@@ -184,8 +192,9 @@
     "buildingTypeHealthcare": "Healthcare Facility",
     "buildingTypePublic": "Public Building",
     "buildingTypeOther": "Other",
-    "messageLabel": "Message",
-    "messagePlaceholder": "A few words about the facility and what you need",
+    "messageLabel": "What do you need?",
+    "messageHint": "Tell us in a few words about the facility and what you're looking for — so we can come back to you prepared.",
+    "messagePlaceholder": "E.g.: We're opening a café in Plovdiv, about 120 m². We need evacuation plans and a fire safety file.",
     "submitButton": "Send Inquiry",
     "submittingButton": "Sending...",
     "errorText": "Your inquiry wasn't sent because of a technical error. What you entered is still here — please try again or call us directly.",
@@ -195,8 +204,10 @@
     "errorEmailInvalid": "This email doesn't look valid. Check it, or leave it empty and give us a phone number.",
     "errorPhoneInvalid": "This phone number doesn't look valid. Check it, or leave it empty and give us an email.",
     "errorServiceRequired": "Choose how we can help — or \"I don't know what I need\".",
+    "errorMessageRequired": "Tell us briefly what you need, so we know how to help.",
+    "errorMessageTooShort": "Please add a little more — what kind of facility and what you're looking for.",
     "directContactTitle": "Direct Contact",
-    "directContactText": "Prefer to talk? Call us or write to us directly.",
+    "directContactText": "Prefer to talk? Call us or write to us directly — also on WhatsApp or Viber.",
     "consentNotice": "By submitting this form you voluntarily provide the data listed above so we can process your inquiry and get in touch. Data is handled in accordance with our",
     "consentNoticeLinkText": "Privacy Policy"
   },

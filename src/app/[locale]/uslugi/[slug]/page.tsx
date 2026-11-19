@@ -3,9 +3,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { Faq } from "@/components/Faq";
-import { LinkButton } from "@/components/Button";
 import { JsonLd } from "@/components/JsonLd";
 import { BlogFigure } from "@/components/BlogFigure";
+import { QuoteForm } from "@/components/QuoteForm";
+import { DirectContactButtons } from "@/components/DirectContactButtons";
 import { Link } from "@/i18n/navigation";
 import { services, getServiceBySlug } from "@/content/services";
 import { siteConfig } from "@/content/site-config";
@@ -55,9 +56,22 @@ export default async function ServiceDetailPage({
 
   const t = await getTranslations("services");
   const tCommon = await getTranslations("common");
+  const tHome = await getTranslations("home");
   const content = service[locale];
   const faqs = service.faqs.map((f) => f[locale]);
   const base = locale === "en" ? `${siteConfig.url}/en` : siteConfig.url;
+  const contactLabels = {
+    call: tCommon("call"),
+    whatsapp: tCommon("whatsapp"),
+    viber: tCommon("viber"),
+  };
+  const whatsappMessage = t("whatsappMessage", { service: content.title });
+  // Same facts as the homepage "why us" block — nothing new is claimed here.
+  const trustPoints = [
+    { title: tHome("whyUsLicensedTitle"), text: tHome("whyUsLicensedText") },
+    { title: tHome("whyUsCoverageTitle"), text: tHome("whyUsCoverageText") },
+    { title: tHome("whyUsFullServiceTitle"), text: tHome("whyUsFullServiceText") },
+  ];
 
   return (
     <>
@@ -250,6 +264,18 @@ export default async function ServiceDetailPage({
             </ol>
           </div>
 
+          <div className="mt-12 rounded-2xl bg-slate-900 p-6 sm:p-8">
+            <h2 className="text-lg font-bold text-white">{t("trustTitle")}</h2>
+            <ul className="mt-5 grid gap-5 sm:grid-cols-3">
+              {trustPoints.map((point) => (
+                <li key={point.title}>
+                  <p className="text-sm font-semibold text-amber-400">{point.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{point.text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {faqs.length > 0 && (
             <div className="mt-12">
               <h2 className="text-xl font-bold text-slate-900">{t("faqTitle")}</h2>
@@ -258,25 +284,70 @@ export default async function ServiceDetailPage({
               </div>
             </div>
           )}
+
+          {/* The inquiry form right on the page, so a visitor from an ad
+              doesn't have to go looking for it. Service preselected. */}
+          <section
+            id="zapitvane"
+            className="mt-12 scroll-mt-24 rounded-2xl border-2 border-amber-300 bg-white p-6 sm:p-8"
+          >
+            <h2 className="text-xl font-bold text-slate-900">
+              {t("formTitle", { service: content.title })}
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">{t("formText")}</p>
+            <div className="mt-6">
+              <QuoteForm preselectedService={service.slug} />
+            </div>
+            <div className="mt-8 border-t border-slate-200 pt-6">
+              <p className="text-sm font-semibold text-slate-900">{t("ctaQuick")}</p>
+              <div className="mt-3">
+                <DirectContactButtons labels={contactLabels} message={whatsappMessage} />
+              </div>
+            </div>
+          </section>
         </div>
 
-        <aside className="rounded-2xl border border-slate-200 bg-white p-6 h-fit">
+        <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 lg:sticky lg:top-24">
           <h3 className="text-lg font-semibold text-slate-900">{t("ctaTitle")}</h3>
           <p className="mt-2 text-sm leading-relaxed text-slate-600">{t("ctaText")}</p>
-          <LinkButton
-            href={`/kontakti?service=${service.slug}`}
-            className="mt-6 w-full"
+          <a
+            href="#zapitvane"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
           >
             {tCommon("sendInquiry")}
-          </LinkButton>
-          <a
-            href={siteConfig.phoneHref}
-            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-          >
-            {tCommon("call")}: {siteConfig.phone}
           </a>
+          <div className="mt-3">
+            <DirectContactButtons labels={contactLabels} message={whatsappMessage} />
+          </div>
         </aside>
       </Container>
+
+      {/* Phones: the ways to get in touch stay one tap away while reading. */}
+      <div className="h-20 lg:hidden" aria-hidden />
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-3 py-2.5 shadow-[0_-4px_16px_rgba(15,23,42,0.08)] backdrop-blur lg:hidden">
+        <div className="grid grid-cols-3 gap-2">
+          <a
+            href={siteConfig.phoneHref}
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 px-2 py-2.5 text-sm font-semibold text-slate-900"
+          >
+            {tCommon("call")}
+          </a>
+          <a
+            href={`${siteConfig.whatsappHref}?text=${encodeURIComponent(whatsappMessage)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-2 py-2.5 text-sm font-semibold text-white"
+          >
+            {tCommon("whatsapp")}
+          </a>
+          <a
+            href="#zapitvane"
+            className="inline-flex items-center justify-center rounded-full bg-amber-500 px-2 py-2.5 text-sm font-semibold text-slate-900"
+          >
+            {tCommon("inquiryShort")}
+          </a>
+        </div>
+      </div>
     </>
   );
 }

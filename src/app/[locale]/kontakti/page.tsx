@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
+import { DirectContactButtons } from "@/components/DirectContactButtons";
 import { siteConfig } from "@/content/site-config";
 import { pageAlternates } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
@@ -34,6 +35,7 @@ export default async function ContactPage({
   const scope = typeof query.scope === "string" ? query.scope : "";
   setRequestLocale(locale);
   const t = await getTranslations("contact");
+  const tCommon = await getTranslations("common");
 
   return (
     <>
@@ -70,6 +72,11 @@ export default async function ContactPage({
               </a>
             </li>
           </ul>
+          <div className="mt-5">
+            <DirectContactButtons
+              labels={{ call: tCommon("call"), whatsapp: tCommon("whatsapp"), viber: tCommon("viber") }}
+            />
+          </div>
         </aside>
       </Container>
     </>
