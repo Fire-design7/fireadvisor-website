@@ -25,6 +25,10 @@ $featureImages = @{
   "znaci-po-patya-za-evakuatsia" = (Join-Path $root "public\blog\covers\_feature-escape-route-signs.png")
   "evakuatsionno-osvetlenie" = (Join-Path $root "public\blog\covers\_feature-evacuation-lighting.png")
   "pasivna-pozharna-zashtita" = (Join-Path $root "public\blog\covers\_feature-passive-protection.png")
+  # Pexels 39183052 (free licence): ceiling-mounted fire alarm device
+  "poddrazhka-na-pozharoizvestyavane" = (Join-Path $root "public\blog\covers\_feature-poddrazhka-na-pozharoizvestyavane.jpg")
+  # Pexels 39910849 (free licence): café owner with an "open" sign
+  "pozharna-bezopasnost-nov-obekt" = (Join-Path $root "public\blog\covers\_feature-pozharna-bezopasnost-nov-obekt.jpg")
 }
 
 $W = 1200; $H = 630
