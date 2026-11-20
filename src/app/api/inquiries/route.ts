@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { sendInquiryEmails } from "@/lib/email";
+import { forwardLead, isValidEmail } from "@/lib/leads";
 import { getServiceBySlug } from "@/content/services";
 import {
   ATTRIBUTION_KEYS,
@@ -123,6 +124,21 @@ export async function POST(request: NextRequest) {
     // The email already went out, so the inquiry reached the owner — a
     // failed backup record shouldn't fail the request for the visitor.
     console.error("Failed to store inquiry in Supabase", err);
+  }
+
+  // Newsletter opt-in from the form's (unticked by default) checkbox — the
+  // same sheet the footer signup writes to. Best-effort: the inquiry is the
+  // point of this request, so a failure here never fails it.
+  if (body.newsletter === true && isValidEmail(email)) {
+    const result = await forwardLead({
+      type: "бюлетин",
+      name,
+      email,
+      detail: "от формуляра за запитване",
+      locale: safeLocale,
+      source: safeSourcePage ?? request.headers.get("referer") ?? "",
+    });
+    if (!result.ok) console.error("Failed to add newsletter opt-in", result.error);
   }
 
   return NextResponse.json({ ok: true });

@@ -198,6 +198,7 @@
     "buildingTypeHealthcare": "Healthcare Facility",
     "buildingTypePublic": "Public Building",
     "buildingTypeOther": "Other",
+    "newsletterOptIn": "I'd like to receive the Fire Advisor newsletter by email (optional, you can unsubscribe at any time).",
     "messageLabel": "What do you need?",
     "messageHint": "Tell us in a few words about the facility and what you're looking for — so we can come back to you prepared.",
     "messagePlaceholder": "E.g.: We're opening a café in Plovdiv, about 120 m². We need evacuation plans and a fire safety file.",

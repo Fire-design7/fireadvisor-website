@@ -116,6 +116,8 @@ export function QuoteForm({
       scope: values.service === FIRE_ALARM_SLUG && isFireAlarmScope(scope) ? scope : undefined,
       buildingType: formData.get("buildingType") || undefined,
       message: values.message.trim(),
+      // Opt-in only: an unticked box (the default) never subscribes anyone.
+      newsletter: formData.get("newsletter") === "yes",
       locale,
       sourcePage: window.location.pathname,
       landingPage: attribution.landingPage,
@@ -293,6 +295,16 @@ export function QuoteForm({
           }}
         />
       </Field>
+
+      <label className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+        <input
+          type="checkbox"
+          name="newsletter"
+          value="yes"
+          className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 accent-amber-500"
+        />
+        <span>{t("newsletterOptIn")}</span>
+      </label>
 
       {Object.values(errors).some(Boolean) && (
         <p role="alert" className="text-sm font-medium text-red-600">

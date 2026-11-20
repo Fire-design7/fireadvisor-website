@@ -63,6 +63,12 @@ export default async function PrivacyPolicyPage({
               запитването ви, да подготвим оферта или консултация, и при нужда да се
               свържем с вас по телефон или имейл във връзка с проекта ви.
             </p>
+            <p>
+              Ако изрично се абонирате за бюлетина ни (чрез отметката във
+              формата за запитване или чрез формата за абонамент в сайта),
+              използваме имейл адреса и името ви, за да ви изпращаме бюлетина.
+              Без такова изрично съгласие не ви изпращаме бюлетин.
+            </p>
 
             <h2>4. Правно основание</h2>
             <p>
@@ -70,6 +76,12 @@ export default async function PrivacyPolicyPage({
               Общия регламент за защита на данните (GDPR) — предприемане на стъпки по
               ваше искане преди сключване на договор, както и на основание легитимен
               интерес да отговорим на отправено запитване.
+            </p>
+            <p>
+              Изпращането на бюлетин се основава на вашето съгласие (чл. 6, ал. 1,
+              буква &bdquo;а&ldquo; от GDPR). Можете да го оттеглите по всяко време чрез
+              връзката за отписване в писмата или като ни пишете на{" "}
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
             </p>
 
             <h2>5. С кого споделяме данните</h2>
@@ -79,6 +91,11 @@ export default async function PrivacyPolicyPage({
               доставчици действат като обработващи данните от наше име, съгласно
               сключени с тях условия за обработка на данни. Не продаваме и не
               споделяме данните ви с трети страни за маркетингови цели.
+            </p>
+            <p>
+              Списъкът с абонати за бюлетина се съхранява в Google Таблици
+              (Google Ireland Limited), който действа като обработващ данните от
+              наше име.
             </p>
             <p>
               Отделно от формата, при изрично съгласие от ваша страна (вижте
@@ -156,12 +173,24 @@ export default async function PrivacyPolicyPage({
               consultation, and contact you by phone or email regarding your project
               if needed.
             </p>
+            <p>
+              If you explicitly subscribe to our newsletter (via the checkbox in the
+              inquiry form or the newsletter signup on the site), we use your email
+              address and name to send it to you. Without that explicit consent we do
+              not send you a newsletter.
+            </p>
 
             <h2>4. Legal Basis</h2>
             <p>
               We process your data under Article 6(1)(b) GDPR — taking steps at your
               request prior to entering into a contract — and under our legitimate
               interest in responding to inquiries submitted to us.
+            </p>
+            <p>
+              Sending the newsletter is based on your consent (Article 6(1)(a) GDPR).
+              You can withdraw it at any time via the unsubscribe link in the emails
+              or by writing to{" "}
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
             </p>
 
             <h2>5. Who We Share Data With</h2>
@@ -170,6 +199,10 @@ export default async function PrivacyPolicyPage({
               as an email notification via Resend. Both providers act as data
               processors on our behalf under data processing terms. We do not sell or
               share your data with third parties for marketing purposes.
+            </p>
+            <p>
+              The newsletter subscriber list is kept in Google Sheets (Google Ireland
+              Limited), which acts as a data processor on our behalf.
             </p>
             <p>
               Separately from the form, with your explicit consent (see the
