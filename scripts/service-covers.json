@@ -63,11 +63,11 @@
     "slug": "evakuatsionni-shemi",
     "feature": "public\\blog\\evakuatsionna-shema-primer.jpg",
     "bg": {
-      "tag": "Наредба Iз-1971",
+      "tag": "Наредба № 8121з-647",
       "title": "Схеми и планове за евакуация"
     },
     "en": {
-      "tag": "Regulation Iз-1971",
+      "tag": "Regulation № 8121з-647",
       "title": "Evacuation Plans"
     }
   },

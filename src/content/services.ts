@@ -629,7 +629,7 @@ export const services: Service[] = [
     slug: "evakuatsionni-shemi",
     cover: true,
     pillar: "evacuation",
-    standard: "Наредба Iз-1971",
+    standard: "Наредба № 8121з-647",
     image: {
       src: "/blog/evakuatsionna-shema-primer.jpg",
       width: 2000,
