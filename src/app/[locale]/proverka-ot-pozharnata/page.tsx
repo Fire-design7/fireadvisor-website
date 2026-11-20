@@ -5,6 +5,7 @@ import { LinkButton } from "@/components/Button";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { Link } from "@/i18n/navigation";
+import { ReadinessTest } from "@/components/ReadinessTest";
 import { pageAlternates, pageSocial } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -149,10 +150,19 @@ export default async function InspectionPrepPage({
             : "Here's what the authorities actually check under Regulation № 8121з-647 — and how to be ready before they arrive."
         }
       >
-        <div className="mt-8">
-          <LinkButton href="/kontakti?service=odit-i-pregled" className="!bg-amber-500">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#test"
+            className="inline-flex items-center justify-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
+          >
+            {isBg ? "Направете безплатния тест (2 минути)" : "Take the free test (2 minutes)"}
+          </a>
+          <Link
+            href="/kontakti?service=odit-i-pregled"
+            className="inline-flex items-center justify-center rounded-full border border-slate-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white"
+          >
             {isBg ? "Поискайте предварителна проверка" : "Request a pre-inspection check"}
-          </LinkButton>
+          </Link>
         </div>
       </PageHero>
 
@@ -163,7 +173,24 @@ export default async function InspectionPrepPage({
             : "You don't need surprises. Whether an inspection is scheduled or not, here's where owners most often trip up — and which of our services addresses each point."}
         </p>
 
-        <div className="mt-10 space-y-4">
+        <section id="test" className="mt-12 scroll-mt-24">
+          <h2 className="text-2xl font-bold text-slate-900">
+            {isBg ? "Тест: готови ли сте за проверка?" : "Test: are you ready for an inspection?"}
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            {isBg
+              ? "10 въпроса по основните точки от Наредба № 8121з-647. Отговорете за вашия обект — накрая ще видите кое е в ред и кое си струва да се провери."
+              : "10 questions on the main points of Regulation № 8121з-647. Answer for your facility — at the end you'll see what's in order and what's worth checking."}
+          </p>
+          <div className="mt-6">
+            <ReadinessTest locale={locale} />
+          </div>
+        </section>
+
+        <h2 className="mt-16 text-xl font-bold text-slate-900">
+          {isBg ? "Какво се проверява най-често" : "What gets checked most often"}
+        </h2>
+        <div className="mt-6 space-y-4">
           {checklist.map((item) => (
             <Link
               key={item.id}

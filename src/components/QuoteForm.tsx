@@ -47,9 +47,12 @@ const buildingTypeKey: Record<(typeof buildingTypes)[number], string> = {
 export function QuoteForm({
   preselectedService = "",
   preselectedScope = "",
+  initialMessage = "",
 }: {
   preselectedService?: string;
   preselectedScope?: string;
+  /** Pre-filled "What do you need?" text, e.g. the gaps from the readiness test. */
+  initialMessage?: string;
 }) {
   const t = useTranslations("contact");
   const locale = useLocale() as Locale;
@@ -286,6 +289,7 @@ export function QuoteForm({
           id="message"
           name="message"
           rows={5}
+          defaultValue={initialMessage}
           className="input"
           placeholder={t("messagePlaceholder")}
           aria-invalid={!!errors.message}

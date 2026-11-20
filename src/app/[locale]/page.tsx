@@ -20,12 +20,12 @@ import { siteConfig } from "@/content/site-config";
 import type { Locale } from "@/i18n/routing";
 
 const commonNeeds = [
-  { href: "/uslugi/konsultatsii-po-pozharna-bezopasnost", labelKey: "commonNeedNewSite" },
-  { href: "/uslugi/evakuatsionni-shemi", labelKey: "commonNeedShemi" },
-  { href: "/uslugi/pozharno-dosie", labelKey: "commonNeedDosie" },
-  { href: "/uslugi/pozharoizvestyavane#poddrazhka", labelKey: "commonNeedPodarzhka" },
-  { href: "/uslugi/vsodt", labelKey: "commonNeedVsodt" },
-  { href: "/proverka-ot-pozharnata", labelKey: "commonNeedProverka" },
+  { href: "/uslugi/konsultatsii-po-pozharna-bezopasnost", labelKey: "commonNeedNewSite", textKey: "commonNeedNewSiteText" },
+  { href: "/uslugi/evakuatsionni-shemi", labelKey: "commonNeedShemi", textKey: "commonNeedShemiText" },
+  { href: "/uslugi/pozharno-dosie", labelKey: "commonNeedDosie", textKey: "commonNeedDosieText" },
+  { href: "/uslugi/pozharoizvestyavane#poddrazhka", labelKey: "commonNeedPodarzhka", textKey: "commonNeedPodarzhkaText" },
+  { href: "/uslugi/vsodt", labelKey: "commonNeedVsodt", textKey: "commonNeedVsodtText" },
+  { href: "/proverka-ot-pozharnata#test", labelKey: "commonNeedProverka", textKey: "commonNeedProverkaText" },
 ] as const;
 
 export default async function HomePage({
@@ -217,20 +217,27 @@ export default async function HomePage({
         </Container>
       </section>
 
-      {/* Common needs — phrased the way people actually search, not our internal terms */}
+      {/* "Sound familiar?" — situations the visitor recognises themselves in,
+          phrased the way people describe them, each leading to its service. */}
       <section className="bg-white py-14">
         <Container>
-          <p className="text-center text-sm font-semibold uppercase tracking-widest text-slate-500">
+          <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             {t("commonNeedsTitle")}
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {commonNeeds.map((need) => (
               <Link
                 key={need.href}
                 href={need.href}
-                className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-amber-300 hover:bg-amber-50 hover:text-amber-800"
+                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-amber-300 hover:bg-amber-50"
               >
-                {t(need.labelKey)}
+                <span className="font-semibold text-slate-900">{t(need.labelKey)}</span>
+                <span className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-600">
+                  {t(need.textKey)}
+                </span>
+                <span className="mt-4 text-sm font-semibold text-amber-700 group-hover:text-amber-800">
+                  {t("commonNeedsCta")} &rarr;
+                </span>
               </Link>
             ))}
           </div>
@@ -256,7 +263,7 @@ export default async function HomePage({
                 {t("inspectionBannerText")}
               </p>
             </div>
-            <LinkButton href="/proverka-ot-pozharnata" className="shrink-0">
+            <LinkButton href="/proverka-ot-pozharnata#test" className="shrink-0">
               {t("inspectionBannerCta")}
             </LinkButton>
           </div>
