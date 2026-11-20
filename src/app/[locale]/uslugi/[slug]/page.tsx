@@ -133,18 +133,36 @@ export default async function ServiceDetailPage({
         />
       )}
 
-      <PageHero title={content.title} subtitle={content.short} />
+      <PageHero title={content.title} subtitle={content.short}>
+        {/* Ad visitors decide in the first screen: the two ways to act and
+            the confirmed credentials, before any reading. */}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#zapitvane"
+            className="inline-flex items-center justify-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
+          >
+            {tCommon("sendInquiry")}
+          </a>
+          <a
+            href={siteConfig.phoneHref}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white"
+          >
+            {tCommon("call")}: {siteConfig.phone}
+          </a>
+        </div>
+        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-300">
+          {[tHome("trustKiip"), tHome("trustGdpzn"), t("heroCoverage")].map((item) => (
+            <li key={item} className="flex items-center gap-1.5">
+              <span aria-hidden className="text-amber-400">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </PageHero>
 
       <Container className="grid gap-12 py-16 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <Link
-            href="/uslugi"
-            className="text-sm font-semibold text-slate-600 hover:text-slate-900"
-          >
-            &larr; {tCommon("backToServices")}
-          </Link>
-
-          <p className="mt-6 text-lg leading-relaxed text-slate-700">
+          <p className="text-lg leading-relaxed text-slate-700">
             {content.body}
           </p>
 
@@ -250,6 +268,19 @@ export default async function ServiceDetailPage({
             </div>
           </div>
 
+          <div className="mt-10 flex flex-col gap-4 rounded-2xl bg-amber-50 p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-bold text-slate-900">{t("midCtaTitle")}</p>
+              <p className="mt-1 text-sm leading-relaxed text-slate-700">{t("midCtaText")}</p>
+            </div>
+            <a
+              href="#zapitvane"
+              className="inline-flex shrink-0 items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-700"
+            >
+              {tCommon("sendInquiry")}
+            </a>
+          </div>
+
           <div className="mt-10">
             <h2 className="text-lg font-bold text-slate-900">{t("processTitle")}</h2>
             <ol className="mt-4 space-y-4">
@@ -295,6 +326,16 @@ export default async function ServiceDetailPage({
               {t("formTitle", { service: content.title })}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">{t("formText")}</p>
+            <ol className="mt-5 grid gap-3 sm:grid-cols-3">
+              {[t("nextStep1"), t("nextStep2"), t("nextStep3")].map((step, i) => (
+                <li key={i} className="flex gap-2.5 text-sm leading-snug text-slate-700">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-800">
+                    {i + 1}
+                  </span>
+                  {step}
+                </li>
+              ))}
+            </ol>
             <div className="mt-6">
               <QuoteForm preselectedService={service.slug} />
             </div>
@@ -305,6 +346,13 @@ export default async function ServiceDetailPage({
               </div>
             </div>
           </section>
+
+          <Link
+            href="/uslugi"
+            className="mt-8 inline-flex text-sm font-semibold text-slate-600 hover:text-slate-900"
+          >
+            &larr; {tCommon("backToServices")}
+          </Link>
         </div>
 
         <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 lg:sticky lg:top-24">

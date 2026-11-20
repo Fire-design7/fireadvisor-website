@@ -19,7 +19,9 @@ export function FloatingContact() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (pathname === "/kontakti") return null;
+  // Service pages carry their own contact bar (phones) and sticky panel
+  // (desktop) pointing at the inline form, so this would only overlap them.
+  if (pathname === "/kontakti" || pathname.startsWith("/uslugi/")) return null;
 
   return (
     <div

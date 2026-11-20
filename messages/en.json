@@ -111,7 +111,13 @@
     "trustTitle": "Why Fire Advisor",
     "formTitle": "Inquiry: {service}",
     "formText": "Fill in the form — it takes about a minute. A name, a phone or email and a few words about the facility are enough.",
-    "whatsappMessage": "Hello! I'm writing from fireadvisor.eu about: {service}."
+    "whatsappMessage": "Hello! I'm writing from fireadvisor.eu about: {service}.",
+    "heroCoverage": "Plovdiv · working across Bulgaria",
+    "midCtaTitle": "Not sure exactly what you need?",
+    "midCtaText": "Describe your facility in a few words — we'll tell you what's required in your case.",
+    "nextStep1": "We receive your inquiry",
+    "nextStep2": "We get in touch to clarify the details",
+    "nextStep3": "We send you a proposal"
   },
   "sectors": {
     "hubTitle": "Sectors",
