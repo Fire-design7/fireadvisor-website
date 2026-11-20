@@ -25,7 +25,13 @@ export function ServiceCard({ service }: { service: Service }) {
         />
       )}
       <div className="flex flex-1 flex-col p-6">
-      <span className="text-xs font-semibold uppercase tracking-wide text-amber-700">
+      {/* Document names such as "Наредба № 8121з-647" keep their case:
+          upper-casing turns "з" into a look-alike "З"/"3". */}
+      <span
+        className={`text-xs font-semibold tracking-wide text-amber-700 ${
+          /\d/.test(service.standard) ? "" : "uppercase"
+        }`}
+      >
         {service.standard}
       </span>
       <h3 className="mt-2 text-lg font-semibold text-slate-900">

@@ -94,5 +94,77 @@
       "tag": "EN 1366",
       "title": "Passive Fire Protection"
     }
+  },
+  {
+    "slug": "otsenka-na-risk",
+    "feature": "public\\services\\covers\\_feature-otsenka-na-risk.png",
+    "bg": {
+      "tag": "Наредба № 8121з-647",
+      "title": "Оценка на риска"
+    },
+    "en": {
+      "tag": "Regulation № 8121з-647",
+      "title": "Fire Risk Assessment"
+    }
+  },
+  {
+    "slug": "pozharno-dosie",
+    "feature": "public\\services\\covers\\_photo-pozharno-dosie.jpg",
+    "bg": {
+      "tag": "Наредба № 8121з-647",
+      "title": "Пожарно досие и вътрешни правила"
+    },
+    "en": {
+      "tag": "Regulation № 8121з-647",
+      "title": "Fire Safety File & Internal Rules"
+    }
+  },
+  {
+    "slug": "podarzhka-i-kontrol",
+    "feature": "public\\services\\covers\\_photo-podarzhka-i-kontrol.jpg",
+    "bg": {
+      "tag": "Наредба № 8121з-647",
+      "title": "Годишен абонамент за документация и съответствие"
+    },
+    "en": {
+      "tag": "Regulation № 8121з-647",
+      "title": "Annual Compliance & Documentation Retainer"
+    }
+  },
+  {
+    "slug": "odit-i-pregled",
+    "feature": "public\\services\\covers\\_photo-odit-i-pregled.jpg",
+    "bg": {
+      "tag": "Наредба № 8121з-647",
+      "title": "Преглед и оценка на обект"
+    },
+    "en": {
+      "tag": "Regulation № 8121з-647",
+      "title": "Fire Safety Review of Existing Facilities"
+    }
+  },
+  {
+    "slug": "konsultatsii-po-pozharna-bezopasnost",
+    "feature": "public\\services\\covers\\_photo-konsultatsii-po-pozharna-bezopasnost.jpg",
+    "bg": {
+      "tag": "Нормативно съответствие",
+      "title": "Консултации по пожарна безопасност"
+    },
+    "en": {
+      "tag": "Regulatory compliance",
+      "title": "Fire Safety Consulting & Support"
+    }
+  },
+  {
+    "slug": "pregled-na-proekti",
+    "feature": "public\\services\\covers\\_photo-pregled-na-proekti.jpg",
+    "bg": {
+      "tag": "Наредба № Iз-1971",
+      "title": "Преглед и контрол на проекти"
+    },
+    "en": {
+      "tag": "Regulation № Iз-1971",
+      "title": "Project Review & Control"
+    }
   }
 ]

@@ -363,6 +363,7 @@ export const services: Service[] = [
     ],
   },
   {
+    cover: true,
     slug: "pozharno-dosie",
     pillar: "documentation",
     standard: "Наредба № 8121з-647",
@@ -468,6 +469,7 @@ export const services: Service[] = [
     ],
   },
   {
+    cover: true,
     slug: "odit-i-pregled",
     pillar: "review",
     standard: "Наредба № 8121з-647",
@@ -733,6 +735,7 @@ export const services: Service[] = [
     ],
   },
   {
+    cover: true,
     slug: "konsultatsii-po-pozharna-bezopasnost",
     pillar: "consulting",
     standard: "Нормативно съответствие",
@@ -818,6 +821,7 @@ export const services: Service[] = [
     ],
   },
   {
+    cover: true,
     slug: "pregled-na-proekti",
     pillar: "review",
     standard: "Наредба № Iз-1971",
@@ -996,6 +1000,7 @@ export const services: Service[] = [
     ],
   },
   {
+    cover: true,
     slug: "otsenka-na-risk",
     pillar: "consulting",
     standard: "Наредба № 8121з-647",
@@ -1046,6 +1051,7 @@ export const services: Service[] = [
     faqs: [],
   },
   {
+    cover: true,
     slug: "podarzhka-i-kontrol",
     pillar: "documentation",
     standard: "Наредба № 8121з-647",
