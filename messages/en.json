@@ -10,7 +10,6 @@
     "inspectionPrep": "Before a Fire Safety Inspection",
     "sectors": "Sectors",
     "about": "About",
-    "resources": "Resources",
     "blog": "Blog",
     "contact": "Contact",
     "cta": "Send an Inquiry"
@@ -145,21 +144,6 @@
     "credExperienceText": "Long-standing practical experience in designing and solving fire safety cases.",
     "philosophyTitle": "Our Philosophy",
     "philosophyText": "Fire safety isn't a box to tick on a checklist — it's a responsibility to the people who walk into a building every day, and to the owner who's accountable for it. That's why we don't work from templates: every building gets an individual analysis based on how it's actually used, not just the minimum requirements on paper. We aim for solutions that hold up to an inspector's review and to a real emergency — not just to paperwork."
-  },
-  "resources": {
-    "title": "Resources",
-    "subtitle": "Downloadable materials to help you navigate fire safety requirements.",
-    "downloadCta": "Download PDF",
-    "placeholderNotice": "[PLACEHOLDER — add real documents]",
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "confirmDownloadCta": "Download",
-    "submittingButton": "Sending…",
-    "errorText": "Something went wrong. Please try again.",
-    "downloadStarted": "Thank you! Your download has started.",
-    "comingSoonThanks": "Thank you! This resource is being prepared — we'll email you at the address you provided once it's ready.",
-    "consentNotice": "By submitting, you voluntarily provide the details above to receive this resource. Your data is processed under our",
-    "consentNoticeLinkText": "Privacy Policy"
   },
   "newsletter": {
     "title": "Fire safety newsletter",

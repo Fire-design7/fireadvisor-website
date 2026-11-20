@@ -14,7 +14,6 @@ const navItems = [
   { href: "/proverka-ot-pozharnata", key: "inspectionPrep" },
   { href: "/sektori", key: "sectors" },
   { href: "/za-nas", key: "about" },
-  { href: "/resursi", key: "resources" },
   { href: "/blog", key: "blog" },
 ] as const;
 

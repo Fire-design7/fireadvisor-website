@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       { source: "/contact", destination: "/kontakti", permanent: true },
       { source: "/blog-2", destination: "/blog", permanent: true },
       { source: "/archives/:id", destination: "/blog", permanent: true },
+      // The placeholder "resources" page was removed; the readiness test is
+      // the closest real self-check.
+      { source: "/resursi", destination: "/proverka-ot-pozharnata", permanent: true },
+      { source: "/en/resursi", destination: "/en/proverka-ot-pozharnata", permanent: true },
       // Old WordPress sitemap URL still listed in Search Console.
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       // Old blog posts replaced by the rewritten articles.

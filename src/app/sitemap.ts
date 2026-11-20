@@ -23,7 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/uslugi",
     "/sektori",
     "/za-nas",
-    "/resursi",
     "/blog",
     "/proverka-ot-pozharnata",
     "/kontakti",
