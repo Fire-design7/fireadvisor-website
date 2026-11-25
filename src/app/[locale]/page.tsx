@@ -17,6 +17,7 @@ import { services, getMainServices, getOtherServices } from "@/content/services"
 import { sectors } from "@/content/sectors";
 import { testimonials } from "@/content/testimonials";
 import { siteConfig } from "@/content/site-config";
+import { checklist } from "@/content/inspection-checklist";
 import type { Locale } from "@/i18n/routing";
 
 const commonNeeds = [
@@ -191,7 +192,8 @@ export default async function HomePage({
                 <span className="font-normal text-slate-300">{siteConfig.phone}</span>
               </a>
             </div>
-            <div className="mt-12 max-w-2xl">
+            <p className="mt-4 text-sm text-slate-300">{t("heroFreeCall")}</p>
+            <div className="mt-10 max-w-2xl">
               <TrustBadges />
             </div>
           </div>
@@ -259,28 +261,134 @@ export default async function HomePage({
         </Container>
       </section>
 
-      {/* Inspection-prep banner — the single strongest, highest-intent entry point,
-          so it gets its own visible section instead of being just one pill among many. */}
-      <section className="bg-white pb-14">
+      {/* What inspectors check — the numbered list from the inspection-prep
+          page, ending in the readiness test. The highest-intent entry point. */}
+      <section className="bg-white pb-16">
         <Container>
-          <div className="flex flex-col items-center gap-6 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center sm:flex-row sm:text-left">
-            <span
-              aria-hidden
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-amber-500 text-2xl"
-            >
-              📋
+          <div className="rounded-3xl border border-amber-200 bg-amber-50 p-6 sm:p-10">
+            <span className="text-xs font-semibold uppercase tracking-widest text-amber-700">
+              {t("inspectionListEyebrow")}
             </span>
-            <div className="flex-1">
-              <h2 className="text-lg font-bold text-slate-900">
-                {t("inspectionBannerTitle")}
-              </h2>
-              <p className="mt-1 text-sm leading-relaxed text-slate-700">
-                {t("inspectionBannerText")}
+            <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+              {t("inspectionListTitle")}
+            </h2>
+            <p className="mt-3 max-w-2xl leading-relaxed text-slate-700">
+              {t("inspectionListSubtitle")}
+            </p>
+            <ol className="mt-8 grid gap-3 sm:grid-cols-2">
+              {checklist.map((item, i) => (
+                <li key={item.id}>
+                  <Link
+                    href={`/uslugi/${item.slug}`}
+                    className="flex h-full gap-4 rounded-2xl border border-amber-100 bg-white p-4 transition-colors hover:border-amber-300"
+                  >
+                    <span
+                      aria-hidden
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500 text-sm font-bold text-slate-900"
+                    >
+                      {i + 1}
+                    </span>
+                    <span>
+                      <span className="block font-semibold text-slate-900">{item[locale].title}</span>
+                      <span className="mt-1 block text-sm leading-relaxed text-slate-600">
+                        {item[locale].text}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <LinkButton href="/proverka-ot-pozharnata#test">{t("inspectionBannerCta")}</LinkButton>
+              <p className="text-sm leading-relaxed text-slate-700 sm:flex-1">
+                {t("inspectionBannerText")}{" "}
+                <Link href="/proverka-ot-pozharnata" className="font-semibold text-amber-800 hover:text-amber-900">
+                  {t("inspectionListMore")} &rarr;
+                </Link>
               </p>
             </div>
-            <LinkButton href="/proverka-ot-pozharnata#test" className="shrink-0">
-              {t("inspectionBannerCta")}
-            </LinkButton>
+          </div>
+        </Container>
+      </section>
+
+      {/* How we work — three steps, each with what the client gets. */}
+      <section className="py-20">
+        <Container>
+          <SectionHeading title={t("howTitle")} subtitle={t("howSubtitle")} align="center" />
+          <ol className="mt-10 grid gap-6 md:grid-cols-3">
+            {([1, 2, 3] as const).map((n) => (
+              <li key={n} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
+                <span className="text-xs font-semibold uppercase tracking-widest text-amber-700">
+                  {locale === "bg" ? `Стъпка ${n}` : `Step ${n}`}
+                </span>
+                <h3 className="mt-2 text-lg font-bold text-slate-900">{t(`how${n}Title`)}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{t(`how${n}Text`)}</p>
+                <p className="mt-5 rounded-xl bg-slate-50 p-3 text-sm text-slate-700">
+                  <span className="block text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    {t("howGetLabel")}
+                  </span>
+                  {t(`how${n}Get`)}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      {/* Three ways to work together, then the free first call for anyone
+          who cannot tell which one fits. No prices: none are confirmed. */}
+      <section className="bg-white py-20">
+        <Container>
+          <SectionHeading title={t("waysTitle")} subtitle={t("waysSubtitle")} align="center" />
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {(
+              [
+                { n: 1, href: "/uslugi" },
+                { n: 2, href: "/uslugi/podarzhka-i-kontrol" },
+                { n: 3, href: "/uslugi/konsultatsii-po-pozharna-bezopasnost" },
+              ] as const
+            ).map(({ n, href }) => (
+              <div key={n} className="flex flex-col rounded-2xl border border-slate-200 p-6">
+                <h3 className="text-lg font-bold text-slate-900">{t(`way${n}Title`)}</h3>
+                <p className="mt-1 text-sm font-medium text-amber-700">{t(`way${n}For`)}</p>
+                <ul className="mt-5 flex-1 space-y-2 text-sm text-slate-700">
+                  {([1, 2, 3] as const).map((i) => (
+                    <li key={i} className="flex gap-2">
+                      <span aria-hidden className="text-amber-600">✓</span>
+                      {t(`way${n}Item${i}`)}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={href}
+                  className="mt-6 text-sm font-semibold text-slate-900 hover:text-amber-700"
+                >
+                  {t(`way${n}Cta`)} &rarr;
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col items-center gap-5 rounded-2xl bg-slate-900 p-8 text-center text-white sm:flex-row sm:text-left">
+            <div className="flex-1">
+              <h3 className="text-lg font-bold">{t("freeCallTitle")}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-slate-300">{t("freeCallText")}</p>
+            </div>
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+              <a
+                href={siteConfig.phoneHref}
+                className="inline-flex items-center justify-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-400"
+              >
+                {t("heroCall")} {siteConfig.phone}
+              </a>
+              <a
+                href={siteConfig.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-slate-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                {tCommon("whatsapp")}
+              </a>
+            </div>
           </div>
         </Container>
       </section>
