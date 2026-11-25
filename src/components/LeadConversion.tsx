@@ -23,9 +23,13 @@ export function LeadConversion() {
       const gtag = (window as unknown as { gtag?: Gtag }).gtag;
       if (typeof gtag === "function") {
         window.clearInterval(timer);
+        // No personal data: the form's name, email, phone and message never
+        // leave the inquiry API; GA4 only learns that a lead happened.
         gtag("event", "generate_lead", {
+          contact_method: "form",
           form_name: "quote_form",
           service: lead.service || undefined,
+          page_location: window.location.origin + window.location.pathname,
         });
       } else if (++attempts >= 40) {
         window.clearInterval(timer);
