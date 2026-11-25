@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { Link } from "@/i18n/navigation";
-import { pageAlternates } from "@/lib/seo";
+import { pageAlternates, searchMetaFor } from "@/lib/seo";
 import { siteConfig } from "@/content/site-config";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
@@ -14,8 +14,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "footer" });
-  return {
+  const meta = searchMetaFor(locale, "/politika-za-poveritelnost", {
     title: t("privacy"),
+    description: "",
+  });
+  return {
+    title: meta.title,
+    ...(meta.description ? { description: meta.description } : {}),
     alternates: pageAlternates(locale, "/politika-za-poveritelnost"),
   };
 }

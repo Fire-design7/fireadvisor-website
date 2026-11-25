@@ -1,0 +1,42 @@
+# Fire Advisor
+
+> Fire Advisor ("Файер Адвайзър" ЕООД) е фирма за пожарна безопасност, базирана в Пловдив, която работи по обекти в цяла България. Член на КИИП, с разрешение от ГДПБЗН. Изготвя схеми и планове за евакуация, пожарно досие и вътрешни правила, проектира, изгражда и поддържа пожароизвестителни системи и консултира фирми какво им трябва за пожарната безопасност на обекта.
+
+Контакт: телефон, WhatsApp и Viber +359 89 333 9296, имейл info@fireadvisor.eu, запитване: https://fireadvisor.eu/kontakti
+
+## Основни услуги
+
+- [Схеми и планове за евакуация](https://fireadvisor.eu/uslugi/evakuatsionni-shemi): изработка по реалния план на обекта, по Наредба № 8121з-647
+- [Пожарно досие и вътрешни правила](https://fireadvisor.eu/uslugi/pozharno-dosie): досие, правила, заповеди и инструкции за действащи обекти
+- [Пожароизвестителна система](https://fireadvisor.eu/uslugi/pozharoizvestyavane): проектиране, изграждане и поддръжка
+- [Консултации по пожарна безопасност](https://fireadvisor.eu/uslugi/konsultatsii-po-pozharna-bezopasnost): какви мерки и документи са нужни за нов или действащ обект
+- [Проверка от пожарната](https://fireadvisor.eu/proverka-ot-pozharnata): какво проверяват контролните органи и тест за готовност
+
+## Други услуги
+
+- [Част „Пожарна безопасност“](https://fireadvisor.eu/uslugi/chast-pozharna-bezopasnost): проектна част към инвестиционен проект по Наредба № Iз-1971
+- [Пожарогасителни инсталации](https://fireadvisor.eu/uslugi/gasitelni-instalatsii): спринклерни, газови и пенни системи
+- [ВСОДТ](https://fireadvisor.eu/uslugi/vsodt): вентилационни системи за отделяне на дим и топлина по EN 12101
+- [Евакуационно осветление](https://fireadvisor.eu/uslugi/evakuatsionno-osvetlenie): проектиране по EN 1838
+- [Преглед на обект](https://fireadvisor.eu/uslugi/odit-i-pregled): оглед и доклад с несъответствия и препоръки
+- [Оценка на риска от пожар](https://fireadvisor.eu/uslugi/otsenka-na-risk)
+- [Преглед на проекти](https://fireadvisor.eu/uslugi/pregled-na-proekti)
+- [Огнезащита на конструкции](https://fireadvisor.eu/uslugi/ognezashtita)
+- [Пасивна пожарозащита](https://fireadvisor.eu/uslugi/pasivna-pozharozashtita)
+- [Годишен абонамент за документация](https://fireadvisor.eu/uslugi/podarzhka-i-kontrol)
+
+## Статии
+
+- [Схема и план за евакуация по Наредба 647](https://fireadvisor.eu/blog/shemi-za-evakuatsia)
+- [Пожарно досие](https://fireadvisor.eu/blog/pozharno-dosie)
+- [Пожарна безопасност за нов обект](https://fireadvisor.eu/blog/pozharna-bezopasnost-nov-obekt)
+- [Поддръжка на пожароизвестителна система](https://fireadvisor.eu/blog/poddrazhka-na-pozharoizvestyavane)
+- [Как работи пожароизвестителната система](https://fireadvisor.eu/blog/pozharoizvestyavane)
+- [Евакуационно осветление](https://fireadvisor.eu/blog/evakuatsionno-osvetlenie)
+- [Знаци по пътя за евакуация](https://fireadvisor.eu/blog/znaci-po-patya-za-evakuatsia)
+- [Противопожарни знаци по ISO 7010](https://fireadvisor.eu/blog/protivopozharni-znaci-iso-7010)
+- [Пасивна пожарна защита](https://fireadvisor.eu/blog/pasivna-pozharna-zashtita)
+
+## English
+
+- [English version of the site](https://fireadvisor.eu/en)

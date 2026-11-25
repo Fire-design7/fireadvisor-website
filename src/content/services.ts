@@ -519,7 +519,20 @@ export const services: Service[] = [
         "Preferred date for the visit",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {"q":"Какво включва прегледът на обект по пожарна безопасност?","a":"Оглед на място на инсталациите, изходите и наличната документация, списък с констатираните несъответствия, приоритизирани препоръки за отстраняването им и кратък писмен доклад."},
+        en: {"q":"What does a fire safety review of a site include?","a":"An on-site review of the installations, exits and available documents, a list of the non-conformities found, prioritised recommendations for fixing them and a short written report."},
+      },
+      {
+        bg: {"q":"Кога е добре да поръчам преглед?","a":"Когато поемате управлението на нов обект, когато подозирате пропуски, или преди очаквана проверка от контролните органи — за да имате време да отстраните несъответствията."},
+        en: {"q":"When should I order a review?","a":"When you take over a new site, when you suspect gaps, or ahead of an expected inspection by the authorities — so there is time to fix the non-conformities."},
+      },
+      {
+        bg: {"q":"Трябва ли абонамент за прегледа?","a":"Не. Прегледът е еднократна услуга при поискване и не изисква абонамент или постоянно присъствие на обекта."},
+        en: {"q":"Do I need a subscription for the review?","a":"No. The review is a one-off service on request and needs no subscription or permanent presence on site."},
+      },
+    ],
   },
   {
     slug: "vsodt",
@@ -572,7 +585,20 @@ export const services: Service[] = [
         "Structural details — ceilings, atriums",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {"q":"Какво е ВСОДТ?","a":"ВСОДТ са вентилационни системи за отделяне на дим и топлина, известни още като противодимна вентилация. При пожар те отвеждат дима, за да се запази видимостта и пътищата за евакуация да останат безопасни."},
+        en: {"q":"What is a smoke and heat exhaust ventilation system (SHEVS)?","a":"A SHEVS removes smoke and heat during a fire — also called smoke control ventilation — so that visibility is kept and the escape routes stay safe."},
+      },
+      {
+        bg: {"q":"В кои сгради е нужна ВСОДТ?","a":"В сгради с големи обеми, атриуми, подземни паркинги или дълги евакуационни коридори, където естествената вентилация не е достатъчна."},
+        en: {"q":"Which buildings need a SHEVS?","a":"Buildings with large volumes, atriums, underground car parks or long escape corridors, where natural ventilation is not enough."},
+      },
+      {
+        bg: {"q":"Какво ви трябва, за да проектирате ВСОДТ?","a":"Архитектурен план и разрези на обекта, предназначението на пространствата и данни за конструкцията — тавани, атриуми. Проектът включва изчисления, избор на вентилатори, клапи и управление и документация по EN 12101."},
+        en: {"q":"What do you need to design a SHEVS?","a":"The architectural plan and sections, the use of each space and data about the structure — ceilings, atriums. The design covers calculations, the choice of fans, dampers and controls, and documentation to EN 12101."},
+      },
+    ],
   },
   {
     slug: "evakuatsionno-osvetlenie",
@@ -623,7 +649,20 @@ export const services: Service[] = [
         "Existing evacuation plan, if any",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {"q":"Къде е задължително евакуационното осветление?","a":"Във всяка сграда с обществен достъп или работни места, където основното осветление може да прекъсне при авария — то осветява пътищата и изходите за евакуация."},
+        en: {"q":"Where is emergency escape lighting required?","a":"In every building with public access or workplaces where the main lighting could fail in an emergency — it lights the escape routes and exits."},
+      },
+      {
+        bg: {"q":"Какво съдържа проектът за евакуационно осветление?","a":"Разположение на евакуационните и аварийните осветителни тела, изчисление на нивата на осветеност по евакуационните пътища, указателни знаци за изходите и техническа документация по EN 1838."},
+        en: {"q":"What does an emergency lighting design contain?","a":"The layout of escape and emergency luminaires, a calculation of illuminance along the escape routes, exit signs and technical documentation to EN 1838."},
+      },
+      {
+        bg: {"q":"Какво да изпратя за оферта?","a":"Архитектурния план на обекта и плана за евакуация, ако вече съществува."},
+        en: {"q":"What should I send for a quote?","a":"The architectural plan of the site and the evacuation plan, if one already exists."},
+      },
+    ],
   },
   {
     slug: "evakuatsionni-shemi",
@@ -933,7 +972,20 @@ export const services: Service[] = [
         "Required fire-resistance rating, if known",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {"q":"Кога конструкцията трябва да има огнезащита?","a":"Когато стоманената, дървената или друга носеща конструкция трябва да отговори на клас на огнеустойчивост, определен в част „Пожарна безопасност“ на проекта."},
+        en: {"q":"When does a structure need fire protection?","a":"When the steel, timber or other load-bearing structure has to meet a fire resistance class set in the fire safety part of the design."},
+      },
+      {
+        bg: {"q":"Включва ли услугата огнезащитно боядисване?","a":"Да — помагаме за избора на сертифицирана система, включително огнезащитни бои и покрития, доставяме продукта до обекта и даваме техническа спецификация за изпълнението."},
+        en: {"q":"Does the service include intumescent painting?","a":"Yes — we help choose a certified system, including fire-protective paints and coatings, deliver the product to site and provide a technical specification for application."},
+      },
+      {
+        bg: {"q":"Какви данни са нужни?","a":"Типът и размерите на конструкцията и изискваният клас на огнеустойчивост, ако е известен."},
+        en: {"q":"What information is needed?","a":"The type and dimensions of the structure and the required fire resistance class, if known."},
+      },
+    ],
   },
   {
     slug: "pasivna-pozharozashtita",
@@ -1048,7 +1100,20 @@ export const services: Service[] = [
         "Information about the activity and staff",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {"q":"Какво е оценка на риска от пожар?","a":"Анализ на пожарния риск в обекта: оглед, идентифициране на рисковите фактори и писмен доклад с конкретни препоръки за намаляване на риска, подредени по спешност."},
+        en: {"q":"What is a fire risk assessment?","a":"An analysis of the fire risk on site: an inspection, identification of the risk factors and a written report with specific recommendations to reduce the risk, ordered by urgency."},
+      },
+      {
+        bg: {"q":"Кога е нужна оценка на риска?","a":"При съмнение за конкретен риск, при промяна в организацията на обекта или като основа преди изготвяне на пожарно досие."},
+        en: {"q":"When is a risk assessment needed?","a":"When a specific risk is suspected, when the organisation of the site changes, or as a basis before preparing the fire safety file."},
+      },
+      {
+        bg: {"q":"Какво ви трябва от мен?","a":"Адрес и достъп до обекта и информация за дейността и персонала."},
+        en: {"q":"What do you need from me?","a":"The address and access to the site and information about the activity and staff."},
+      },
+    ],
   },
   {
     cover: true,
@@ -1099,7 +1164,20 @@ export const services: Service[] = [
         "Changes to the building during the year, for updates",
       ],
     },
-    faqs: [],
+    faqs: [
+      {
+        bg: {"q":"Какво включва годишният абонамент?","a":"Годишен преглед и актуализация на пожарното досие, проследяване на нормативните промени, засягащи обекта, дистанционни консултации през годината и оглед на място само при реална нужда."},
+        en: {"q":"What does the annual retainer include?","a":"An annual review and update of the fire safety file, tracking of regulatory changes affecting the site, remote advice during the year and an on-site visit only when really needed."},
+      },
+      {
+        bg: {"q":"Ще идвате ли всеки месец на обекта?","a":"Не. Комуникираме основно дистанционно и идваме на място само при реална нужда — целта е досието да е актуално без постоянно присъствие."},
+        en: {"q":"Will you visit the site every month?","a":"No. We work mainly remotely and come on site only when really needed — the aim is an up-to-date file without permanent presence."},
+      },
+      {
+        bg: {"q":"За кого е подходящ абонаментът?","a":"За собственици, които искат документацията им да остава актуална във времето, без да наемат щатен специалист и без сами да следят промените в наредбите."},
+        en: {"q":"Who is the retainer for?","a":"Owners who want their documentation to stay current over time without hiring a full-time specialist or tracking regulatory changes themselves."},
+      },
+    ],
   },
 ];
 

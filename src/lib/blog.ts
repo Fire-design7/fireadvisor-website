@@ -11,6 +11,9 @@ export interface BlogFaqItem {
 export interface BlogPostMeta {
   slug: string;
   title: string;
+  // Shorter title for the search result (<title>), when `title` is too long
+  // for Google to show in full. The page heading keeps `title`.
+  seoTitle?: string;
   description: string;
   date: string;
   updated?: string;
@@ -54,6 +57,7 @@ export function getPost(locale: Locale, slug: string): BlogPost | null {
   return {
     slug,
     title: data.title ?? slug,
+    seoTitle: data.seoTitle,
     description: data.description ?? "",
     date: data.date ?? "",
     updated: data.updated,

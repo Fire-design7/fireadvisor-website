@@ -22,6 +22,6 @@ export const config = {
   // outside the [locale] tree (src/app/seminar/route.ts), so it must not be
   // rewritten under /bg or /en like normal site content.
   matcher: [
-    "/((?!api|_next|_vercel|seminar|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|css|js|mjs|woff|woff2|ttf|map)$).*)",
+    "/((?!api|_next|_vercel|seminar|robots\\.txt|llms\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|css|js|mjs|woff|woff2|ttf|map)$).*)",
   ],
 };

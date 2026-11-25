@@ -10,7 +10,7 @@ import { DirectContactButtons } from "@/components/DirectContactButtons";
 import { Link } from "@/i18n/navigation";
 import { services, getServiceBySlug } from "@/content/services";
 import { siteConfig } from "@/content/site-config";
-import { pageAlternates, pageSocial } from "@/lib/seo";
+import { pageAlternates, pageSocial, searchMetaFor } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -35,12 +35,16 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
   const content = service[locale];
+  const path = `/uslugi/${slug}`;
+  // Search title/description are tuned separately from the on-page heading;
+  // without an override they fall back to the visible title and lead text.
+  const meta = searchMetaFor(locale, path, { title: content.title, description: content.short });
+  const cover = service.cover ? `/services/covers/${locale}-${slug}.jpg` : undefined;
   return {
-    title: content.title,
-    // The visible lead text, so search snippets match the page.
-    description: content.short,
-    alternates: pageAlternates(locale, `/uslugi/${slug}`),
-    ...pageSocial(locale, content.title, content.short),
+    title: meta.title,
+    description: meta.description,
+    alternates: pageAlternates(locale, path),
+    ...pageSocial(locale, content.title, meta.description, "website", cover),
   };
 }
 
@@ -93,9 +97,13 @@ export default async function ServiceDetailPage({
           name: content.title,
           description: content.body,
           url: `${base}/uslugi/${service.slug}`,
-          areaServed: "BG",
+          ...(service.cover
+            ? { image: `${siteConfig.url}/services/covers/${locale}-${service.slug}.jpg` }
+            : {}),
+          areaServed: { "@type": "Country", name: "Bulgaria" },
           provider: {
             "@type": "ProfessionalService",
+            "@id": `${siteConfig.url}/#business`,
             name: siteConfig.name,
             url: siteConfig.url,
             telephone: siteConfig.phone,

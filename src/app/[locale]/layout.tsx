@@ -89,10 +89,13 @@ export default async function LocaleLayout({
           data={{
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": `${siteConfig.url}/#organization`,
             name: siteConfig.name,
             legalName: siteConfig.legalName,
             url: siteConfig.url,
             logo: `${siteConfig.url}/logo-icon-dark.png`,
+            // Service-area business: no public office, so only the city.
+            areaServed: { "@type": "Country", name: "Bulgaria" },
             email: siteConfig.email,
             telephone: siteConfig.phone,
             address: {

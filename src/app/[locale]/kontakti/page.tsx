@@ -4,7 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { DirectContactButtons } from "@/components/DirectContactButtons";
 import { siteConfig } from "@/content/site-config";
-import { pageAlternates } from "@/lib/seo";
+import { pageAlternates, searchMetaFor } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -15,9 +15,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
-  return {
+  const meta = searchMetaFor(locale, "/kontakti", {
     title: t("title"),
     description: t("subtitle"),
+  });
+  return {
+    title: meta.title,
+    description: meta.description,
     alternates: pageAlternates(locale, "/kontakti"),
   };
 }

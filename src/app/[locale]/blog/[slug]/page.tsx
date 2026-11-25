@@ -67,14 +67,14 @@ export async function generateMetadata({
   const images = post.image ? [{ url: post.image, alt: post.imageAlt ?? post.title }] : undefined;
 
   return {
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.description,
     alternates,
     openGraph: {
       ...social.openGraph,
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
-      authors: [siteConfig.name],
+      authors: [siteConfig.author[locale].name],
       tags: post.tags,
       images,
     },
@@ -110,9 +110,23 @@ export default async function BlogPostPage({
           dateModified: modified,
           inLanguage: locale,
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
-          author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
+          author: {
+            "@type": "Person",
+            name: siteConfig.author[locale].name,
+            familyName: siteConfig.author[locale].familyName,
+            honorificPrefix: siteConfig.author[locale].prefix,
+            memberOf: {
+              "@type": "Organization",
+              name:
+                locale === "bg"
+                  ? "Камара на инженерите в инвестиционното проектиране (КИИП)"
+                  : "Chamber of Engineers in Investment Design (KIIP)",
+            },
+            worksFor: { "@id": `${siteConfig.url}/#organization` },
+          },
           publisher: {
             "@type": "Organization",
+            "@id": `${siteConfig.url}/#organization`,
             name: siteConfig.name,
             logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo-icon-dark.png` },
           },
@@ -155,7 +169,7 @@ export default async function BlogPostPage({
         </Link>
 
         <p className="mt-6 max-w-3xl text-sm text-slate-500">
-          {t("byline", { author: siteConfig.name })} ·{" "}
+          {t("byline", { author: `${siteConfig.author[locale].name}, ${siteConfig.name}` })} ·{" "}
           {t("published")} <time dateTime={post.date}>{formatDate(post.date, locale)}</time>
           {post.updated && post.updated !== post.date && (
             <>

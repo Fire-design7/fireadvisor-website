@@ -10,5 +10,11 @@ export const siteConfig = {
   email: "info@fireadvisor.eu",
   linkedin: "https://www.linkedin.com/company/fire-advisor-ltd/",
   address: "гр. Пловдив, България",
+  // Author of the blog articles, shown in the byline and as the Article
+  // author in structured data. Membership in КИИП is confirmed by the owner.
+  author: {
+    bg: { name: "инж. Якимов", familyName: "Якимов", prefix: "инж." },
+    en: { name: "Eng. Yakimov", familyName: "Yakimov", prefix: "Eng." },
+  },
   eik: "207523382",
 };
