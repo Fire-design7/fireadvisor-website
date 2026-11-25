@@ -10,8 +10,12 @@ export function WhyUsCard({
   text: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6">
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+    <div className="reveal card-lift group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6">
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-transform duration-500 group-hover:scale-x-100"
+      />
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700 transition-colors group-hover:bg-amber-500 group-hover:text-slate-900">
         {icon}
       </div>
       <h3 className="mt-4 text-lg font-semibold text-slate-900">{title}</h3>

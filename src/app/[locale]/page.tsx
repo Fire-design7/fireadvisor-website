@@ -18,6 +18,7 @@ import { sectors } from "@/content/sectors";
 import { testimonials } from "@/content/testimonials";
 import { siteConfig } from "@/content/site-config";
 import { checklist } from "@/content/inspection-checklist";
+import { BulgariaDotMap } from "@/components/BulgariaDotMap";
 import type { Locale } from "@/i18n/routing";
 
 const commonNeeds = [
@@ -159,14 +160,23 @@ export default async function HomePage({
             backgroundSize: "28px 28px",
           }}
         />
+        <BulgariaDotMap className="pointer-events-none absolute top-1/2 right-[-6%] hidden w-[62%] max-w-[900px] -translate-y-1/2 text-white/[0.09] md:block" />
         <Container className="relative lg:grid lg:grid-cols-[1fr_360px] lg:items-center lg:gap-10">
           <div>
             <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">
               {t("heroEyebrow")}
             </span>
-            <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-              {t("heroTitle")}
+            <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
+              {t("heroTitleLead")}
+              <span className="block bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
+                {t("heroTitleAccent")}
+              </span>
             </h1>
+            <div aria-hidden className="mt-5 flex gap-1.5">
+              <span className="h-1.5 w-12 rounded-full bg-amber-400" />
+              <span className="h-1.5 w-6 rounded-full bg-amber-200/70" />
+              <span className="h-1.5 w-3 rounded-full bg-slate-500" />
+            </div>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
               {t("heroSubtitle")}
             </p>
@@ -246,7 +256,7 @@ export default async function HomePage({
               <Link
                 key={need.href}
                 href={need.href}
-                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-amber-300 hover:bg-amber-50"
+                className="reveal card-lift group flex flex-col rounded-2xl border border-slate-200 bg-white p-5 hover:bg-amber-50"
               >
                 <span className="font-semibold text-slate-900">{t(need.labelKey)}</span>
                 <span className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-600">
@@ -280,7 +290,7 @@ export default async function HomePage({
                 <li key={item.id}>
                   <Link
                     href={`/uslugi/${item.slug}`}
-                    className="flex h-full gap-4 rounded-2xl border border-amber-100 bg-white p-4 transition-colors hover:border-amber-300"
+                    className="reveal card-lift flex h-full gap-4 rounded-2xl border border-amber-100 bg-white p-4"
                   >
                     <span
                       aria-hidden
@@ -317,7 +327,7 @@ export default async function HomePage({
           <SectionHeading title={t("howTitle")} subtitle={t("howSubtitle")} align="center" />
           <ol className="mt-10 grid gap-6 md:grid-cols-3">
             {([1, 2, 3] as const).map((n) => (
-              <li key={n} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
+              <li key={n} className="reveal card-lift relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
                 <span className="text-xs font-semibold uppercase tracking-widest text-amber-700">
                   {locale === "bg" ? `Стъпка ${n}` : `Step ${n}`}
                 </span>
@@ -335,6 +345,69 @@ export default async function HomePage({
         </Container>
       </section>
 
+      {/* Documents journey — three stages from missing to maintained. Calm,
+          no fines or fear: it shows why the retainer exists. */}
+      <section className="relative overflow-hidden bg-slate-900 py-20 text-white">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <Container className="relative">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">
+              {t("journeyEyebrow")}
+            </span>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">{t("journeyTitle")}</h2>
+            <p className="mt-3 leading-relaxed text-slate-300">{t("journeySubtitle")}</p>
+          </div>
+          <ol className="relative mt-12 grid gap-6 md:grid-cols-3">
+            <span
+              aria-hidden
+              className="absolute top-6 right-[16%] left-[16%] hidden h-0.5 bg-gradient-to-r from-red-400/60 via-amber-400/70 to-emerald-400/70 md:block"
+            />
+            {(
+              [
+                { n: 1, dot: "bg-red-400", ring: "ring-red-400/30" },
+                { n: 2, dot: "bg-amber-400", ring: "ring-amber-400/30" },
+                { n: 3, dot: "bg-emerald-400", ring: "ring-emerald-400/30" },
+              ] as const
+            ).map(({ n, dot, ring }) => (
+              <li key={n} className="reveal relative flex flex-col items-center text-center">
+                <span
+                  className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full text-lg font-bold text-slate-900 ring-8 ${dot} ${ring}`}
+                >
+                  {n}
+                </span>
+                <div
+                  className={`mt-6 flex w-full flex-1 flex-col rounded-2xl border p-6 ${
+                    n === 3 ? "border-emerald-400/40 bg-white/10" : "border-white/10 bg-white/5"
+                  }`}
+                >
+                  <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                    {t(`journey${n}Label`)}
+                  </span>
+                  <h3 className="mt-1 text-lg font-bold">{t(`journey${n}Title`)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">{t(`journey${n}Text`)}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <LinkButton href="/kontakti">{t("journeyStartCta")}</LinkButton>
+            <Link
+              href="/uslugi/podarzhka-i-kontrol"
+              className="inline-flex items-center justify-center rounded-full border border-slate-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              {t("journeyRetainerCta")} &rarr;
+            </Link>
+          </div>
+        </Container>
+      </section>
+
       {/* Three ways to work together, then the free first call for anyone
           who cannot tell which one fits. No prices: none are confirmed. */}
       <section className="bg-white py-20">
@@ -348,7 +421,7 @@ export default async function HomePage({
                 { n: 3, href: "/uslugi/konsultatsii-po-pozharna-bezopasnost" },
               ] as const
             ).map(({ n, href }) => (
-              <div key={n} className="flex flex-col rounded-2xl border border-slate-200 p-6">
+              <div key={n} className={`reveal card-lift flex flex-col rounded-2xl border p-6 ${n === 2 ? "border-amber-300 bg-amber-50/60" : "border-slate-200 bg-white"}`}>
                 <h3 className="text-lg font-bold text-slate-900">{t(`way${n}Title`)}</h3>
                 <p className="mt-1 text-sm font-medium text-amber-700">{t(`way${n}For`)}</p>
                 <ul className="mt-5 flex-1 space-y-2 text-sm text-slate-700">

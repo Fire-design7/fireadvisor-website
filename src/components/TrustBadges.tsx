@@ -27,6 +27,22 @@ const iconPaths = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 12h5M9.5 15.5h5" />
     </>
   ),
+  standard: (
+    <>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6.5 3.5h8l3 3v14h-11z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 10h6M9 13.5h6M9 17h3.5" />
+    </>
+  ),
+  coverage: (
+    <>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 1113 0c0 5.4-6.5 11-6.5 11z"
+      />
+      <circle cx="12" cy="10" r="2.25" />
+    </>
+  ),
   projects: (
     <>
       <path
@@ -41,19 +57,21 @@ const iconPaths = {
 
 export function TrustBadges() {
   const t = useTranslations("home");
+  // Only facts the owner has confirmed. The years/projects badges stay
+  // defined (trustYears, trustProjects) but are not shown until confirmed.
   const items: { key: keyof typeof iconPaths; label: string }[] = [
-    { key: "years", label: t("trustYears") },
-    { key: "kiip", label: t("trustKiip") },
-    { key: "gdpzn", label: t("trustGdpzn") },
-    { key: "projects", label: t("trustProjects") },
+    { key: "kiip", label: t("credKiip") },
+    { key: "gdpzn", label: t("credGdpzn") },
+    { key: "standard", label: t("credStandard") },
+    { key: "coverage", label: t("credCoverage") },
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {items.map((item) => (
         <div
           key={item.key}
-          className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-center backdrop-blur-sm transition-colors hover:bg-white/10"
+          className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-4 text-center backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-amber-400/40 hover:bg-white/10"
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/15 text-amber-400">
             <svg

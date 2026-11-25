@@ -22,6 +22,37 @@ body {
   @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm transition-colors focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-200 aria-invalid:border-red-500 aria-invalid:focus:ring-red-200;
 }
 
+/* Scroll reveal: blocks rise into place as they enter the viewport. Pure
+   CSS (scroll-driven animations), so content is never hidden waiting for
+   JavaScript: browsers without support, crawlers and visitors who prefer
+   reduced motion simply see everything in place. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+/* Card lift: a soft shadow at rest, a little lift and a warmer border on
+   hover. Shared by the homepage cards so they feel like one system. */
+@utility card-lift {
+  @apply shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-xl hover:shadow-slate-900/10;
+}
+
 @keyframes float {
   0%,
   100% {
